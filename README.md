@@ -1,1 +1,4 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/OuSBNpwM)
+# HEALTH360
+
+## Description
+Health360 is a user-friendly fitness web application designed to guide one's journey towards optimal health. This all-in-one platform combines intuitive design with powerful features to provide users with a seamless and personalized fitness experience. Health360 incorporates an array of features, including real-time tracking of your daily calorie intake, effortless meal and exercise logging, personalized goal visualization, and a blog platform for sharing recipes and wellness tips.
