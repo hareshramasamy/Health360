@@ -1,8 +1,10 @@
+// Set Success Response
 export const setResponse = (data, response) => {
     response.status(200)
     .json(data);
 }
 
+// Set Internal Server Error Response
 export const setInternalServerErrorResponse = (err,response) => {
     response.status(500)
     .json({
@@ -11,6 +13,7 @@ export const setInternalServerErrorResponse = (err,response) => {
     });
 }
 
+// Set User Exists Error Response
 export const setUserExistsErrorResponse = (err,response) => {
     response.status(409)
     .json({
@@ -19,6 +22,7 @@ export const setUserExistsErrorResponse = (err,response) => {
     });
 }
 
+// Set Generic Error Response
 export const setErrorResponse = (err, response) => {
     response.status(500)
         .json({

@@ -2,7 +2,7 @@ import * as userProfileService from '../services/user-profile-service.js';
 import * as userService from '../services/user-service.js';
 import { setResponse, setErrorResponse } from './response-handler.js';
 
-
+//This function handles the creation of a new user profile.
 export const post = async (request, response) => {
     try {
         const newUserProfile = {...request.body};
@@ -21,6 +21,7 @@ export const post = async (request, response) => {
     }
 }
 
+// This function handles the retrieval of a user profile by its ID.
 export const get = async (request, response) => {
     try {
         const id = request.params.id;
@@ -31,6 +32,7 @@ export const get = async (request, response) => {
     }
 }
 
+// This function handles the update of a user profile.
 export const put = async (request, response) => {
     try {
         const id = request.params.id;
