@@ -1,4 +1,4 @@
-import UserProfile from '../models//User-profile model/user-profile-model.js';
+import UserProfile from '../models/user-profile/user-profile-model.js';
 
 
 export const save = async (newUserProfile) => {
