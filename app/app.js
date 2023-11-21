@@ -2,13 +2,13 @@ import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
 import registerRouter from './routes/index.js';
-import models from './models/index.js';
+import models from './models/user/index.js';
 
 const initialize = (app) => {
     app.use(cors());
     app.use(express.json());
     app.use(express.urlencoded());
-    mongoose.connect('mongodb+srv://Aravindsn20:Aravind123@info6150project.g7nlnej.mongodb.net/blogtest?retryWrites=true&w=majority');
+    mongoose.connect('mongodb+srv://ramasamyh:U5xNP9mapjGYljt5@cluster0.k5v4dpg.mongodb.net/?retryWrites=true&w=majority');
     registerRouter(app);
 }
 

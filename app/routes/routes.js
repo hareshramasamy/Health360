@@ -1,6 +1,6 @@
 import express from 'express';
 import * as userController from "../controllers/user-controller.js";
-import * as userProfileController from '../controllers/userProfileController.js';
+import * as userProfileController from '../controllers/user-profile-controller.js';
 import * as BlogController from '../controllers/blog-controller.js';
 
 const router = express.Router();
@@ -11,10 +11,10 @@ router.route('/user/sign-up')
 router.route('/user/:id')
     .get(userController.get);
 
-router.route('/userProfile')   
+router.route('/user-profile')   
     .post(userProfileController.post)
 
-router.route('/userProfile/:id')
+router.route('/user-profile/:id')
     .get(userProfileController.get)
     .put(userProfileController.put)
 
