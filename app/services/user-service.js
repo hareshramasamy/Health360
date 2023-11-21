@@ -21,3 +21,8 @@ export const createUser = async (newUser) => {
       });
       return await user.save();
 }
+
+export const find = async (id) => {
+    const user = await User.findById(id).exec();
+    return user;
+}
