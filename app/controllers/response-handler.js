@@ -18,3 +18,11 @@ export const setUserExistsErrorResponse = (err,response) => {
         message: "Could not create a user as user already exists."
     });
 }
+
+export const setErrorResponse = (err, response) => {
+    response.status(500)
+        .json({
+            code: "ServiceError",
+            message: "Error occured while processing request."
+        })
+}
