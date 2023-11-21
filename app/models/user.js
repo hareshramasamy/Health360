@@ -26,6 +26,10 @@ const User = new Schema({
     created_at: {
         type: Date,
         default: Date.now
+    },
+    profile: {
+        type: Schema.Types.ObjectId,
+        ref: 'userProfile',
     }
 }
 );

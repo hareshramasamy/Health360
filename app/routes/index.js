@@ -1,5 +1,6 @@
-import userRouter from "./user-route.js";
+import router from "./routes.js";
+
 
 export default (app) => {
-    app.use('/user', userRouter);
+    app.use('/', router);
 };
