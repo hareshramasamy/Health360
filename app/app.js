@@ -8,11 +8,8 @@ const initialize = (app) => {
     app.use(cors());
     app.use(express.json());
     app.use(express.urlencoded());
-    mongoose.connect('mongodb+srv://venkatachalapathya:f5EP18SFJdTYPWoB@akash.hyot3.mongodb.net/TestDB?retryWrites=true&w=majority');//add connection details here
+    mongoose.connect('mongodb+srv://Aravindsn20:Aravind123@info6150project.g7nlnej.mongodb.net/blogtest?retryWrites=true&w=majority');
     registerRouter(app);
-
-    //TODO: MongoDB connection
-    //TODO: Initialize routes
 }
 
 export default initialize;
