@@ -32,7 +32,7 @@ router.route('/blogs/:id')
 router.route('/workouts')
     .get(WorkoutController.getWorkout);
 // Routes to get the diet plans
-router.route('/diets/:id') 
-    .get(DietController.getDiet);
+router.route('/diets') 
+    .get(DietController.getDiet)
 // Export the router for use in the main application
 export default router;
