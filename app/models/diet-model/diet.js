@@ -18,11 +18,7 @@ const Diet = new Schema({
         description: String,
         calories: Number,
         
-    }],
-    created_at: { // Stores date and time 
-        type: Date,
-        default: Date.now
-    }
+    }]
 });
 
 const DietModel = mongoose.model('diet', Diet);
