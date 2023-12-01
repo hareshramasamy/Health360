@@ -17,13 +17,9 @@ const workout = new Schema({
         duration: Number,
         repetitions: Number,
         sets: Number
-    }],
-    created_at: {// Holds creation data of the workout
-        type: Date,
-        default: Date.now
-    }
+    }]
 });
 
-const WorkoutModel = mongoose.model('Workout', workout);
+const WorkoutModel = mongoose.model('workout', workout);
 
 export default WorkoutModel;
