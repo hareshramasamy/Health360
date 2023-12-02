@@ -1,5 +1,6 @@
 import User from '../models/user/user.js';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 //createUser method for creating a new user only when there is no existing user with the same email provided in the newUser object
 export const createUser = async (newUser) => {
@@ -23,6 +24,26 @@ export const createUser = async (newUser) => {
         created_at
       });
       return await user.save();
+}
+
+export const loginUser = async (email, password) => {
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      throw new Error('Invalid credentials');
+    }
+  
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+  
+    if (!isPasswordValid) {
+      throw new Error('Invalid credentials');
+    }
+  
+    const token = jwt.sign({ userId: user._id }, 'your-secret-key', {
+      expiresIn: '1h',
+    });
+  
+    return token;
 }
 
 //find a user by id that is provided from the controller, and return the user object as response

@@ -1,6 +1,12 @@
 import "./Landing.css"
+import {useNavigate} from 'react-router-dom';
 
 const Main = () => {
+    let navigate = useNavigate(); 
+    const routeChange = () =>{ 
+      let path = `signup`; 
+      navigate(path);
+    }
     return (
         <div className="main-area">
                 <img src={process.env.PUBLIC_URL + "/mainpagepic.png"} alt="healthpic" className="healthpic"></img>
@@ -11,7 +17,8 @@ const Main = () => {
                 <p className="goalA">Health360</p>
                 <p className="about">Build healthy habits with the all-in-one food, exercise, and calorie tracker.</p>
             </div>
-        <button className= "sign-up">
+        <button className= "sign-up" 
+                    onClick={routeChange}>
                     Start Your Journey Now
         </button>
         </div>
