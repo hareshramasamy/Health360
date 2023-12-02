@@ -33,14 +33,15 @@ header > div{
     height: 70px;
 }
 
-nav {
+nav a {
     position: absolute;
     top: 25px;
     right: 50px;
     color: aliceblue;
     font-size: 20px;
+    text-decoration: none;
 } 
-nav:hover {
+nav a:hover {
     cursor: pointer;
     font-weight: 800;
 }
@@ -157,7 +158,8 @@ ul{
     list-style-type: none;
     display: flex;
     position: relative;
-    text-wrap: wrap;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .image {
@@ -181,11 +183,11 @@ ul{
 
 .reviews li {
     border: 1px solid rgb(110, 110, 110);
-    margin: 15px;
-    width: 700px;
+    margin: 15px auto;
+    padding: 10px;
+    width: 300px;
     border-radius: 15px;
     text-align: center;
-    text-wrap: wrap;
 }
 
 footer {

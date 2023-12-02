@@ -7,7 +7,7 @@ const Header = () => {
                 <img className= "logo" src={process.env.PUBLIC_URL + "/Health360LOGO.png"} alt="Logo"></img>
                 <h2 className="name">Health360</h2>
             </div>
-            <nav>Login</nav>
+            <nav> <a href = "/login">Login</a></nav>
         </header>
     )
 }
