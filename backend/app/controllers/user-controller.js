@@ -19,6 +19,17 @@ export const post = async (request, response) => {
     }
 }
 
+export const signin = async (request, response, next) => {
+    const { email, password } = request.body;
+  
+    try {
+      const token = await userService.loginUser(email, password);
+      response.status(200).json({ token });
+    } catch (error) {
+      next(error);
+    }
+  }
+
 //get request for retrieving a user with id provided in the request parameter
 export const get = async (request,response) => {
     try{

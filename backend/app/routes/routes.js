@@ -10,6 +10,8 @@ const router = express.Router();
 // Route to handle user sign-up
 router.route('/user/sign-up')
     .post(userController.post);
+router.route('/user/sign-in')
+    .post(userController.signin);
 // Route to get user details by ID
 router.route('/user/:id')
     .get(userController.get);
@@ -32,7 +34,7 @@ router.route('/blogs/:id')
 router.route('/workouts')
     .get(WorkoutController.getWorkout);
 // Routes to get the diet plans
-router.route('/diets/:id') 
-    .get(DietController.getDiet);
+router.route('/diets') 
+    .get(DietController.getDiet)
 // Export the router for use in the main application
 export default router;
