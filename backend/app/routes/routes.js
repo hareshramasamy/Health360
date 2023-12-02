@@ -10,6 +10,8 @@ const router = express.Router();
 // Route to handle user sign-up
 router.route('/user/sign-up')
     .post(userController.post);
+router.route('/user/sign-in')
+    .post(userController.signin);
 // Route to get user details by ID
 router.route('/user/:id')
     .get(userController.get);
