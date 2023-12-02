@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Login from "./components/login"
+import Landing from "./components/LandingPage/Landing"
 import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path= "/login" element={<Login/>}></Route>
+        <Route path= "/" element={<Landing/>}></Route>
       </Routes>
     </BrowserRouter>
     // <div className="App">
