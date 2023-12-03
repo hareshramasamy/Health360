@@ -1,7 +1,13 @@
 import "./Landing.css"
+import {useNavigate} from 'react-router-dom';
 
 
 const Footer = () => {
+    let navigate = useNavigate(); 
+    const routeChange = () =>{ 
+      let path = `signup`; 
+      navigate(path);
+    }
     return (
         <footer>
             <section>
@@ -11,7 +17,7 @@ const Footer = () => {
                 </div>
                 <p className="slogan">Embrace Your Fitness Journey with Health360</p>
             </section>
-            <button className= "footer-start">
+            <button className= "footer-start" onClick={routeChange}>
                     Start Now 
             </button>
             <div>
