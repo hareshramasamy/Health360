@@ -76,9 +76,11 @@ function Login() {
     return (
 
         <div className="login-btn">
-          <div className= "logo-div"><img className= "logo-login" src={process.env.PUBLIC_URL + "/Health360LOGO.png"} alt="Logo"></img></div>
+          <div className= "logo-div">
+            <img className= "logo-login" src={process.env.PUBLIC_URL + "/Health360LOGO.png"} alt="Logo"></img>
+          </div>
           <div className="vl"></div>
-          <div>
+          <div className="sign-up-container">
             <h2 className="app-name">Health360°</h2>
             <h1 className = "sign-up-heading">Login</h1>
             <form className = "sign-up-form" onSubmit={handleLogin}>
