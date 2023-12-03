@@ -1,0 +1,36 @@
+.login-btn {
+    position: relative;
+    background-color: rgb(0, 0, 0);
+    min-height: 100vh;
+}
+
+.vl {
+    border-left: 3px solid #acacac;
+    height: 80%;
+    position: absolute;
+    left: 50%;
+    top: 20;
+}
+
+.logo-div{
+    position: absolute;
+    top: 25%;
+    left: 15%;
+}
+
+.logo-login{
+  height: 400px;
+  width: 400px;
+}
+
+.sign-up-form {
+  color: aliceblue;
+  z-index: 3;
+}
+
+.sign-up-form input[type="submit"] {
+  width: 107%;
+  border: 2px;
+  background-color: #191919; /* Background color for the submit button */
+  color: white; /* Text color for the submit button */
+}
