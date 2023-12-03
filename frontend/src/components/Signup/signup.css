@@ -8,20 +8,8 @@
     background-color: #000000;
     color: #fff;
     font-family: Arial, sans-serif;
-  } 
+}
 
-  .sign-up-btn:before {
-    content: "";
-    position: absolute;
-    justify-self: center;
-    align-self: center;
-    left: 2.5%;
-    border-radius: 15px;
-    height: 90%;
-    width: 95%;
-    background-color: rgba(128, 128, 128, 0.5); /* Grey overlay with 50% opacity*/
-    z-index: 1; /* Place the overlay behind the content */
-    }
 .sign-up-heading {
     margin-bottom: 20px;
 }
@@ -32,8 +20,6 @@
     flex-direction: column;
     text-align: center;
 }
-
-
 
 input[type="text"],
 input[type="email"],
@@ -59,7 +45,9 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: aliceblue;
+    color: black;
+    font-weight: 600;
 }
 
 input.error {
@@ -68,6 +56,7 @@ input.error {
 
 .sign-up-para {
     margin-top: 20px;
+    color: white;
 }
 
 .sign-up-para a {
@@ -86,4 +75,8 @@ input.error {
   
 .signup-link:hover {
     text-decoration: underline;
+}
+
+.sign-up-para-link {
+    text-align: center;
 }

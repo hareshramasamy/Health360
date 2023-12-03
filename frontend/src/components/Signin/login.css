@@ -1,79 +1,36 @@
 .login-btn {
     position: relative;
     background-color: rgb(0, 0, 0);
-    min-height: 100vh; /* Ensure the background covers the whole viewport */
-  }
-  .login-btn:before {
-    content: "";
-    position: absolute;
-    justify-self: center;
-    align-self: center;
-    left: 2.5%;
-    border-radius: 15px;
-    height: 90%;
-    width: 95%;
-    background-color: rgba(128, 128, 128, 0.5); /* Grey overlay with 50% opacity*/
-    z-index: 1; /* Place the overlay behind the content */
-    }
-    .vl {
-        border-left: 3px solid #acacac;
-        height: 80%;
-        position: absolute;
-        left: 50%;
-        top: 20;
-      }
-    .logo-div{
-        position: absolute;
-        top: 25%;
-        left: 15%;
-    }
-  .logo-login{
-    height: 400px;
-    width: 400px;
-  }
-
-  .login-heading {
-    color: white; /* Text color for the heading */
-  }
-  
-  .sign-up-form {
-    color: aliceblue;
-    z-index: 3;
-  }
-  .sign-up-form input[type="email"],
-  .sign-up-form input[type="password"] {
-    border: 2px solid #acacac;
-    background-color: #191919; /* Background color for input fields */
-    color: rgb(248, 247, 247); /* Text color for input fields */
-  }
-  
-  .sign-up-form input[type="submit"] {
-    width: 107%;
-    border: 2px;
-    background-color: #191919; /* Background color for the submit button */
-    color: white; /* Text color for the submit button */
-  }
-  
-  input[type="submit"]:hover {
-    background-color: #0056b3;
+    min-height: 100vh;
 }
 
-  .sign-up-para {
-    color: white; /* Text color for the paragraph */
-    z-index: 3;
-  }
-  
-  .signup-link {
-    color: white; /* Text color for the signup link */
-    z-index: 3;
-  }
-  
-  /* .login-heading,
-  .signup-link {
-    color: white; 
-    text-align: center; 
+.vl {
+    border-left: 3px solid #acacac;
+    height: 80%;
     position: absolute;
-    left: 0%;
-    transform: translateX(-50%);
-    width: 100%;
-  } */
+    left: 50%;
+    top: 20;
+}
+
+.logo-div{
+    position: absolute;
+    top: 25%;
+    left: 15%;
+}
+
+.logo-login{
+  height: 400px;
+  width: 400px;
+}
+
+.sign-up-form {
+  color: aliceblue;
+  z-index: 3;
+}
+
+.sign-up-form input[type="submit"] {
+  width: 107%;
+  border: 2px;
+  background-color: #191919; /* Background color for the submit button */
+  color: white; /* Text color for the submit button */
+}

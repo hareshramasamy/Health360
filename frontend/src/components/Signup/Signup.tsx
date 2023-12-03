@@ -87,12 +87,13 @@ function Signup() {
 
     return (
         <div className="sign-up-btn">
-            <div className= "logo-div"><img className= "logo-login" src={process.env.PUBLIC_URL + "/Health360LOGO.png"} alt="Logo"></img></div>
+          <div className= "logo-div">
+            <img className= "logo-login" src={process.env.PUBLIC_URL + "/Health360LOGO.png"} alt="Logo"></img>
+          </div>
           <div className="vl"></div>
-          <h2 className="name">Health360°</h2>
+          <div>
+            <h2 className="app-name">Health360°</h2>
             <h1 className = "sign-up-heading">Register</h1>
-
-
             <form className = "sign-up-form" onSubmit={submit}>
                 <input className={formErrors.firstNameError ? "error" : ""} name="firstName" type="text" onChange={handleChange} value= {formData.firstName} placeholder="First Name"  />
                 <input className={formErrors.lastNameError ? "error" : ""} name="lastName" type="text" onChange={handleChange} value= {formData.lastName} placeholder="Last Name"  />
@@ -102,12 +103,11 @@ function Signup() {
                 {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
                 <input type="submit" value = "Sign Up"/>
             </form>
-
-            <br />
-            <p className = "sign-up-para">Already registered?</p>
-
-            <Link className= "signup-link" to="/login">Login Page</Link>
-
+            <div className = "sign-up-para-link"> 
+                <p className = "sign-up-para">Already registered?</p>
+                <Link className= "signup-link" to="/login">Login Page</Link>
+            </div>
+          </div>
         </div>
     )
 }
