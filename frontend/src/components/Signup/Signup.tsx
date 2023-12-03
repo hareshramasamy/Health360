@@ -87,7 +87,9 @@ function Signup() {
 
     return (
         <div className="sign-up-btn">
-
+            <div className= "logo-div"><img className= "logo-login" src={process.env.PUBLIC_URL + "/Health360LOGO.png"} alt="Logo"></img></div>
+          <div className="vl"></div>
+          <h2 className="name">Health360°</h2>
             <h1 className = "sign-up-heading">Register</h1>
 
 
@@ -103,7 +105,6 @@ function Signup() {
 
             <br />
             <p className = "sign-up-para">Already registered?</p>
-            <br />
 
             <Link className= "signup-link" to="/login">Login Page</Link>
 
