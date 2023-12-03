@@ -3,8 +3,9 @@ import './App.css';
 import Login from "./components/Signin/login"
 import Landing from "./components/LandingPage/Landing"
 import Signup from "./components/Signup/Signup"
-import Home from "./components/Home"
+import Home from "./components/Dashboard"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Dashboard from './components/Dashboard';
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
         <Route path= "/" element={<Landing/>}></Route>
         <Route path= "/login" element={<Login/>}></Route>
         <Route path="/signup" element={<Signup/>}/>
-        <Route path="/home" element={<Home/>}/>
+        <Route path="/dashboard" element={<Dashboard/>}/>
       </Routes>
     </BrowserRouter>
     // <div className="App">

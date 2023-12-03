@@ -70,7 +70,7 @@ function Signup() {
         try {
           const res = await axios.post("http://localhost:3000/user/sign-up", formData);
           if (res.status === 200) {
-            history("/home", { state: { id: formData.email } });
+            history("/dashboard", { state: { id: formData.email } });
           }
         } catch (error: any) {
           if (error.response && error.response.status === 409) {
