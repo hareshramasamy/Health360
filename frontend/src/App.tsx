@@ -6,6 +6,7 @@ import Signup from './components/Signup/Signup'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import DietPlanDashboard from './components/DietPlan/DietPlanDashboard';
+import WorkoutPlanDashboard from './components/WorkoutPlan/WorkoutPlanDashboard';
 import { useSelector } from 'react-redux';
 import { RootState } from './store'; // Assuming RootState is your Redux store state type
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/dashboard" element={<PrivateRoute element = {<Dashboard />} />} />
         <Route path="/dietplan" element={<PrivateRoute element = {<DietPlanDashboard />} />} />
+        <Route path="/workoutplan" element={<PrivateRoute element = {<WorkoutPlanDashboard />} />} />
       </Routes>
     </BrowserRouter>
   );
