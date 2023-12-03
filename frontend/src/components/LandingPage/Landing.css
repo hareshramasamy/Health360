@@ -124,6 +124,7 @@ header > h2 {
     font-weight: 700;
     text-wrap: wrap;
     z-index: 1;
+    transition: background-color 0.3s ease;
 }
 
 .sign-up:hover {
@@ -224,6 +225,7 @@ footer {
     position: absolute;
     bottom: 200px;
     right: 150px;
+    transition: background-color 0.3s ease;
 }
 
 .footer-start:hover {

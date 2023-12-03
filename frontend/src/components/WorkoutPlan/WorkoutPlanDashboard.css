@@ -3,12 +3,13 @@
 
 }
 
-.dietpic {
+.workoutpic {
     position: relative;
     height: 100%;
     width: 100%;
+    float: right; background-size: cover; overflow-x:hidden;
 }
-.dietplan-container {
+.workoutplan-container {
     background-color:#000000af;
     width: auto;
     text-align: center;
@@ -23,12 +24,12 @@
 
 }
 
-.dietplan {
+.workoutplan {
     font-size: 30px;
     font-weight: 800;
 }
 
-.dietplan-container > div {
+.workoutplan-container > div {
     display: flex;
     flex-direction: column;
     justify-content: center;
