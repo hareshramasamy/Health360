@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router-dom"
 
 
 function Signup() {
-    const history=useNavigate();
+    const navigate=useNavigate();
 
     interface FormData {
       firstName: string;
@@ -70,7 +70,7 @@ function Signup() {
         try {
           const res = await axios.post("http://localhost:3000/user/sign-up", formData);
           if (res.status === 200) {
-            history("/dashboard", { state: { id: formData.email } });
+            navigate("/login");
           }
         } catch (error: any) {
           if (error.response && error.response.status === 409) {

@@ -1,11 +1,13 @@
 import { FormEvent, useState } from "react"
 import axios from "axios"
 import { useNavigate, Link } from "react-router-dom"
+import { useDispatch } from 'react-redux';
 import "./login.css"
+import { loginSuccess } from "../../store/slices/authSlice";
 
 
 function Login() {
-
+    const dispatch=useDispatch();
     const history=useNavigate();
 
     interface FormData {
@@ -59,8 +61,8 @@ function Login() {
           try {
             const res = await axios.post("http://localhost:3000/user/sign-in", formData);
             if (res.status === 200 && res.data.token) {
-              // Store the token in local storage upon successful login
               localStorage.setItem("token", res.data.token);
+              dispatch(loginSuccess());
               history("/dashboard", { state: { id: formData.email } });
             }
           } catch (error: any) {
