@@ -1,15 +1,11 @@
 import React from "react"
 import "./DietPlanDashboard.css"
+import Header from "../LandingPage/Header"
 
 const DietPlanDashboard = () => {
     return (
         <div>
-            <header className="navbar">
-                <div className="top-logo">
-                    <img className= "logo" src={process.env.PUBLIC_URL + "/Health360LOGO.png"} alt="Logo"></img>
-                    <h2 className="name">Health360</h2>
-                </div>
-            </header>
+            <Header />
             <img src={process.env.PUBLIC_URL + "/dietplanImage.jpg"} alt="healthpic" className="dietpic"></img>
             <div className="dietplan-container">
                 <p className="dietplan">Diet Plan</p>
