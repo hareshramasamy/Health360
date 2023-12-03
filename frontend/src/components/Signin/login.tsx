@@ -1,6 +1,7 @@
-import React, { FormEvent, useState } from "react"
+import { FormEvent, useState } from "react"
 import axios from "axios"
 import { useNavigate, Link } from "react-router-dom"
+import "./login.css"
 
 
 function Login() {
@@ -72,54 +73,31 @@ function Login() {
 
       };
 
-    // async function submit(e: any){
-    //     e.preventDefault();
-
-    //     try{
-
-    //         await axios.post("http://localhost:3001/sign-in",formData)
-    //         .then(res=>{
-    //             if(res.data=="exist"){
-    //                 history("/home",{state:{id:email}})
-    //             }
-    //             else if(res.data=="notexist"){
-    //                 alert("User have not sign up")
-    //             }
-    //         })
-    //         .catch(e=>{
-    //             alert("wrong details")
-    //             console.log(e);
-    //         })
-
-    //     }
-    //     catch(e){
-    //         console.log(e);
-
-    //     }
-
-    // }
-
-
     return (
+
         <div className="login-btn">
-
+          <div className= "logo-div"><img className= "logo-login" src={process.env.PUBLIC_URL + "/Health360LOGO.png"} alt="Logo"></img></div>
+          <div className="vl"></div>
+          <div>
+            <h2 className="app-name">Health360°</h2>
             <h1 className = "sign-up-heading">Login</h1>
-
-            {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-
             <form className = "sign-up-form" onSubmit={handleLogin}>
-                <input className={formErrors.emailError ? "error" : ""}  name="email" type="email" onChange={handleChange} value={formData.email} placeholder="Email" />
-                <input className={formErrors.passwordError ? "error" : ""}  name="password" type="password" onChange={handleChange} value={formData.password} placeholder="Password" />
-                <input type="submit" value="Login" />
+              <input className={formErrors.emailError ? "error" : ""}  name="email" type="email" onChange={handleChange} value={formData.email} placeholder="Email" />
+              <input className={formErrors.passwordError ? "error" : ""}  name="password" type="password" onChange={handleChange} value={formData.password} placeholder="Password" />
+              {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+              <input className="btn-login" type="submit" value="Login" />
             </form>
-
-            <br />
-            <p className = "sign-up-para">Don't have an account?</p>
-
-            <Link  className= "signup-link" to="/signup">Signup</Link>
-
+            <div className="sign-up-para-link">
+              <p className = "sign-up-para">Don't have an account?</p>
+              <Link  className= "signup-link" to="/signup">Signup</Link>
+            </div>
+          </div>
         </div>
     )
 }
 
 export default Login
+
+
+
+
