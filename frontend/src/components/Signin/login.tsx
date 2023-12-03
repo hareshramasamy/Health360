@@ -61,7 +61,7 @@ function Login() {
             if (res.status === 200 && res.data.token) {
               // Store the token in local storage upon successful login
               localStorage.setItem("token", res.data.token);
-              history("/dashboard");
+              history("/dashboard", { state: { id: formData.email } });
             }
           } catch (error: any) {
             setErrorMessage("Invalid email or password. Please try again.");
