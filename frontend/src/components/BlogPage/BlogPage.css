@@ -1,0 +1,233 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;500;700&display=swap");
+
+* {
+    font-family: "aliceblue", sans-serif;
+    
+}
+
+
+div.post img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin-right: 10px;
+    margin-left: 20px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px; /* Adjust the margin as needed */
+}
+.Main {
+    background-color: rgb(97, 95, 95);
+}
+
+.post {
+    display: flex;
+    align-items: center; /* Align items vertically in the center */
+    margin-bottom: 20px; /* Adjust the gap as needed */
+    margin-left: 20px;
+    margin-right: 40px;
+    border-radius: 10px;
+    border: 1px solid #ccc; /* Add border to each post */
+    padding: 10px; /* Add padding for spacing */
+    background-color: rgba(0, 0, 0);
+}
+
+.image {
+    margin-right: 10px; /* Adjust the margin as needed */
+}
+
+.texts {
+    display: flex;
+    flex-direction: column;
+}
+
+h2, p, h4, span {
+    margin: 0; /* Remove default margin for better spacing */
+    padding: 5px; /* Adjust the padding as needed */
+}
+
+.button {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+    gap: 10px;
+
+}
+
+.edit {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    gap: 10px;
+  }
+  
+  .delete {
+    background-color: #f44336; /* Red */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    gap: 10px;
+  }
+
+  .edit:hover {
+    background-color: #45a049; /* Darker shade for Edit button on hover */
+}
+
+.delete:hover {
+    background-color: #f21808; /* Darker shade for Delete button on hover */
+}
+
+  .blogTitle {
+    display: flex;
+    justify-content: center;
+  }
+  
+    .blogTitle h1 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 10px;
+        font-size: 50px;
+        font-weight: 700;
+        color: #ffffff;
+    }
+
+    .create {
+        text-align: center;
+        margin-top: 30px;
+        margin-left: 40px;
+        padding: 15px 30px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #ffffff;
+        background-color: #007bff; /* Blue color, you can change it to your preferred color */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease; /* Smooth transition for better user experience */
+
+        /* Add hover effect */
+        &:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+        }
+    }
+
+    .typing-animation {
+        overflow: hidden; /* Hide overflow to create the typing effect */
+        white-space: nowrap; /* Avoid line breaks */
+        animation: typing 2s steps(20, end); /* Animation duration and steps */
+      }
+      
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+
+      /* Add this style to set the text color to white inside each post */
+.post h2,
+.post p,
+.post h4,
+.post span {
+    color: white;
+}
+
+.post h2 {
+    margin-bottom: 0px; /* Adjust the margin as needed for spacing */
+}
+
+.post h4 {
+    margin-top: 10px; /* Adjust the margin as needed for spacing */
+    margin-bottom: -5px;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .footer-logo {
+        padding: 20px 10px;
+    }
+
+    .slogan {
+        padding: 10px;
+    }
+
+    .footer-start {
+        bottom: 150px;
+        right: 10px;
+    }
+
+    .icon {
+        margin: 0 5px;
+    }
+
+    .landing header > div {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .nav a {
+        position: static;
+        margin-top: 10px;
+        right: 0;
+    }
+
+    .blogTitle {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .blogTitle h1 {
+        font-size: 30px;
+    }
+
+    .create {
+        margin-top: 20px;
+    }
+
+    .post {
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .post h2,
+    .post p,
+    .post h4,
+    .post span {
+        padding: 10px;
+    }
+
+    .post img {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .button {
+        justify-content: center;
+        margin-right: 0;
+        margin-top: 10px;
+    }
+}

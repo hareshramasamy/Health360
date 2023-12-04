@@ -5,6 +5,7 @@ import Landing from './components/LandingPage/Landing'
 import Signup from './components/Signup/Signup'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
+import BlogPage from "./components/BlogPage/BlogPage"
 import DietPlanDashboard from './components/DietPlan/DietPlanDashboard';
 import WorkoutPlanDashboard from './components/WorkoutPlan/WorkoutPlanDashboard';
 import { useSelector } from 'react-redux';
@@ -23,6 +24,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/dashboard" element={<PrivateRoute element = {<Dashboard />} />} />
         <Route path="/dietplan" element={<PrivateRoute element = {<DietPlanDashboard />} />} />
+        <Route path="/blogPage" element={<PrivateRoute element = {<BlogPage />} />} />
         <Route path="/workoutplan" element={<PrivateRoute element = {<WorkoutPlanDashboard />} />} />
       </Routes>
     </BrowserRouter>
