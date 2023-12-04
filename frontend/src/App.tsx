@@ -1,40 +1,39 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import './App.css';
-import Login from "./components/Signin/login"
-import Landing from "./components/LandingPage/Landing"
-import Signup from "./components/Signup/Signup"
-import Home from "./components/Home"
+import Login from './components/Signin/login'
+import Landing from './components/LandingPage/Landing'
+import Signup from './components/Signup/Signup'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Dashboard from './components/Dashboard';
 import BlogPage from "./components/BlogPage/BlogPage"
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import DietPlanDashboard from './components/DietPlan/DietPlanDashboard';
+import WorkoutPlanDashboard from './components/WorkoutPlan/WorkoutPlanDashboard';
+import { useSelector } from 'react-redux';
+import { RootState } from './store'; // Assuming RootState is your Redux store state type
+
+type PrivateRouteProps = {
+  element: ReactNode;
+};
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path= "/" element={<Landing/>}></Route>
-        <Route path= "/login" element={<Login/>}></Route>
-        <Route path="/signup" element={<Signup/>}/>
-        <Route path="/home" element={<Home/>}/>
-        <Route path="/blogPage" element={<BlogPage/>}/>
+        <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/dashboard" element={<PrivateRoute element = {<Dashboard />} />} />
+        <Route path="/dietplan" element={<PrivateRoute element = {<DietPlanDashboard />} />} />
+        <Route path="/blogPage" element={<PrivateRoute element = {<BlogPage />} />} />
+        <Route path="/workoutplan" element={<PrivateRoute element = {<WorkoutPlanDashboard />} />} />
       </Routes>
     </BrowserRouter>
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.tsx</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
   );
+}
+
+function PrivateRoute({ element }: PrivateRouteProps) {
+  const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
+  return isLoggedIn ? (element as JSX.Element) : <Login />;
 }
 
 export default App;
