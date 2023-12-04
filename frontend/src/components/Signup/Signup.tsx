@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router-dom"
 
 
 function Signup() {
-    const history=useNavigate();
+    const navigate=useNavigate();
 
     interface FormData {
       firstName: string;
@@ -70,7 +70,7 @@ function Signup() {
         try {
           const res = await axios.post("http://localhost:3000/user/sign-up", formData);
           if (res.status === 200) {
-            history("/home", { state: { id: formData.email } });
+            navigate("/login");
           }
         } catch (error: any) {
           if (error.response && error.response.status === 409) {
@@ -91,7 +91,7 @@ function Signup() {
             <img className= "logo-login" src={process.env.PUBLIC_URL + "/Health360LOGO.png"} alt="Logo"></img>
           </div>
           <div className="vl"></div>
-          <div>
+          <div className="sign-up-container">
             <h2 className="app-name">Health360°</h2>
             <h1 className = "sign-up-heading">Register</h1>
             <form className = "sign-up-form" onSubmit={submit}>

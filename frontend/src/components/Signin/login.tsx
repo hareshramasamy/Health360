@@ -1,11 +1,13 @@
 import { FormEvent, useState } from "react"
 import axios from "axios"
 import { useNavigate, Link } from "react-router-dom"
+import { useDispatch } from 'react-redux';
 import "./login.css"
+import { loginSuccess } from "../../store/slices/authSlice";
 
 
 function Login() {
-
+    const dispatch=useDispatch();
     const history=useNavigate();
 
     interface FormData {
@@ -59,9 +61,9 @@ function Login() {
           try {
             const res = await axios.post("http://localhost:3000/user/sign-in", formData);
             if (res.status === 200 && res.data.token) {
-              // Store the token in local storage upon successful login
               localStorage.setItem("token", res.data.token);
-              history("/dashboard");
+              dispatch(loginSuccess());
+              history("/dashboard", { state: { id: formData.email } });
             }
           } catch (error: any) {
             setErrorMessage("Invalid email or password. Please try again.");
@@ -76,9 +78,11 @@ function Login() {
     return (
 
         <div className="login-btn">
-          <div className= "logo-div"><img className= "logo-login" src={process.env.PUBLIC_URL + "/Health360LOGO.png"} alt="Logo"></img></div>
+          <div className= "logo-div">
+            <img className= "logo-login" src={process.env.PUBLIC_URL + "/Health360LOGO.png"} alt="Logo"></img>
+          </div>
           <div className="vl"></div>
-          <div>
+          <div className="sign-up-container">
             <h2 className="app-name">Health360°</h2>
             <h1 className = "sign-up-heading">Login</h1>
             <form className = "sign-up-form" onSubmit={handleLogin}>
