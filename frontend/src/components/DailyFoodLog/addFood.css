@@ -1,0 +1,78 @@
+.add-food, .select-date {
+    color: aliceblue;
+}
+
+.meal-container {
+    width: 650px;
+    opacity: 0.8;
+    margin: 0 auto;
+    background-color: #191919;
+}
+
+.meal-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.meal-section h2 {
+    margin: 0;
+}
+
+.meal-section button {
+    border-radius: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: 2px;
+    background-color: aliceblue;
+    color: black; 
+}
+
+.meal-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.meal-heading h3 {
+    margin: 0;
+}
+  
+.meal-section button:hover {
+    background-color: #191919;
+    color: aliceblue; 
+    font-weight: 600;
+}
+
+.food-item, .heading {
+    display: grid;
+    grid-template-columns: 100% 100%;
+    grid-gap: 50px;
+    text-align: center;
+    padding: 10px;
+}
+
+.meal-section {
+    display: grid;
+    grid-template-columns: 200px 200px;
+    padding: 20px;
+}
+
+.date-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 0;
+}
+
+.select-date {
+    margin-left: auto;
+}
+
+.react-datepicker-wrapper {
+    margin-right: auto;
+}
+
+.react-datepicker-wrapper input {
+    margin: 0;
+}
