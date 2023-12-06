@@ -8,8 +8,10 @@ import Dashboard from './components/Dashboard';
 import BlogPage from "./components/BlogPage/BlogPage"
 import DietPlanDashboard from './components/DietPlan/DietPlanDashboard';
 import WorkoutPlanDashboard from './components/WorkoutPlan/WorkoutPlanDashboard';
+import Questionnaire from './components/Questionnaire/Basics';
 import { useSelector } from 'react-redux';
 import { RootState } from './store'; // Assuming RootState is your Redux store state type
+
 
 type PrivateRouteProps = {
   element: ReactNode;
@@ -26,6 +28,7 @@ function App() {
         <Route path="/dietplan" element={<PrivateRoute element = {<DietPlanDashboard />} />} />
         <Route path="/blogPage" element={<PrivateRoute element = {<BlogPage />} />} />
         <Route path="/workoutplan" element={<PrivateRoute element = {<WorkoutPlanDashboard />} />} />
+        <Route path="/questionnaire" element={<Questionnaire />} />
       </Routes>
     </BrowserRouter>
   );
