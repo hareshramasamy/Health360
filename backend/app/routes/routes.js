@@ -4,6 +4,7 @@ import * as userProfileController from '../controllers/user-profile-controller.j
 import * as BlogController from '../controllers/blog-controller.js';
 import * as WorkoutController from '../controllers/workout-controller.js';
 import * as DietController from '../controllers/diet-controller.js'
+import * as FoodController from '../controllers/food-controller.js'
 
 // Create an Express router instance
 const router = express.Router();
@@ -36,5 +37,9 @@ router.route('/workouts')
 // Routes to get the diet plans
 router.route('/diets') 
     .get(DietController.getDiet)
+router.route('/food/:userId/:type/:date')
+    .get(FoodController.getFoodData)
+router.route('/addfood')
+    .post(FoodController.post)
 // Export the router for use in the main application
 export default router;
