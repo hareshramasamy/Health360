@@ -67,11 +67,10 @@ const WorkoutCard: React.FC<{ workout: StrengthTrainingDetails }> = ({ workout }
 };
 
 const DisplayWorkoutPlan: React.FC<{ workoutPlan: WorkoutPlan }> = ({ workoutPlan }) => {
-    const { plan_name, workouts } = workoutPlan;
+    const { workouts } = workoutPlan;
   
     return (
       <div className="workout-plan">
-        <h1>{plan_name}</h1>
         {workouts.map((workout, index) => (
           <WorkoutCard key={index} workout={workout} />
         ))}
@@ -113,8 +112,10 @@ const WeightGainApp: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className="workout-pic-container">
       <Header />
+      <p className='planname'>Weight Gain Plan</p>
+      <div className='weightpic'/>
       <DisplayWorkoutPlan workoutPlan={weightGainPlan} />
     </div>
   );

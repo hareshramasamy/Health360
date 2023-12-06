@@ -11,7 +11,7 @@ const WorkoutPlanDashboard = () => {
     return (
         <div>
             <Header />
-            <img src={process.env.PUBLIC_URL + "/workoutplanImage.jpg"} alt="healthpic" className="workoutpic"></img>
+            <div  className="img"/>
             <div className="workoutplan-container">
                 <p className="workoutplan">Workout Plan</p>
                 <div>
