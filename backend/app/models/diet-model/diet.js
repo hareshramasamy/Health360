@@ -1,26 +1,37 @@
 import mongoose from 'mongoose';
 
-// Import mongoose and version from mongoose.
-
 const Schema = mongoose.Schema;
 
-const Diet = new Schema({
-    name: {// Holds the name
-        type: String,
-        required: true
+const MealSchema = new Schema({
+    name: {
+      type: String,
+      required: true
     },
-    description: {// Holds the description
-        type: String,
-        required: true
+    description: {
+      type: String,
+      required: true
     },
-    meals: [{// Holds the meal options
-        name: String,
-        description: String,
-        calories: Number,
-        
-    }]
-});
+    portion: {
+      type: String
+    },
+    calories: {
+      type: Number,
+      required: true
+    }
+  });
+  
+  const DietPlanSchema = new Schema({
+    goal: {
+      type: String,
+      required: true
+    },
+    plan_name: {
+      type: String,
+      required: true
+    },
+    meals: [MealSchema]
+  });
 
-const DietModel = mongoose.model('diet', Diet);
+const DietModel = mongoose.model('diet', DietPlanSchema);
 
 export default DietModel;
