@@ -26,6 +26,10 @@ if(loading) {
     return <p style={{'color':'white'}}>Loading...</p>;
 }
 
+
+const currentDate = new Date().toISOString().slice(0, 19).replace("T", " "); 
+
+
 return (
     <div className="post " style={{'flexDirection':'column'}}>
       {data.map((blog:any) => (
@@ -33,7 +37,11 @@ return (
           <h2>{blog.title}</h2>
           <p>{blog.description}</p>
           <p>Author: {blog.author}</p>
-          <p>Create Date: {blog.createDate}</p>
+          <p>Created At: {currentDate}</p>
+          <div className="buttons">
+            <button className="edit" onClick={() => handleEdit(blog._id)}>Edit</button>
+            <button className="delete" onClick={() => handleDelete(blog._id)}>Delete</button>
+          </div>
         </div>
       ))}
     </div>

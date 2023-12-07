@@ -14,8 +14,11 @@ export const get = async (request, response) => {
 export const post = async (request, response) => {
     try{
         const newBlog = {...request.body};
-        const blog = await blogService.save(newBlog);
-        setResponse(blog, response);
+        if(newBlog){
+            const blog = await blogService.save(newBlog);
+            console.log('BLOG', blog)
+            setResponse(blog, response);
+        }
     } catch (err) {
         setErrorResponse(err, response);
     }

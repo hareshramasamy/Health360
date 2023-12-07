@@ -6,6 +6,7 @@ import Signup from './components/Signup/Signup'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import BlogPage from "./components/BlogPage/BlogPage"
+import CreateBlogPage from "./components/BlogPage/CreatePost"
 import DietPlanDashboard from './components/DietPlan/DietPlanDashboard';
 import WorkoutPlanDashboard from './components/WorkoutPlan/WorkoutPlanDashboard';
 import AddFood from './components/DailyFoodLog/addfood';
@@ -26,7 +27,8 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/dashboard" element={<PrivateRoute element = {<Dashboard />} />} />
         <Route path="/dietplan" element={<PrivateRoute element = {<DietPlanDashboard />} />} />
-        <Route path="/blogPage" element={<PrivateRoute element = {<BlogPage />} />} />
+        <Route path="/blogs" element={<PrivateRoute element = {<BlogPage />} />} />
+        <Route path="/blogs/create" element={<PrivateRoute element = {<CreateBlogPage />} />} />
         <Route path="/workoutplan" element={<PrivateRoute element = {<WorkoutPlanDashboard />} />} />
         <Route path="/addfood" element={<PrivateRoute element = {<AddFood />} />} />
         <Route path="/searchfood/:mealType/:formattedDate" element={<PrivateRoute element = {<SearchFood />} />} />
