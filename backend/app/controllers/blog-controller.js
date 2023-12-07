@@ -46,3 +46,18 @@ export const remove = async (request, response) => {
         setErrorResponse(err, response);
     }
 }
+
+export const getById = async (request, response) => {
+    console.log(request.params)
+    try {
+        const id = request.params.id;
+        const blog = await blogService.getById(id); // Assuming you have a getById function in your blog-service.js
+        if (blog) {
+            setResponse(blog, response);
+        } else {
+            setErrorResponse({ message: 'Blog not found' }, response, 404);
+        }
+    } catch (err) {
+        setErrorResponse(err, response);
+    }
+};
