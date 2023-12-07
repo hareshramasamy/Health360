@@ -10,6 +10,7 @@ import SearchFood from './components/DailyFoodLog/searchFood';
 import BlogPage from "./components/BlogPage/BlogPage"
 import DietPlanDashboard from './components/DietPlan/DietPlanDashboard';
 import WorkoutPlanDashboard from './components/WorkoutPlan/WorkoutPlanDashboard';
+import Questionnaire from './components/Questionnaire/Basics';
 import { useSelector } from 'react-redux';
 import { RootState } from './store'; // Assuming RootState is your Redux store state type
 import VegetarianDietApp from './components/DietPlan/Vegetarian';
@@ -18,6 +19,7 @@ import VeganDietApp from './components/DietPlan/Vegan';
 import WeightlossApp from './components/WorkoutPlan/WeightLoss';
 import WeightgainApp from './components/WorkoutPlan/WeightGain';
 import MaintainWeightApp from './components/WorkoutPlan/MaintainWeight';
+
 
 type PrivateRouteProps = {
   element: ReactNode;
@@ -42,6 +44,7 @@ function App() {
         <Route path="/workoutplan/maintainweight" element={<PrivateRoute element = {<MaintainWeightApp />} />} />
         <Route path="/addfood" element={<PrivateRoute element = {<AddFood />} />} />
         <Route path="/searchfood/:mealType/:formattedDate" element={<PrivateRoute element = {<SearchFood />} />} />
+        <Route path="/questionnaire" element={<Questionnaire />} />
       </Routes>
     </BrowserRouter>
   );

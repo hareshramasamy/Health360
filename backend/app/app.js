@@ -14,10 +14,8 @@ const initialize = (app) => {
     app.use(express.urlencoded());
     // Connect to MongoDB database using Mongoose
     mongoose.connect('mongodb+srv://venkatachalapathya:f5EP18SFJdTYPWoB@akash.hyot3.mongodb.net/');
-
     // Register API routes
     registerRouter(app);
 }
-
 // Export the initialization function
 export default initialize;
