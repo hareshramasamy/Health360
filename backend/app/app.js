@@ -8,12 +8,12 @@ import models from './models/user/index.js';
 // Function to initialize the Express app
 const initialize = (app) => {
     // Apply CORS middleware to allow cross-origin requests
-    app.use(cors());
+    app.use(cors()); 
     // Parse incoming JSON and URL-encoded requests
     app.use(express.json());
     app.use(express.urlencoded());
     // Connect to MongoDB database using Mongoose
-    mongoose.connect('mongodb+srv://ramasamyh:xzgiopZTMyJKKYCk@cluster0.k5v4dpg.mongodb.net/test?retryWrites=true&w=majority');
+    mongoose.connect('mongodb+srv://Aravindsn20:Aravind123@info6150project.g7nlnej.mongodb.net/?retryWrites=true&w=majority')
     // Register API routes
     registerRouter(app);
 }
