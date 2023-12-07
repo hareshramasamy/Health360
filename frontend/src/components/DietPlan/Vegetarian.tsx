@@ -28,9 +28,8 @@ const DietPlanCard: React.FC<DietPlanCardProps> = ({ plan }) => {
 
   return (
     <div className="card">
-      <h3>{plan.plan_name}</h3>
-      <p>Goal: {plan.goal}</p>
-      <table className="card">
+      <h3 className='plannum'>{plan.plan_name}</h3>
+      <table className='table'>
         <thead>
           <tr>
             <th>Name</th>
@@ -100,11 +99,13 @@ const VegetarianDietApp: React.FC = () => {
   return (
     <div className="App">
       <Header />
-      <h1>Vegetarian Diet Plans</h1>
-      <div className="diet-plan-list">
-        {vegetarianDietPlans.map((plan, index) => (
-          <DietPlanCard key={index} plan={plan} />
-        ))}
+      <div className='pic'>
+        <p className='dietname'>Vegetarian Diet Plans</p>
+        <div className="diet-plan-list">
+          {vegetarianDietPlans.map((plan, index) => (
+            <DietPlanCard key={index} plan={plan} />
+          ))}
+        </div>
       </div>
     </div>
   );

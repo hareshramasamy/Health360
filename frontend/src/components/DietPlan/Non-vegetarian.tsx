@@ -26,29 +26,28 @@ const DietPlanCard: React.FC<DietPlanCardProps> = ({ plan }) => {
 
   return (
     <div className="card">
-    <h3>{plan.plan_name}</h3>
-    <p>Goal: {plan.goal}</p>
-    <table className="card">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Portion</th>
-          <th>Calories</th>
-        </tr>
-      </thead>
-      <tbody>
-        {nonVegMeals.map((meal, index) => (
-          <tr key={index}>
-            <td>{meal.name}</td>
-            <td>{meal.description}</td>
-            <td>{meal.portion}</td>
-            <td>{meal.calories} calories</td>
+      <h3>{plan.plan_name}</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Portion</th>
+            <th>Calories</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
+        </thead>
+        <tbody>
+          {nonVegMeals.map((meal, index) => (
+            <tr key={index}>
+              <td>{meal.name}</td>
+              <td>{meal.description}</td>
+              <td>{meal.portion}</td>
+              <td>{meal.calories} calories</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
@@ -91,19 +90,21 @@ const NonVegDietApp: React.FC = () => {
   if (loading) {
     return <p>Loading...</p>;
   }
-    const nonVegDietPlans = dietPlans.filter((plan) =>
-      plan.meals.some((meal) => meal.type.toLowerCase().includes('nv'))
-    );
-  
-    return (
-      <div className="App">
-        <Header />
-        <h1>Non-Vegetarian Diet Plans</h1>
+  const nonVegDietPlans = dietPlans.filter((plan) =>
+    plan.meals.some((meal) => meal.type.toLowerCase().includes('nv'))
+  );
+
+  return (
+    <div className="App">
+      <Header />
+      <div className='pic'>
+        <p className='dietname'>Non-Vegetarian Diet Plans</p>
         <NonVegDietList dietPlans={nonVegDietPlans} />
       </div>
-    );
-  };
-  
+    </div>
+  );
+};
+
 export default NonVegDietApp;
 
 

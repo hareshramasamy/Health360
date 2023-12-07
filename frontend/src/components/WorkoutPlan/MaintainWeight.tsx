@@ -4,79 +4,79 @@ import Header from '../LandingPage/Header';
 import axios from 'axios';
 
 interface StrengthTrainingDetails {
-    day: string;
-    exercise?: string;
-    details: string | string[];
-    duration_for_cardio?: string;
-    focus?: string;
-    strength_training_details?: string[];
-    reps?: string;
-    weights?: string;
-    calories_burned: number;
-    rest_day?: boolean;
+  day: string;
+  exercise?: string;
+  details: string | string[];
+  duration_for_cardio?: string;
+  focus?: string;
+  strength_training_details?: string[];
+  reps?: string;
+  weights?: string;
+  calories_burned: number;
+  rest_day?: boolean;
 }
 
 interface WorkoutPlan {
-    goal: string;
-    plan_name: string;
-    workouts: StrengthTrainingDetails[];
+  goal: string;
+  plan_name: string;
+  workouts: StrengthTrainingDetails[];
 }
 
 const WorkoutCard: React.FC<{ workout: StrengthTrainingDetails }> = ({ workout }) => {
-    const {
-        day,
-        exercise,
-        details,
-        duration_for_cardio,
-        focus,
-        strength_training_details,
-        reps,
-        weights,
-        calories_burned,
-        rest_day,
-    } = workout;
+  const {
+    day,
+    exercise,
+    details,
+    duration_for_cardio,
+    focus,
+    strength_training_details,
+    reps,
+    weights,
+    calories_burned,
+    rest_day,
+  } = workout;
 
-    return (
-        <div className="workout-card">
-            <h2>{day}</h2>
-            {rest_day ? (
-                <p>Rest Day: {details}</p>
-            ) : (
-                <>
-                    {exercise && <p>Exercise: {exercise}</p>}
-                    <p>Details: {Array.isArray(details) ? details.join(', ') : details}</p>
-                    {duration_for_cardio && <p>Duration for Cardio: {duration_for_cardio}</p>}
-                    {focus && <p>Focus: {focus}</p>}
-                    {strength_training_details && (
-                        <div>
-                            <p>Strength Training:</p>
-                            <ul>
-                                {strength_training_details.map((exercise, index) => (
-                                    <li key={index}>{exercise}</li>
-                                ))}
-                            </ul>
-                            {reps && <p>Reps: {reps}</p>}
-                            {weights && <p>Weights: {weights}</p>}
-                        </div>
-                    )}
-                    <p>Calories Burned: {calories_burned}</p>
-                </>
-            )}
-        </div>
-    );
+  return (
+    <div className="workout-card">
+      <h2>{day}</h2>
+      {rest_day ? (
+        <p>Rest Day: {details}</p>
+      ) : (
+        <>
+          {exercise && <p>Exercise: {exercise}</p>}
+          <p>Details: {Array.isArray(details) ? details.join(', ') : details}</p>
+          {duration_for_cardio && <p>Duration for Cardio: {duration_for_cardio}</p>}
+          {focus && <p>Focus: {focus}</p>}
+          {strength_training_details && (
+            <div>
+              <p>Strength Training:</p>
+              <ul>
+                {strength_training_details.map((exercise, index) => (
+                  <li key={index}>{exercise}</li>
+                ))}
+              </ul>
+              {reps && <p>Reps: {reps}</p>}
+              {weights && <p>Weights: {weights}</p>}
+            </div>
+          )}
+          <p>Calories Burned: {calories_burned}</p>
+        </>
+      )}
+    </div>
+  );
 };
 
 const DisplayWorkoutPlan: React.FC<{ workoutPlan: WorkoutPlan }> = ({ workoutPlan }) => {
-    const {workouts } = workoutPlan;
-  
-    return (
-      <div className="workout-plan">
-        {workouts.map((workout, index) => (
-          <WorkoutCard key={index} workout={workout} />
-        ))}
-      </div>
-    );
-  };
+  const { workouts } = workoutPlan;
+
+  return (
+    <div className="workout-plan">
+      {workouts.map((workout, index) => (
+        <WorkoutCard key={index} workout={workout} />
+      ))}
+    </div>
+  );
+};
 
 const MaintainWeightApp: React.FC = () => {
   const [maintainWeightPlan, setMaintainweightPlan] = useState<WorkoutPlan | null>(null);
@@ -114,9 +114,10 @@ const MaintainWeightApp: React.FC = () => {
   return (
     <div className="workout-pic-container">
       <Header />
-      <p className='maintain'>Weight Maintainance Plan</p>
-      <div className='weightpic'/>
-      <DisplayWorkoutPlan workoutPlan={maintainWeightPlan} />
+      <div className='weightpic'>
+        <p className='planname'>Weight Maintainance Plan</p>
+        <DisplayWorkoutPlan workoutPlan={maintainWeightPlan} />
+      </div>
     </div>
   );
 };

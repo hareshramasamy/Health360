@@ -12,7 +12,7 @@ const DietPlanDashboard = () => {
     return (
         <div>
             <Header />
-            <img src={process.env.PUBLIC_URL + "/dietplanImage.jpg"} alt="healthpic" className="dietpic"></img>
+            <div className="dietpic"/>
             <div className="dietplan-container">
                 <p className="dietplan">Diet Plan</p>
                 <div>

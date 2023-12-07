@@ -29,8 +29,7 @@ const DietPlanCard: React.FC<DietPlanCardProps> = ({ plan }) => {
   return (
     <div className="card">
       <h3>{plan.plan_name}</h3>
-      <p>Goal: {plan.goal}</p>
-      <table className="card">
+      <table>
         <thead>
           <tr>
             <th>Name</th>
@@ -98,8 +97,11 @@ const VeganDietApp: React.FC = () => {
   return (
     <div className="App">
       <Header />
-      <h1>Vegan Diet Plans</h1>
-      <VeganDietList dietPlans={veganDietPlans} />
+      <div className='pic'>
+        
+        <p className='dietname'>Vegan Diet Plans</p>
+        <VeganDietList dietPlans={veganDietPlans} />
+      </div>
     </div>
   );
 };

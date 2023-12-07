@@ -11,25 +11,16 @@ html,
 
 .planname {
     color: aliceblue;
-    position: absolute;
     z-index: 1;
+    display: flex;
+    justify-content: center;
     padding: 10px;
-    top: 10%;
-    left: 38vw;
     font-size: 3vw;
     font-weight: 700;
 
 }
 
-.maintain {
-    color: aliceblue;
-    position: absolute;
-    z-index: 1;
-    top: 12%;
-    left: 32vw;
-    font-size: 3vw;
-    font-weight: 700;
-}
+
 
 
 
@@ -45,8 +36,6 @@ html,
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
-    position: absolute;
-    top: 20%;
     padding: 20px;
     border-radius: 8px;
 }
@@ -70,5 +59,5 @@ html,
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 160vh;
+    height: 170vh;
 }
