@@ -113,7 +113,7 @@ function Basics() {
           onChange={(e) =>
             setFormData({ ...formData, weight: +e.target.value })
           }
-          placeholder="Weight (in kg)"
+          placeholder="Weight (in Pounds)"
         />
         <select
           className={formErrors.sexAtBirthError ? "error" : ""}
