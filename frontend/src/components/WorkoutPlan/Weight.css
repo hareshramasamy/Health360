@@ -54,7 +54,7 @@ html,
 }
 
 .weightpic {
-    background-image: url("/Users/Akash/Workspace/INFO-6150/final-project-flexbox-forces/frontend/src/components/WorkoutPlan/weight.jpg");
+    background-image: url("weight.jpg");
     position: relative;
     background-position: center;
     background-size: cover;
