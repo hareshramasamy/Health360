@@ -3,10 +3,16 @@
 
 }
 
-.dietpic {
-    position: relative;
+html,body,#root {
     height: 100%;
-    width: 100%;
+}
+
+.dietpic {
+    height: 100vh;
+    background-image: url("C:/Users/Akash/Workspace/INFO-6150/final-project-flexbox-forces/frontend/src/components/DietPlan/dietplanImage.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .dietplan-container {
     background-color:#000000af;
@@ -15,9 +21,9 @@
     position: absolute;
     top: 30%;
     left: 35%;
-    width: 30%;
-    height: 65vh;
-    min-width: 300px;
+    width: 30vw;
+    height: 60vh;
+    min-width: 200px;
     border-radius: 10px;
     color: aliceblue;
 

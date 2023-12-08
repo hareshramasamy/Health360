@@ -25,7 +25,7 @@ const userProfileSchema = new Schema({
         required: true
     },
     // Dietary preference (Vegan/Vegetarian/Non-Vegetarian).
-    foodPreferance: {
+    foodPreference: {
         type: String,
         enum: ["Vegan", "Vegetarian", "Non-Vegetarian"],
         required: true
@@ -35,11 +35,15 @@ const userProfileSchema = new Schema({
         type: String,
         enum: ["Weight-Loss", "Weight-Gain"],
         required: true
+    },
+    created_at: {
+        type: Date,
+        default: Date.now
     }
 },
-{
-    versionKey: false
-}
+// {
+//     versionKey: false
+// }
 );
 
 // Mongoose Model for UserProfile

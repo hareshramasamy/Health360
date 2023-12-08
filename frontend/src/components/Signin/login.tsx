@@ -62,8 +62,9 @@ function Login() {
             const res = await axios.post("http://localhost:3000/user/sign-in", formData);
             if (res.status === 200 && res.data.token) {
               localStorage.setItem("token", res.data.token);
+              localStorage.setItem("id", formData.email);
               dispatch(loginSuccess());
-              history("/dashboard", { state: { id: formData.email } });
+              history("/dashboard", { state: { id: localStorage.getItem('id') } });
             }
           } catch (error: any) {
             setErrorMessage("Invalid email or password. Please try again.");
