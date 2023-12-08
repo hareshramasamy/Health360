@@ -23,3 +23,9 @@ export const deleteBlog = async (id) => {
     const blog = await Blog.findByIdAndDelete(id).exec();       
     return blog;
 }
+
+// Get a blog by its ID
+export const getById = async (id) => {
+    const blog = await Blog.findById(id).exec();
+    return blog;
+}

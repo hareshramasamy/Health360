@@ -14,7 +14,7 @@ const blogSchema = new Schema({
     description: {
         type: String,
         required: true,
-        maxlength: 500,
+        maxlength: 5000,
     },
     // author to store the name of the author who created the blog.
     author: {
