@@ -14,8 +14,11 @@ export const get = async (request, response) => {
 export const post = async (request, response) => {
     try{
         const newBlog = {...request.body};
-        const blog = await blogService.save(newBlog);
-        setResponse(blog, response);
+        if(newBlog){
+            const blog = await blogService.save(newBlog);
+            console.log('BLOG', blog)
+            setResponse(blog, response);
+        }
     } catch (err) {
         setErrorResponse(err, response);
     }
@@ -43,3 +46,18 @@ export const remove = async (request, response) => {
         setErrorResponse(err, response);
     }
 }
+
+export const getById = async (request, response) => {
+    console.log(request.params)
+    try {
+        const id = request.params.id;
+        const blog = await blogService.getById(id); // Assuming you have a getById function in your blog-service.js
+        if (blog) {
+            setResponse(blog, response);
+        } else {
+            setErrorResponse({ message: 'Blog not found' }, response, 404);
+        }
+    } catch (err) {
+        setErrorResponse(err, response);
+    }
+};
