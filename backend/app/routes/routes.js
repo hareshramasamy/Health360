@@ -3,8 +3,9 @@ import * as userController from "../controllers/user-controller.js";
 import * as userProfileController from '../controllers/user-profile-controller.js';
 import * as BlogController from '../controllers/blog-controller.js';
 import * as WorkoutController from '../controllers/workout-controller.js';
-import * as DietController from '../controllers/diet-controller.js'
-import * as FoodController from '../controllers/food-controller.js'
+import * as DietController from '../controllers/diet-controller.js';
+import * as FoodController from '../controllers/food-controller.js';
+import * as ExerciseController from '../controllers/exercise-controller.js';
 
 // Create an Express router instance
 const router = express.Router();
@@ -41,5 +42,8 @@ router.route('/food/:userId/:type/:date')
     .get(FoodController.getFoodData)
 router.route('/addfood')
     .post(FoodController.post)
-// Export the router for use in the main application
+router.route('/exercise/:userId/:date')
+    .get(ExerciseController.getExercise)
+router.route('/addExercises')
+    .post(ExerciseController.post)
 export default router;
