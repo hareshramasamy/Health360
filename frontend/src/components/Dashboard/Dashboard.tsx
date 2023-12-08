@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import Header from '../LandingPage/Header';
+import Footer from '../LandingPage/Footer';
 import './Dashboard.css'
 
 function Dashboard() {
@@ -8,7 +9,7 @@ function Dashboard() {
     return (
         <div className="dashboard">
             <Header />
-            <div className='summary'>
+            <div className='dashboardpic'>
                 <div className='summarycontent'>
                     <div className='summary-header'>
                         <h1>Your daily food summary</h1>
@@ -20,7 +21,7 @@ function Dashboard() {
                                 <p>Calories remaining: 440</p>
                             </div>
                         </div>
-                        <button className='trackbutton'>Track your food</button>
+                        <a href='/addFood'><button className='trackbutton'>Track your food</button></a>
                     </div>
                     <div className='summary-header'>
                         <h1>Your daily workout summary</h1>
@@ -32,10 +33,19 @@ function Dashboard() {
                                 <p>Calories to be burned: 280</p>
                             </div>
                         </div>
-                        <button className='trackbutton'>Track your workout</button>
+                        <a href='/addExercise'><button className='trackbutton'>Track your workout</button></a>
                     </div>
                 </div>
+                <div className='discover'>
+                    <p className='discover-header'>Discover</p>
+                    <ul className='discover-container'>
+                        <a href='/dietPlan'><li className='discover-items items'>Diet plans</li></a>
+                        <a href='/workoutPlan'><li className='discover-items items'>Workout plans</li></a>
+                        <a href='/blogPage'><li className='discover-items items'>Blog your journey</li></a>
+                    </ul>
+                </div>
             </div>
+            <Footer />
         </div>
     )
 }
