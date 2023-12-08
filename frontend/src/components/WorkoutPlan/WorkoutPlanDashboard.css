@@ -9,7 +9,7 @@ html,body,#root {
 
 .img {
     height: 100vh;
-    background-image: url("C:/Users/Akash/Workspace/INFO-6150/final-project-flexbox-forces/frontend/src/components/WorkoutPlan/workoutplanImage.jpg");
+    background-image: url("workoutplanImage.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

@@ -4,7 +4,7 @@ import Login from './components/Signin/login'
 import Landing from './components/LandingPage/Landing'
 import Signup from './components/Signup/Signup'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Dashboard from './components/Dashboard';
+import Dashboard from './components/Dashboard/Dashboard';
 import AddFood from './components/DailyFoodLog/addfood';
 import SearchFood from './components/DailyFoodLog/searchFood';
 import BlogPage from "./components/BlogPage/BlogPage"
