@@ -9,7 +9,7 @@ export const search = async (params = {}) => {
 // Save a new blog entry to the database
 export const save = async (newBlog) => {
     const blog = new Blog(newBlog); 
-    return blog.save();
+    return await blog.save();
 }
 
 // Update an existing blog entry in the database

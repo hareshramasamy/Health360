@@ -8,7 +8,7 @@ import models from './models/user/index.js';
 // Function to initialize the Express app
 const initialize = (app) => {
     // Apply CORS middleware to allow cross-origin requests
-    app.use(cors());
+    app.use(cors()); 
     // Parse incoming JSON and URL-encoded requests
     app.use(express.json());
     app.use(express.urlencoded());
