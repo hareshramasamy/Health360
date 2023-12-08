@@ -107,13 +107,17 @@ header > h2 {
 .navigation-bar {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 30px;
     justify-content: center;
     background-color: #212121;
 }
 
 .navigation-bar div {
-    padding: 10px;
+    padding: 10px 0;
+}
+
+.navigation-bar div:hover {
+    background-color: #2d2c2c;
 }
 
 .navigation-bar a {
@@ -123,7 +127,6 @@ header > h2 {
 } 
 .navigation-bar a:hover {
     cursor: pointer;
-    font-weight: 800;
 }
 
 .fav{

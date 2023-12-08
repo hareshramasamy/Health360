@@ -4,6 +4,7 @@ import axios from 'axios';
 import Header from '../LandingPage/Header';
 import {jwtDecode, JwtPayload} from 'jwt-decode'
 import { useNavigate} from "react-router-dom"
+import "./searchFood.css"
 
 type FoodItem = {
   userId: string;
@@ -11,6 +12,11 @@ type FoodItem = {
   date: string;
   foodName: string;
   calories: number;
+  carbs: number;
+  fat: number;
+  protein: number;
+  sodium: number;
+  sugar: number;
 }
 
 type Params = {
@@ -19,7 +25,7 @@ type Params = {
 }
 
 interface JwtPayloadWithUserId extends JwtPayload {
-    userId: string; // Change the type accordingly if userId is not a string
+    userId: string;
 }
 
 let userId: string;
@@ -30,14 +36,16 @@ const SearchFood: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [selectedFood, setSelectedFood] = useState<FoodItem | null>(null);
+  const [selectedQuantity, setSelectedQuantity] = useState<number>(0);
   const [error, setError] = useState<string | null>(null);
+  const [initialCalories, setInitialCalories] = useState<number>(0);
+  const [initialCarbs, setInitialCarbs] = useState<number>(0);
+  const [initialFat, setInitialFat] = useState<number>(0);
+  const [initialProtein, setInitialProtein] = useState<number>(0);
+  const [initialSodium, setInitialSodium] = useState<number>(0);
+  const [initialSugar, setInitialSugar] = useState<number>(0);
   const meal = mealType!;
   const date = formattedDate!;
-
-  console.log(meal);
-  console.log(formattedDate);
-  console.log(mealType);
-  console.log(date);
 
   const token = localStorage.getItem('token');
   if(token) {
@@ -45,9 +53,31 @@ const SearchFood: React.FC = () => {
     userId = decoded.userId;
   }
 
+  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const quantity = parseInt(e.target.value);
+    setSelectedQuantity(quantity);
+
+    if (selectedFood) {
+      if(quantity === 0 || Number.isNaN(quantity)) {
+        setSelectedFood({ ...selectedFood, calories: initialCalories, carbs: initialCarbs, 
+        fat: initialFat, protein: initialProtein, sodium: initialSodium, sugar: initialSugar });
+      } else {
+        const updatedCalories = Math.round(initialCalories * quantity * 100) / 100;
+        const updatedCarbs = Math.round(initialCarbs * quantity* 100) / 100;
+        const updatedFat = Math.round(initialFat * quantity * 100) / 100;
+        const updatedProtein = Math.round(initialProtein * quantity * 100) / 100;
+        const updatedSodium = Math.round(initialSodium * quantity * 100) / 100;
+        const updatedSugar = Math.round(initialSugar * quantity * 100) / 100;
+        setSelectedFood({ ...selectedFood, calories: updatedCalories, carbs: updatedCarbs, 
+          fat: updatedFat, protein: updatedProtein, sodium: updatedSodium, sugar: updatedSugar });
+      }
+    }
+  };
+
   const searchFood = async () => {
     try {
       setSearchResults([]);
+      setSelectedFood(null);
       if (searchTerm !== "") {
         const response = await axios.get('https://trackapi.nutritionix.com/v2/search/instant', {
           headers: {
@@ -60,13 +90,9 @@ const SearchFood: React.FC = () => {
           },
         });
 
-        console.log(response);
-
-
         if (response.data.common.length === 0) {
           setError("No results found!");
         }
-
         setSearchResults(response.data.common.slice(0, 5));
       } else {
         setError("Please provide a phrase to search for!");
@@ -90,18 +116,29 @@ const SearchFood: React.FC = () => {
             },
     });
 
+    console.log(response.data);
+
 
     const selectedFoodObj = {
         userId: userId,
         foodName: food.food_name,
         date: date,
         mealType: meal,
-        calories: response.data.foods[0].nf_calories
+        calories: response.data.foods[0].nf_calories,
+        carbs: response.data.foods[0].nf_total_carbohydrate,
+        fat: response.data.foods[0].nf_total_fat,
+        protein: response.data.foods[0].nf_protein,
+        sodium: response.data.foods[0].nf_sodium,
+        sugar: response.data.foods[0].nf_sugars
       };
 
-      console.log(date);
-
     setSelectedFood(selectedFoodObj);
+    setInitialCalories(response.data.foods[0].nf_calories);
+    setInitialCarbs(response.data.foods[0].nf_total_carbohydrate);
+    setInitialFat(response.data.foods[0].nf_total_fat);
+    setInitialProtein(response.data.foods[0].nf_protein);
+    setInitialSodium(response.data.foods[0].nf_sodium);
+    setInitialSugar(response.data.foods[0].nf_sugars);
   };
 
   const handleSave = async () => {
@@ -116,50 +153,72 @@ const SearchFood: React.FC = () => {
           setError("Error saving the values!");
         }
       } else {
-        setError("Please select a to save!");
+        setError("Please select a food to save!");
       }
   };
 
+
   return (
-    <div>
+    <div className="search-food-page">
       <Header />
-      <h2>Search {mealType} Food</h2>
-      <input
-        type="text"
-        value={searchTerm}
-        onChange={(e) => {
-          setSearchTerm(e.target.value);
-          setError("");
-        }}
-        placeholder={`Search for ${mealType} food...`}
-      />
-      <button onClick={searchFood}>Search</button>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      <div className = "bg-img-food">
+        <div className="search-food-container-wrapper">
+          <div className = "search-food-page-container">
+            <div className="search-food-input-section">
+              <h2 className = "search-heading">Search {mealType} Food</h2>
+              <div>
+                <input 
+                  className='search-food-input'
+                  type="text"
+                  value={searchTerm}
+                  onChange={(e) => {
+                    setSearchTerm(e.target.value);
+                    setError("");
+                  }}
+                  placeholder={`Search for ${mealType} food...`}
+                />
+                <button className='search-btn' onClick={searchFood}>Search</button>
+              </div>
+              {error && <p style={{ color: 'red' }}>{error}</p>}
+            </div>
 
-      <div>
-        <h3>Search Results:</h3>
-        <ul>
-          {searchResults.map((item, index) => (
-            <li key={index} onClick={() => handleClick(item)}>
-              {item.food_name}
-            </li>
-          ))}
-        </ul>
-      </div>
+            <div className='search-food-result'>
+              <h3>Search Results:</h3>
+              <ul className='search-list'>
+                {searchResults.map((item, index) => (
+                  <li className = "search-item" key={index} onClick={() => handleClick(item)}>
+                    {item.food_name}
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-      <div>
-        {selectedFood && (
-          <div>
-            <h3>Selected Food: {selectedFood.foodName}</h3>
-            <p>Calories: {selectedFood.calories}</p>
-            <button onClick={handleSave}>Save</button>
+            <div className = "search-food-save">
+              {selectedFood && (
+                <div className='save-container'>
+                  <div className='select-and-save'>
+                    <h3 className='selected-food'>Selected Food: {selectedFood.foodName.charAt(0).toUpperCase() + selectedFood.foodName.slice(1)}</h3>
+                    <div className='select-qty-container'>
+                      <h3>Select Quantity:</h3>
+                      <input className='add-qty-input' name = "quantity" value = {selectedQuantity} type="number" placeholder='Add Quantity' onChange={handleQuantityChange}/>
+                    </div>
+                    <button className='save-btn' onClick={handleSave}>Save</button>
+                  </div>
+                  <div className='nutrition-facts'>
+                    <h3>Nutrition facts:</h3>
+                    <p>Calories: {selectedFood.calories}</p>
+                    <p>Carbs: {selectedFood.carbs}</p>
+                    <p>Fat: {selectedFood.fat}</p>
+                    <p>Protein: {selectedFood.protein}</p>
+                    <p>Sodium: {selectedFood.sodium}</p>
+                    <p>Sugar: {selectedFood.sodium}</p>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
-        )}
+        </div>
       </div>
-
-      <form>
-        <input type="text" placeholder="Add Quantity" />
-      </form>
     </div>
   );
 };

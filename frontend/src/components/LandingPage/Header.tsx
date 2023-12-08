@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../../store/slices/authSlice'; // Adjust the path to your authSlice
+import { logout } from '../../store/slices/authSlice';
 import { useNavigate } from 'react-router-dom'; 
 import { RootState } from '../../store';
 import Navigation from './Navigation';
@@ -8,12 +8,12 @@ import Navigation from './Navigation';
 const Header: React.FC = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
-  const history = useNavigate(); // Get the history object
+  const history = useNavigate();
   let username = "Haresh";
 
   const handleLogout = () => {
-    dispatch(logout()); // Dispatches the logout action to update the state
-    history('/'); // Redirects the user to the login page after logout
+    dispatch(logout());
+    history('/');
   };
 
   return (
