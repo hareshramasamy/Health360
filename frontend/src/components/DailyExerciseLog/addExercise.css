@@ -1,0 +1,140 @@
+.add-exercise, .select-date {
+    color: aliceblue;
+}
+
+.exercise-container {
+    opacity: 0.9;
+    margin: 0 auto;
+    background-color: #191919;
+    border: 1px solid #000000;
+    width: 50%;
+    align-items: center;
+    padding: 20px;
+    min-width: 800px;
+    display: grid;
+    grid-template-columns: 100px 4fr 4fr 4f;
+    grid-template-rows: auto;
+}
+
+.exercise-container button {
+    border-radius: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: 2px;
+    background-color: aliceblue;
+    color: black; 
+}
+
+.exercise-container h3 {
+    margin: 0;
+}
+  
+.exercise-container button:hover {
+    background-color: #191919;
+    color: aliceblue; 
+    font-weight: 600;
+}
+
+.date-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.select-date {
+    margin-left: auto;
+    background-color: aliceblue;
+    color: black;
+    padding: 4px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.react-datepicker-wrapper {
+    margin-right: auto;
+}
+
+.react-datepicker-wrapper input {
+    margin: 0;
+    border: 1px solid aliceblue;
+}
+
+.bg-img-exercise {
+    background-image: url("workoutplanImage.jpg");
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+
+.exercise-page {
+    height: 100%;
+}
+
+.exercise-name-heading {
+    grid-area: 1 / 2 / 2 / 3;
+    text-align: center;
+    padding: 20px;
+    font-weight: 700;
+}
+
+.calories-burned-heading {
+    grid-area: 1 / 3 / 2 / 4;
+    text-align: center;
+    padding: 20px;
+    font-weight: 700;
+}
+
+.minutes-heading {
+    grid-area: 1 / 4 / 2 / 5;
+    text-align: center;
+    padding: 20px;
+    font-weight: 700;
+}
+
+.exercise-heading {
+    grid-area: 2 / 1 / 3 / 2;
+    text-align: center;
+    padding: 20px;
+
+}
+
+.exercise-name {
+    grid-area: 2 / 2 / 3 / 3;
+    text-align: center;
+    padding: 20px;
+}
+
+.exercise-calories-burned {
+    grid-area: 2 / 3 / 3 / 4;
+    text-align: center;
+    padding: 20px;
+}
+
+.exercise-minutes {
+    grid-area: 2 / 4 / 3 / 5;
+    text-align: center;
+    padding: 20px;
+}
+
+.item-name, .item-calories-burned, .item-minutes {
+    padding: 5px;
+}
+
+.total-heading {
+    grid-area: 6 / 1 / 7 / 2;
+    text-align: center;
+    padding: 20px;
+}
+
+.total-calories-burned {
+    grid-area: 6 / 3 / 7 / 4;
+    text-align: center;
+    padding: 20px;
+}
+
+.total-minutes {
+    grid-area: 6 / 4 / 7 / 5;
+    text-align: center;
+    padding: 20px;
+}
