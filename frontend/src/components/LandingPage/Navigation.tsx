@@ -15,7 +15,7 @@ const Header: React.FC = () => {
             <a href ="/addExercise">EXERCISE</a>
         </div>
         <div>
-            <a href ="blogPage">BLOG</a>
+            <a href ="blogs">BLOG</a>
         </div>
         <div>
             <a href ="/dietPlan">DIET PLAN</a>
