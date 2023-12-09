@@ -12,6 +12,7 @@
     padding: 20px;
     min-width: 800px;
     display: grid;
+    gap: 20px;
     grid-template-columns: 100px 4fr 4fr 4fr 4fr 4fr 4fr 4fr;
     grid-template-rows: auto;
 }
@@ -39,12 +40,12 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    justify-content: center;
 }
 
 .select-date {
-    margin-left: auto;
-    background-color: aliceblue;
-    color: black;
+    background-color: black;
+    color: aliceblue;
     padding: 4px;
     border: 1px solid black;
     border-radius: 5px;
@@ -56,7 +57,29 @@
 
 .react-datepicker-wrapper input {
     margin: 0;
-    border: 1px solid aliceblue;
+    border: 1px solid black;
+    padding: 5px;
+    color: black;
+    background-color: aliceblue;
+    font-weight: 700;
+    font-size: medium;
+}
+
+.custom-datepicker-input {
+    position: relative;
+    display: inline-block;
+}
+  
+.custom-datepicker-input input[type='text'] {
+    padding-right: 30px;
+}
+  
+.custom-datepicker-input .calendar-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: black;
 }
 
 .bg-img-food {
@@ -67,6 +90,22 @@
     background-size:cover;
 }
 
+.arrow-icon {
+    padding: 7px 8px;
+    border: 1px solid aliceblue;
+    border-radius: 5px;
+    background-color: #000000;
+    cursor: pointer;
+    font-size: small;
+}
+
+.arrow-icon:hover {
+    background-color: aliceblue;
+    color: #212121;
+    opacity: 0.5;
+    border-color: black;
+}
+
 .food-page {
     height: 100%;
 }
@@ -74,248 +113,209 @@
 .food-heading {
     grid-area: 1 / 2 / 2 / 3;
     text-align: center;
-    padding: 20px;
     font-weight: 700;
 }
 
 .calories-heading {
     grid-area: 1 / 3 / 2 / 4;
     text-align: center;
-    padding: 20px;
     font-weight: 700;
 }
 
 .carbs-heading {
     grid-area: 1 / 4 / 2 / 5;
     text-align: center;
-    padding: 20px;
     font-weight: 700;
 }
 
 .fat-heading {
     grid-area: 1 / 5 / 2 / 6;
     text-align: center;
-    padding: 20px;
     font-weight: 700;
 }
 
 .protein-heading {
     grid-area: 1 / 6 / 2 / 7;
     text-align: center;
-    padding: 20px;
     font-weight: 700;
 }
 
 .sodium-heading {
     grid-area: 1 / 7 / 2 / 8;
     text-align: center;
-    padding: 20px;
     font-weight: 700;
 }
 
 .sugar-heading {
     grid-area: 1 / 8 / 2 / 9;
     text-align: center;
-    padding: 20px;
     font-weight: 700;
 }
 
 .breakfast-heading {
     grid-area: 2 / 1 / 3 / 2;
     text-align: center;
-    padding: 20px;
 
 }
 
 .lunch-heading {
     grid-area: 3 / 1 / 4 / 2;
     text-align: center;
-    padding: 20px;
 
 }
 
 .dinner-heading {
     grid-area: 4 / 1 / 5 / 2;
     text-align: center;
-    padding: 20px;
 
 }
 
 .snack-heading {
     grid-area: 5 / 1 / 6 / 2;
     text-align: center;
-    padding: 20px;
 }
 
 .breakfast-name {
     grid-area: 2 / 2 / 3 / 3;
     text-align: center;
-    padding: 20px;
 }
 
 .breakfast-calories {
     grid-area: 2 / 3 / 3 / 4;
     text-align: center;
-    padding: 20px;
 }
 
 .breakfast-carbs {
     grid-area: 2 / 4 / 3 / 5;
     text-align: center;
-    padding: 20px;
 }
 
 .breakfast-fat {
     grid-area: 2 / 5 / 3 / 6;
     text-align: center;
-    padding: 20px;
 }
 
 .breakfast-protein {
     grid-area: 2 / 6 / 3 / 7;
     text-align: center;
-    padding: 20px;
 }
 
 .breakfast-sodium {
     grid-area: 2 / 7 / 3 / 8;
     text-align: center;
-    padding: 20px;
 }
 
 .breakfast-sugar {
     grid-area: 2 / 8 / 3 / 9;
     text-align: center;
-    padding: 20px;
 }
 
 .lunch-name {
     grid-area: 3 / 2 / 4 / 3;
     text-align: center;
-    padding: 20px;
 }
 
 .lunch-calories {
     grid-area: 3 / 3 / 4 / 4;
     text-align: center;
-    padding: 20px;
 }
 
 .lunch-carbs {
     grid-area: 3 / 4 / 4 / 5;
     text-align: center;
-    padding: 20px;
 }
 
 .lunch-fat {
     grid-area: 3 / 5 / 4 / 6;
     text-align: center;
-    padding: 20px;
 }
 
 .lunch-protein {
     grid-area: 3 / 6 / 4 / 7;
     text-align: center;
-    padding: 20px;
 }
 
 .lunch-sodium {
     grid-area: 3 / 7 / 4 / 8;
     text-align: center;
-    padding: 20px;
 }
 
 .lunch-sugar {
-    grid-area: 3 / 8 / 4 / 49;
+    grid-area: 3 / 8 / 4 / 9;
     text-align: center;
-    padding: 20px;
 }
 
 
 .dinner-name {
     grid-area: 4 / 2 / 5 / 3;
     text-align: center;
-    padding: 20px;
 }
 
 .dinner-calories {
     grid-area: 4 / 3 / 5 / 4;
     text-align: center;
-    padding: 20px;
 }
 
 .dinner-carbs {
     grid-area: 4 / 4 / 5 / 5;
     text-align: center;
-    padding: 20px;
 }
 
 .dinner-fat {
     grid-area: 4 / 5 / 5 / 6;
     text-align: center;
-    padding: 20px;
 }
 
 .dinner-protein {
     grid-area: 4 / 6 / 5 / 7;
     text-align: center;
-    padding: 20px;
 }
 
 .dinner-sodium {
     grid-area: 4 / 7 / 5 / 8;
     text-align: center;
-    padding: 20px;
 }
 
 .dinner-sugar {
     grid-area: 4 / 8 / 5 / 9;
     text-align: center;
-    padding: 20px;
 }
 
 
 .snack-name {
     grid-area: 5 / 2 / 6 / 3;
     text-align: center;
-    padding: 20px;
 
 }
 
 .snack-calories {
     grid-area: 5 / 3 / 6 / 4;
     text-align: center;
-    padding: 20px;
 }
 
 .snack-carbs {
     grid-area: 5 / 4 / 6 / 5;
     text-align: center;
-    padding: 20px;
 }
 
 .snack-fat {
     grid-area: 5 / 5 / 6 / 6;
     text-align: center;
-    padding: 20px;
 }
 
 .snack-protein {
     grid-area: 5 / 6 / 6 / 7;
     text-align: center;
-    padding: 20px;
 }
 
 .snack-sodium {
     grid-area: 5 / 7 / 6 / 8;
     text-align: center;
-    padding: 20px;
 }
 
 .snack-sugar {
     grid-area: 5 / 8 / 6 / 9;
     text-align: center;
-    padding: 20px;
 }
 
 .item-name, .item-calories, .item-carbs, .item-fat, .item-protein, .item-sodium, .item-sugar {
@@ -325,41 +325,34 @@
 .total-calories-heading {
     grid-area: 6 / 1 / 7 / 2;
     text-align: center;
-    padding: 20px;
 }
 
 .total-calories-value {
     grid-area: 6 / 3 / 7 / 4;
     text-align: center;
-    padding: 20px;
 }
 
 .total-carbs-value {
     grid-area: 6 / 4 / 7 / 5;
     text-align: center;
-    padding: 20px;
 }
 
 .total-fat-value {
     grid-area: 6 / 5 / 7 / 6;
     text-align: center;
-    padding: 20px;
 }
 
 .total-protein-value {
     grid-area: 6 / 6 / 7 / 7;
     text-align: center;
-    padding: 20px;
 }
 
 .total-sodium-value {
     grid-area: 6 / 7 / 7 / 8;
     text-align: center;
-    padding: 20px;
 }
 
 .total-sugar-value {
     grid-area: 6 / 8 / 7 / 9;
     text-align: center;
-    padding: 20px;
 }
