@@ -8,6 +8,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import AddFood from './components/DailyFoodLog/addfood';
 import SearchFood from './components/DailyFoodLog/searchFood';
 import BlogPage from "./components/BlogPage/BlogPage"
+import CreateBlogPage from "./components/BlogPage/CreatePost"
 import DietPlanDashboard from './components/DietPlan/DietPlanDashboard';
 import WorkoutPlanDashboard from './components/WorkoutPlan/WorkoutPlanDashboard';
 import Questionnaire from './components/Questionnaire/Basics';
@@ -36,7 +37,8 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/dashboard" element={<PrivateRoute element = {<Dashboard />} />} />
         <Route path="/dietplan" element={<PrivateRoute element = {<DietPlanDashboard />} />} />
-        <Route path="/blogPage" element={<PrivateRoute element = {<BlogPage />} />} />
+        <Route path="/blogs" element={<PrivateRoute element = {<BlogPage />} />} />
+        <Route path="/blogs/create" element={<PrivateRoute element = {<CreateBlogPage />} />} />
         <Route path="/workoutplan" element={<PrivateRoute element = {<WorkoutPlanDashboard />} />} />
         <Route path="/dietplan/vegetarian" element={<PrivateRoute element = {<VegetarianDietApp />} />} />
         <Route path="/dietplan/nonvegetarian" element={<PrivateRoute element = {<NonVegDietApp />} />} />
