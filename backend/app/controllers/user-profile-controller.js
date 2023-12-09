@@ -39,9 +39,9 @@ export const get = async (request, response) => {
 // This function handles the update of a user profile.
 export const put = async (request, response) => {
     try {
-        const id = request.params.id;
+        const email = request.params.email;
         const updatedUserProfile = {...request.body};
-        const userProfile = await userProfileService.update(updatedUserProfile, id);
+        const userProfile = await userProfileService.update(updatedUserProfile, email);
         setResponse(userProfile, response);
     } catch (err) {
         setErrorResponse(err, response);

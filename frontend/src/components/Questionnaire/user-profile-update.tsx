@@ -4,26 +4,26 @@ import { useNavigate } from "react-router-dom";
 import Header from "../LandingPage/Header";
 import "./basics.css";
 
+interface FormData {
+  age: number;
+  height: number;
+  weight: number;
+  sexAtBirth: string;
+  foodPreference: string;
+  fitnessGoal: string;
+}
+
+interface FormErrors {
+  ageError: boolean;
+  heightError: boolean;
+  weightError: boolean;
+  sexAtBirthError: boolean;
+  foodPreferenceError: boolean;
+  fitnessGoalError: boolean;
+}
+
 function UserProfileUpdate() {
   const navigate = useNavigate();
-
-  interface FormData {
-    age: number;
-    height: number;
-    weight: number;
-    sexAtBirth: string;
-    foodPreference: string;
-    fitnessGoal: string;
-  }
-
-  interface FormErrors {
-    ageError: boolean;
-    heightError: boolean;
-    weightError: boolean;
-    sexAtBirthError: boolean;
-    foodPreferenceError: boolean;
-    fitnessGoalError: boolean;
-  }
 
   const [formData, setFormData] = useState<FormData>({
     age: 0,
@@ -68,12 +68,19 @@ function UserProfileUpdate() {
 
     if (validateForm()) {
       try {
-        const res = await axios.post(
-          "http://localhost:3000/user-profile/",
+        const userId = localStorage.getItem("id");
+        if (!userId) {
+          console.error("User ID not found in localStorage");
+          return;
+        }
+
+        const res = await axios.put(
+          `http://localhost:3000/user-profile/${userId}`,
           formData
         );
+
         if (res.status === 200) {
-          navigate("/dashboard", { state: { id: localStorage.getItem("id") } });
+          navigate("/dashboard", { state: { id: userId } });
         }
       } catch (error: any) {
         setErrorMessage(
@@ -87,7 +94,7 @@ function UserProfileUpdate() {
 
   return (
     <div className="update-user-profile-container">
-      <Header></Header>
+      <Header />
       <h1 className="update-user-profile-heading">Update Your Progress</h1>
       <form className="update-user-profile-form" onSubmit={submit}>
         <input

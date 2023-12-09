@@ -24,12 +24,13 @@ try {
 };
 
 // Update a user profile by ID
-export const update = async (updatedUserProfile, id) => {
+export const update = async (updatedUserProfile, email) => {
     try{
-  const userProfile = await UserProfile.findByIdAndUpdate(
-    id,
-    updatedUserProfile
-  ).exec();
+      const userProfile = await UserProfile.findOneAndUpdate(
+        { email },
+        updatedUserProfile,
+        { new: true, runValidators: true }
+    ).exec();
   return userProfile;
     }
     catch(error) {
