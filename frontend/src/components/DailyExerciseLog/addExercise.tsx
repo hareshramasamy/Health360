@@ -6,6 +6,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import Header from '../LandingPage/Header';
 import './addExercise.css';
 import { jwtDecode, JwtPayload } from 'jwt-decode';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendarAlt, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 interface ExerciseData {
   caloriesBurned: number;
@@ -52,6 +54,29 @@ const AddExercise: React.FC = () => {
     setTotalCaloriesBurned(0);
     setTotalMinutes(0);
   };
+
+  const handlePreviousDay = () => {
+    if (selectedDate) {
+      const previousDay = new Date(selectedDate);
+      previousDay.setDate(selectedDate.getDate() - 1);
+      setSelectedDate(previousDay);
+    }
+  };
+
+  const handleNextDay = () => {
+    if (selectedDate) {
+      const nextDay = new Date(selectedDate);
+      nextDay.setDate(selectedDate.getDate() + 1);
+      setSelectedDate(nextDay);
+    }
+  };
+
+  const CustomDatePickerInput = ({ value, onClick }: any) => (
+    <div className="custom-datepicker-input">
+      <input type="text" value={value} readOnly={true} onClick={onClick} />
+      <FontAwesomeIcon icon={faCalendarAlt} className="calendar-icon" />
+    </div>
+  );
 
   useEffect(() => {
     const fetchExerciseData = async () => {
@@ -100,9 +125,24 @@ const AddExercise: React.FC = () => {
     <div className = "exercise-page">
       <Header />
       <div className = "bg-img-exercise">
-        <div className="date-bar">
-          <h3 className="select-date">Your Exercise log for:</h3>
-          <DatePicker selected={selectedDate} onChange={handleDateChange} dateFormat="yyyy-MM-dd" />
+      <div className="date-bar">
+          <h3 className="select-date">Your food log for:</h3>
+          <div className="arrow-icon" onClick={handlePreviousDay}>
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </div>
+
+          <div className="datepicker-container">
+            <DatePicker
+              selected={selectedDate}
+              onChange={(date: Date | null) => setSelectedDate(date)}
+              dateFormat="yyyy-MM-dd"
+              customInput={<CustomDatePickerInput />}
+            />
+          </div>
+
+          <div className="arrow-icon" onClick={handleNextDay}>
+            <FontAwesomeIcon icon={faChevronRight} />
+          </div>
         </div>
         <div className="exercise-container">
           <div className="exercise-name-heading">Exercise name</div>

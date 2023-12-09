@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../store/slices/authSlice';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import { RootState } from '../../store';
 import Navigation from './Navigation';
 
@@ -18,11 +18,11 @@ const Header: React.FC = () => {
 
   return (
     <div>
-        <header className="navbar">
-        <div className="top-logo">
-          <img className="logo" src={process.env.PUBLIC_URL + "/Health360LOGO.png"} alt="Logo" />
-          <h2 className="name">Health360</h2>
-        </div>
+      <header className="navbar">
+          <a href={isLoggedIn ? "/dashboard" : "/"} className="top-logo">
+            <img className="logo" src={process.env.PUBLIC_URL + "/Health360LOGO.png"} alt="Logo" />
+            <h2 className="name">Health360</h2>
+          </a>
         <nav>
           {isLoggedIn ? (
             <div className="nav-items">
@@ -38,8 +38,8 @@ const Header: React.FC = () => {
       </header>
       <div>
         {isLoggedIn ? (
-        <Navigation />
-      ) : (<div></div>)}
+          <Navigation />
+        ) : (<div></div>)}
       </div>
     </div>
 
