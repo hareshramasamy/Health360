@@ -36,6 +36,19 @@ const userProfileSchema = new Schema({
         enum: ["Weight-Loss", "Weight-Gain"],
         required: true
     },
+    // Maintenance calorie based on weight
+    maintenanceCalorie: {
+        type: Number,
+        required: false 
+      },
+    calorieDeficit: {
+        type: Number,
+        required: false
+    },
+    calorieSurplus: {
+        type: Number,
+        required: false
+    },
     created_at: {
         type: Date,
         default: Date.now
