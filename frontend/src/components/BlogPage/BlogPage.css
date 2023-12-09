@@ -6,14 +6,6 @@
 }
 
 
-div.post img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    margin-right: 10px;
-    margin-left: 20px;
-}
-
 .content {
     display: flex;
     flex-direction: column;
@@ -21,11 +13,19 @@ div.post img {
 }
 .Main {
     background-color: rgb(97, 95, 95);
+    background-image: url(bgimg.jpg);
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    background-size: cover; /* Cover the entire background */
+    background-position: center; /* Center the background */
+    min-height: 80vh; /* Full height */
 }
+
 
 .post {
     display: flex;
-    align-items: center; /* Align items vertically in the center */
+    flex-direction: column;
+    align-items: left; /* Align items vertically in the center */
     margin-bottom: 20px; /* Adjust the gap as needed */
     margin-left: 20px;
     margin-right: 40px;
@@ -37,11 +37,6 @@ div.post img {
 
 .image {
     margin-right: 10px; /* Adjust the margin as needed */
-}
-
-.texts {
-    display: flex;
-    flex-direction: column;
 }
 
 h2, p, h4, span {
@@ -145,11 +140,9 @@ h2, p, h4, span {
 
 
       /* Add this style to set the text color to white inside each post */
-.post h2,
-.post p,
-.post h4,
-.post span {
-    color: white;
+
+.post p {
+    color: rgb(0, 0, 0);
 }
 
 .post h2 {
@@ -203,28 +196,8 @@ h2, p, h4, span {
     }
 
     .create {
-        margin-top: 20px;
+        margin-top: 80px;
     }
-
-    .post {
-        flex-direction: column;
-        align-items: center;
-        margin-left: 0;
-        margin-right: 0;
-    }
-
-    .post h2,
-    .post p,
-    .post h4,
-    .post span {
-        padding: 10px;
-    }
-
-    .post img {
-        margin-left: 0;
-        margin-right: 0;
-    }
-
     .button {
         justify-content: center;
         margin-right: 0;
@@ -232,11 +205,183 @@ h2, p, h4, span {
     }
 }
 
-form.createpost {
+.createpost {
     max-width: 700px;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+    box-shadow: #cdd5dd 0px 0px 10px;
+    background-color: #000000;
   }
+
+  .createpost input {
+    width: 90%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    align-content: center;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.createpost textarea {
+    width: 90%;
+    height: 200px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    align-content: center;
+}   
+
+
+.createpost button {
+    background-color: #007bff; /* Blue color, you can change it to your preferred color */
+    border: none;
+    color: #ffffff;
+    margin-top: 20px;
+    margin-left: 50px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for better user experience */
+
+    /* Add hover effect */
+    &:hover {
+        background-color: #0056b3; /* Darker shade on hover */
+    }
+}
+
+
+.editpost-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: #cdd5dd 0px 0px 10px;
+    background-color: #000000;
+  }
+  
+  .editpost-form input {
+    width: 90%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    align-content: center;
+    background-color: #ffffff;
+    color: #000000;
+  }
+  
+  .editpost-form textarea {
+    width: 90%;
+    height: 200px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    align-content: center;
+  }
+  
+  .editpost-form button {
+    background-color: #007bff;
+    border: none;
+    color: #ffffff;
+    margin-top: 20px;
+    margin-left: 50px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+  
+
+
+  /* Add this styling to your existing CSS file or create a new one */
+
+.post-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .post {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #000000;
+  }
+  
+  .post h2 {
+    color: #ffffff;
+    margin-bottom: 10px;
+    text-align: left;
+    align-items: left;
+  }
+  
+  .post p {
+    margin: 0px;
+    color: #ffffff;
+  }
+
+  .post {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 600px;
+    margin: 10px;
+    margin-left: 10px;
+    box-shadow: #cdd5dd 0px 0px 10px;
+    margin-bottom: 50px;
+    padding: 10px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: max-height 0.3s;
+    max-height: 45px; /* Initial maximum height */
+}
+
+.post:hover {
+    background-color: #1c1c1c;
+}
+
+.post.expanded {
+    max-height: 300px; /* Adjust the maximum height as needed */
+    overflow: auto;
+}
+
+
+/* Add animation for post entry */
+.post {
+    animation: Leftin 2s;
+}
+
+@keyframes Leftin {
+    0% {
+        opacity: 0;
+        /* transform: translate3d(200px, 100px, 0); */
+    }
+    100% {
+        opacity: 1;
+        /* transform: translate3d(0, 0, 0); */
+    }
+}
+
+
