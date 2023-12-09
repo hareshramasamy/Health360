@@ -1,110 +1,107 @@
 // EditPost.js
 import React, { useState, useEffect } from "react";
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useParams,useNavigate } from "react-router-dom";
+import { jwtDecode, JwtPayload } from 'jwt-decode';
+import axios from 'axios';
 
-const EditPost = ( match:any ) => {
-    
-    let{id} = useParams();
+const EditPost = () => {
+    let { id } = useParams();
     const [title, setTitle] = useState("");
-    const [summary, setSummary] = useState("");
-    const [content, setContent] = useState("");
-    const [author, setAuthor] = useState("");
+    const [description, setDescription] = useState("");
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
-    
-    // const blogId = match?.params?.id; // Extract the blog ID from the URL
-  useEffect(() => {
-    const fetchPostData = async () => {
-      try {
-        const response = await fetch(`http://localhost:3000/blogs/${id}`,
-        {
-            method: "GET",
-            headers: {
-              'Content-Type': 'application/json'
-            },
-          }
-        );
 
-        const data = await response.json();
-        console.log(data);
-        setTitle(data.title);
-        setSummary(data.summary);
-        setContent(data.description);
-        setAuthor(data.author);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        console.error("Error fetching post data:", error);
-      }
-    };
+  
+    useEffect(() => {
+      const fetchPostData = async () => {
+        try {
+          const response = await fetch(`http://localhost:3000/blogs/${id}`);
+          const data = await response.json();
+          setTitle(data.title);
+          // setDescription(stripHtmlTags(data.description));
+          setDescription(data.description);
+          // setAuthor(data.author);
+          
+          setLoading(false);
+        } catch (error: any) {
+            setLoading(false);
+            setError(error.message);
+        }
+      };
+  
+      fetchPostData();
+    }, [id]);
 
-    fetchPostData();
-  }, [id]);
-
-  const updatePost = async (ev:any) => {
-    ev.preventDefault();
-    const data = {
-      title,
-      summary,
-      description: content,
-      author,
-    };
-
-    try {
-      const response = await fetch(`http://localhost:3000/blogs/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (response.status === 200) {
-        console.log("Post updated successfully!");
-        navigate('/blogs')
-        // Redirect or navigate to the blog details page
-      } else {
-        console.error("Error updating post:", response.statusText);
-      }
-    } catch (error) {
-      console.error("Error updating post:", error);
+    interface JwtPayloadWithUserId extends JwtPayload {
+      userId: string;
     }
-  };
 
-  if (loading) {
-    return <p>Loading post...</p>;
-  }
-  return (
-    <form className="createpost" onSubmit={updatePost}>
+    let userId = 'string';
+    const token = localStorage.getItem('token');
+    if (token) {
+        const decoded: JwtPayloadWithUserId = jwtDecode(token) as JwtPayloadWithUserId;
+        userId = decoded.userId;
+    }
+  
+    const updatePost = async (ev: React.FormEvent<HTMLFormElement>) => {
+      ev.preventDefault();
+      const data = {
+        title,
+        description: description,
+        userId: userId
+      };
+
+      try {
+          const response = await axios.put(`http://localhost:3000/blogs/${id}`, data, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+  
+        if (response && response.status !== 200) {
+          throw new Error(`Error updating post: ${response.statusText}`);
+        }
+  
+        console.log("Post updated successfully!");
+        // Redirect or navigate to the blog details page
+        navigate('/blogs');
+    } catch (error: any) {
+        console.error("Error updating post:", error);
+        setError(error.message);
+    }
+    };
+  
+    if (loading) {
+      return <p>Loading post...</p>;
+    }
+  
+    return (
+        <div className="editpost-container">
+        {error && <p className="error">{error}</p>}
+        <form className="editpost-form" onSubmit={updatePost}>
       <input
         type="text"
-        placeholder="Title"
+        className="title"
+        placeholder={"Title"}
         value={title}
-        onChange={(ev) => setTitle(ev.target.value)}
-      />
-      <input
-        type="summary"
-        placeholder="Summary"
-        value={summary}
-        onChange={(ev) => setSummary(ev.target.value)}
-      />
-      <input
-        type="author"
-        placeholder="Author"
-        value={author}
-        onChange={(ev) => setAuthor(ev.target.value)}
-      />
-      <ReactQuill
-        theme="snow"
-        placeholder="Content"
-        value={content}
-        onChange={(newValue) => setContent(newValue)}
-      />
+        onChange={(ev: React.ChangeEvent<HTMLInputElement>) => setTitle(ev.target.value)}
+        required
+      /> 
+      <textarea
+        placeholder="description"
+        value={description}
+        onChange={(ev: React.ChangeEvent<HTMLTextAreaElement>) => setDescription(ev.target.value)}
+        required
+        rows={4} // Adjust the number of rows as needed 
+        cols={100} // Adjust the number of columns as needed
+        ></textarea>
       <button type="submit">Update Post</button>
-    </form>
+      </form>
+    </div>
   );
 };
 

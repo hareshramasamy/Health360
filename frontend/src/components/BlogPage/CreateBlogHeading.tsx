@@ -14,11 +14,6 @@ const Header = () => {
       <div>
         <h1 className="typing-animation">Blog Your Ideas!</h1>
       </div>
-      <div>
-        <button className="create" onClick={handleCreateBlog}>
-          Create Blog
-        </button>
-      </div>
     </div>
   );
 };
