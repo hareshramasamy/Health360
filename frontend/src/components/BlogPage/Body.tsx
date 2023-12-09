@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./BlogPage.css";
-// import { FaEdit, FaTrash } from 'react-icons/fa';
+import { FaEdit, FaTrash } from 'react-icons/fa';
 import { jwtDecode, JwtPayload } from 'jwt-decode';
 
 interface User {
@@ -92,8 +92,8 @@ function Body() {
                         <>
                         {console.log(userId)}
                         {console.log(blog.userId._id)}
-                            {/* <FaEdit className="edit" onClick={() => handleEdit(blog._id)} />
-                            <FaTrash className="delete" onClick={() => handleDelete(blog._id)} /> */}
+                            <FaEdit className="edit" onClick={() => handleEdit(blog._id)} />
+                            <FaTrash className="delete" onClick={() => handleDelete(blog._id)} />
                         </>
                     ) : (
                         <>
