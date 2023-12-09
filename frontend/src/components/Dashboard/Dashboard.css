@@ -1,11 +1,17 @@
 
-.summary {
+.dashboardpic {
     width: 100%;
-    height: 100vh;
+    height: 115vh;
+    position: relative;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url("dashboardpic.jpg");
+    background-image: url("dashboardpic3.jpg");
+}
+
+.chart {
+    height: 200px;
+    width: 200px;
 }
 
 .summarycontent {
@@ -28,11 +34,10 @@
 }
 
 .summarydata {
-   
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    font-size: 20px;
+    font-size: 1.3vw;
     font-weight: 800;
 }
 
@@ -49,16 +54,68 @@
     position: absolute;
     left: 18vw;
     padding: 10px;
-    font-size: 15px;
+    font-size: 1vw;
     font-weight: 900;
     background-color: aliceblue;
     border-radius: 8px;
     border: none;
+    
+}
+
+a{
+    text-decoration: none;
+    color: black;
 }
 
 .trackbutton:hover {
     cursor: pointer;
-    background-color: rgb(78, 78, 78);
+    background-color: rgb(0, 0, 0);
     color: aliceblue;
-    
+}
+
+
+.discover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.744);
+    width: 70vw;
+    margin-top: 50px;
+    border-radius: 8px;
+    position: absolute;
+    left: 15vw;
+}
+.discover-header {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 900;
+    padding: 20px 0 10px 0;
+    margin: 0 20px 20px 20px;
+}
+
+.discover-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 22vh;
+    padding: 0;
+}
+.discover-items {
+    font-size: 1.3vw;
+    list-style-type: none;
+    text-align: center;
+    padding: 3.5vw;
+    width: 10vw;
+    margin-bottom: 40px;
+    background-color: aliceblue;
+    color: black;
+    border-radius: 10px;
+    font-weight: 700;
+    height: 6vh;
+}
+
+.discover-items:hover {
+    cursor: pointer;
+    background-color: rgb(0, 0, 0);
+    color: aliceblue;
 }
