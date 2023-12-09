@@ -1,16 +1,21 @@
 .login-btn, .sign-up-btn {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly; /* Align to the end of the container */
+    justify-content: space-evenly;
     align-items: center;
     gap: 20px;
     height: 100vh;
     color: #fff;
 }
 
+html {
+    height: 100%;;
+}
+
 body {
     background-color: #000000;
     color: aliceblue;
+    height: 100%;
 }
 
 .sign-up-heading {
@@ -38,8 +43,8 @@ input[type="password"] {
     margin-bottom: 15px;
     border: 2px solid #acacac;
     border-radius: 5px;
-    background-color: #191919; /* Background color for input fields */
-    color: rgb(248, 247, 247); /* Text color for input fields */
+    background-color: #191919;
+    color: rgb(248, 247, 247);
 }
 
 input[type="submit"] {
@@ -88,4 +93,8 @@ input.error {
 
 .sign-up-para-link {
     text-align: center;
+}
+
+#root {
+    height: 100%;
 }

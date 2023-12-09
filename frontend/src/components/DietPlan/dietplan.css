@@ -10,7 +10,7 @@ html,
 }
 
 .pic {
-    background-image: url("C:/Users/Akash/Workspace/INFO-6150/final-project-flexbox-forces/frontend/src/components/DietPlan/dietpic.jpg");
+    background-image: url("dietpic.jpg");
     position: relative;
     background-position: center;
     background-size: cover;
