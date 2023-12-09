@@ -6,6 +6,10 @@ import { setResponse, setErrorResponse } from './response-handler.js';
 export const post = async (request, response) => {
     try {
         const newUserProfile = {...request.body};
+        // Calculate maintenance calorie based on weight
+        newUserProfile.maintenanceCalorie = newUserProfile.weight * 15;
+        newUserProfile.calorieDeficit = newUserProfile.maintenanceCalorie - 500;
+        newUserProfile.calorieSurplus = newUserProfile.maintenanceCalorie + 300;
         const userProfile = await userProfileService.save(newUserProfile);
         const userId = request.body.userId; 
         const user = await userService.find(userId);

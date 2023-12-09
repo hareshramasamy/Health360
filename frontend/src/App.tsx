@@ -23,6 +23,7 @@ import WeightgainApp from './components/WorkoutPlan/WeightGain';
 import MaintainWeightApp from './components/WorkoutPlan/MaintainWeight';
 import AddExercise from './components/DailyExerciseLog/addExercise';
 import SearchExercise from './components/DailyExerciseLog/searchExercise';
+import ProfileUpdateForm from './components/Questionnaire/user-profile-update';
 
 type PrivateRouteProps = {
   element: ReactNode;
@@ -52,6 +53,7 @@ function App() {
         <Route path="/questionnaire" element={<Questionnaire />} />
         <Route path="/addExercise" element={<PrivateRoute element = {<AddExercise />} />} />
         <Route path="/searchExercise/:formattedDate" element={<PrivateRoute element = {<SearchExercise />} />} />
+        <Route path="/update-profile" Component={ProfileUpdateForm} />
       </Routes>
     </BrowserRouter>
   );

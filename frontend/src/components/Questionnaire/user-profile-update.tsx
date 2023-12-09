@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../LandingPage/Header";
 import "./basics.css";
 
-function Basics() {
+function UserProfileUpdate() {
   const navigate = useNavigate();
 
   interface FormData {
@@ -86,10 +86,10 @@ function Basics() {
   };
 
   return (
-    <div className="basics-container">
+    <div className="update-user-profile-container">
       <Header></Header>
-      <h1 className="basics-heading">Dive Into Your Healthy Life Now!</h1>
-      <form className="basics-form" onSubmit={submit}>
+      <h1 className="update-user-profile-heading">Update Your Progress</h1>
+      <form className="update-user-profile-form" onSubmit={submit}>
         <input
           className={formErrors.ageError ? "error" : ""}
           name="age"
@@ -162,4 +162,4 @@ function Basics() {
   );
 }
 
-export default Basics;
+export default UserProfileUpdate;
