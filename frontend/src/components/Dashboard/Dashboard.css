@@ -9,6 +9,11 @@
     background-image: url("dashboardpic3.jpg");
 }
 
+.chart {
+    height: 200px;
+    width: 200px;
+}
+
 .summarycontent {
     display: flex;
     justify-content: space-around;  
@@ -29,7 +34,6 @@
 }
 
 .summarydata {
-   
     display: flex;
     justify-content: space-evenly;
     align-items: center;

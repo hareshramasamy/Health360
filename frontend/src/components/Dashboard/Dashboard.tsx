@@ -2,10 +2,47 @@ import { useLocation } from 'react-router-dom';
 import Header from '../LandingPage/Header';
 import Footer from '../LandingPage/Footer';
 import './Dashboard.css'
+import {
+    Chart as ChartJS,
+    ArcElement,
+    Tooltip,
+    Legend
+} from 'chart.js';
+
+import {Doughnut} from 'react-chartjs-2';
+
+ChartJS.register(
+    ArcElement,
+    Tooltip,
+    Legend
+);
+
 
 function Dashboard() {
     const userName = "Haresh";
 
+    const foodData = {
+        labels: ['Calories consumed', 'Calories remaining'],
+        datasets: [{
+         label: 'Food tracker',
+         data: [1560, 440],
+         backgroundColor: ['grey', 'white'],
+         borderColor: ['grey', 'white']
+        }]
+     }
+
+     const exerciseData = {
+        labels: ['Calories burned', 'Calories to be burned'],
+        datasets: [{
+          label: 'Exercise tracker',
+          data: [100, 280],
+          backgroundColor: ['grey', 'white'],
+          borderColor: ['grey', 'white'],
+        }],
+      }
+    
+ 
+     const options = {}
     return (
         <div className="dashboard">
             <Header />
@@ -14,7 +51,10 @@ function Dashboard() {
                     <div className='summary-header'>
                         <h1>Your daily food summary</h1>
                         <div className='summarydata'>
-                            <img src={process.env.PUBLIC_URL + "/piechart.png"} height='200px' width='200px'></img>
+                            <div id='doughnut-canvas'/>
+                            {/* <img src={process.env.PUBLIC_URL + "/piechart.png"} height='200px' width='200px'></img> */}
+                            <div className='chart'><Doughnut data = {foodData} options = {options}/></div>
+                            
                             <div className='summary-details'>
                                 <p>Calorie goal: 2000 </p>
                                 <p>Calories consumed: 1560</p>
@@ -26,7 +66,7 @@ function Dashboard() {
                     <div className='summary-header'>
                         <h1>Your daily workout summary</h1>
                         <div className='summarydata'>
-                            <img src={process.env.PUBLIC_URL + "/piechart.png"} height='200px' width='200px'></img>
+                            <div className='chart'><Doughnut data = {exerciseData} options = {options}/></div>
                             <div className='summary-details'>
                                 <p>Target Calories to be burned:  380</p>
                                 <p>Calories burned: 100</p>
