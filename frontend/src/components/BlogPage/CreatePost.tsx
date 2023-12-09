@@ -1,17 +1,15 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-// import { Redirect } from 'react-router-dom';
-import { redirect,useNavigate} from "react-router-dom";
-// import { redirect } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
+import { jwtDecode, JwtPayload } from 'jwt-decode';
 
 interface CreatePostProps {}
 
 const CreatePost: React.FC<CreatePostProps> = () => {
   const [title, setTitle] = useState<string>("");
-  const [summary, setSummary] = useState<string>("");
   const [content, setContent] = useState<string>("");
-  const [author, setAuthor] = useState<string>("");
+  // const [author, setAuthor] = useState<string>("");
+  
   // const [files, setFiles] = useState<File[]>([]);
 const navigate = useNavigate();
   const modules = {
@@ -31,21 +29,28 @@ const navigate = useNavigate();
     'link', 'image'
   ];
 
+    
+  interface JwtPayloadWithUserId extends JwtPayload {
+    userId: string;
+}
+
+let userId = 'string';
+const token = localStorage.getItem('token');
+if (token) {
+    const decoded: JwtPayloadWithUserId = jwtDecode(token) as JwtPayloadWithUserId;
+    userId = decoded.userId;
+}
+
   async function createNewPost(ev: FormEvent) {
-    // let  navigate = useNavigate();
-    // const 
     ev.preventDefault();
     const data = {
       title: title,
-      summary: summary,
       description: content,
-      author : author,
+      userId : userId,
 
     };
-  
 
     console.log(data);
-    // data.set('file', files[0]);
 
     try{
       const response = await fetch("http://localhost:3000/blogs", {
@@ -57,7 +62,6 @@ const navigate = useNavigate();
       });
       console.log('RESPONSE', response)
       if(response.status === 200){
-        // redirect("/blogs");
         navigate("/blogs");
       }
     }
@@ -65,20 +69,11 @@ const navigate = useNavigate();
       console.log(error);
     }
 
-    // console.log(await response.json());
   }
 
   return (
     <form className="createpost" onSubmit={createNewPost}>
-      {/* <h1>Create Post</h1> */}
       <br />
-      {/* <input
-        type="text"
-        className="title"
-        placeholder={"Title"}
-        value={title}
-        onChange={(ev: ChangeEvent<HTMLInputElement>) => setTitle(ev.target.value)}
-      /> */}
       <input
         type="text"
         className="title"
@@ -95,27 +90,9 @@ const navigate = useNavigate();
         rows={4} // Adjust the number of rows as needed 
         cols={100} // Adjust the number of columns as needed
         ></textarea>
-      <input
-        type="author"
-        placeholder={"Author"}
-        value={author}
-        onChange={(ev: ChangeEvent<HTMLInputElement>) => setAuthor(ev.target.value)}
-        required
-      />
 
       <button className = "submit" type="submit">Create Post</button>
 
-      {/* <ReactQuill
-        theme="snow"
-        placeholder={"Content"}
-        value={content}
-        onChange={(newValue: string) => {
-          
-          setContent(newValue)
-        }}
-        modules={modules}
-        formats={formats}
-      /> */}
     </form>
       );
 };

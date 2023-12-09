@@ -2,8 +2,8 @@ import Blog from '../models/blog/blog.js';
 
 // Search for all blogs
 export const search = async (params = {}) => {
-    const blog = await Blog.find(params).exec();
-    return blog;
+    const blogs = await Blog.find({}).populate('userId').exec();
+    return blogs;
 }
 
 // Save a new blog entry to the database

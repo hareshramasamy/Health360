@@ -13,7 +13,8 @@ const initialize = (app) => {
     app.use(express.json());
     app.use(express.urlencoded());
     // Connect to MongoDB database using Mongoose
-    mongoose.connect('mongodb+srv://venkatachalapathya:f5EP18SFJdTYPWoB@akash.hyot3.mongodb.net/');
+    // mongoose.connect('mongodb+srv://venkatachalapathya:f5EP18SFJdTYPWoB@akash.hyot3.mongodb.net/');
+    mongoose.connect('mongodb+srv://Aravindsn20:Aravind123@info6150project.g7nlnej.mongodb.net/?retryWrites=true&w=majority')
     // Register API routes
     registerRouter(app);
 }

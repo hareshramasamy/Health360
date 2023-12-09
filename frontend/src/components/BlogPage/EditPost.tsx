@@ -1,40 +1,30 @@
 // EditPost.js
 import React, { useState, useEffect } from "react";
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useParams,useNavigate } from "react-router-dom";
+import { jwtDecode, JwtPayload } from 'jwt-decode';
+import axios from 'axios';
 
 const EditPost = () => {
     let { id } = useParams();
     const [title, setTitle] = useState("");
-    const [summary, setSummary] = useState("");
-    const [content, setContent] = useState("");
-    const [author, setAuthor] = useState("");
+    const [description, setDescription] = useState("");
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
 
-    function stripHtmlTags(htmlString: string) {
-        const doc = new DOMParser().parseFromString(htmlString, 'text/html');
-        return doc.body.textContent || "";
-    }
-      
   
     useEffect(() => {
       const fetchPostData = async () => {
         try {
           const response = await fetch(`http://localhost:3000/blogs/${id}`);
-  
-          if (!response.ok) {
-            throw new Error(`Error fetching post data: ${response.statusText}`);
-          }
-  
           const data = await response.json();
           setTitle(data.title);
-          setSummary(data.summary);
-          setContent(stripHtmlTags(data.description));
-          setAuthor(data.author);
+          // setDescription(stripHtmlTags(data.description));
+          setDescription(data.description);
+          // setAuthor(data.author);
+          
           setLoading(false);
         } catch (error: any) {
             setLoading(false);
@@ -44,26 +34,35 @@ const EditPost = () => {
   
       fetchPostData();
     }, [id]);
+
+    interface JwtPayloadWithUserId extends JwtPayload {
+      userId: string;
+    }
+
+    let userId = 'string';
+    const token = localStorage.getItem('token');
+    if (token) {
+        const decoded: JwtPayloadWithUserId = jwtDecode(token) as JwtPayloadWithUserId;
+        userId = decoded.userId;
+    }
   
     const updatePost = async (ev: React.FormEvent<HTMLFormElement>) => {
       ev.preventDefault();
       const data = {
         title,
-        summary,
-        description: content,
-        author,
+        description: description,
+        userId: userId
       };
-  
+
       try {
-        const response = await fetch(`http://localhost:3000/blogs/${id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
+          const response = await axios.put(`http://localhost:3000/blogs/${id}`, data, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
         });
+
   
-        if (!response.ok) {
+        if (response && response.status !== 200) {
           throw new Error(`Error updating post: ${response.statusText}`);
         }
   
@@ -84,12 +83,6 @@ const EditPost = () => {
         <div className="editpost-container">
         {error && <p className="error">{error}</p>}
         <form className="editpost-form" onSubmit={updatePost}>
-      {/* <input
-        type="text"
-        placeholder="Title"
-        value={title}
-        onChange={(ev) => setTitle(ev.target.value)}
-      /> */}
       <input
         type="text"
         className="title"
@@ -98,41 +91,14 @@ const EditPost = () => {
         onChange={(ev: React.ChangeEvent<HTMLInputElement>) => setTitle(ev.target.value)}
         required
       /> 
-      {/* <input
-        type="summary"
-        placeholder="Summary"
-        value={summary}
-        onChange={(ev) => setSummary(ev.target.value)}
-      /> */}
-
-      {/* <ReactQuill
-        theme="snow"
-        placeholder="Content"
-        value={content}
-        onChange={(newValue) => setContent(newValue)}
-      /> */}
       <textarea
-        placeholder="Content"
-        value={content}
-        onChange={(ev: React.ChangeEvent<HTMLTextAreaElement>) => setContent(ev.target.value)}
+        placeholder="description"
+        value={description}
+        onChange={(ev: React.ChangeEvent<HTMLTextAreaElement>) => setDescription(ev.target.value)}
         required
         rows={4} // Adjust the number of rows as needed 
         cols={100} // Adjust the number of columns as needed
         ></textarea>
-
-        {/* <input
-        type="author"
-        placeholder="Author"
-        value={author}
-        onChange={(ev) => setAuthor(ev.target.value)}
-      /> */}
-      <input
-        type="author"
-        placeholder={"Author"}
-        value={author}
-        onChange={(ev: React.ChangeEvent<HTMLInputElement>) => setAuthor(ev.target.value)}
-        required
-      />
       <button type="submit">Update Post</button>
       </form>
     </div>

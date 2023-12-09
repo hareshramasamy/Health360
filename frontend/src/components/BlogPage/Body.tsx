@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from "react";
-import data from "./blog"
 import { useNavigate } from "react-router-dom";
 import "./BlogPage.css";
 import { FaEdit, FaTrash } from 'react-icons/fa';
+import { jwtDecode, JwtPayload } from 'jwt-decode';
 
-
+interface User {
+    name: string;
+    email: string;
+    password: string;
+    _id: string;
+}
 
 function Body() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
+    const [user, setUser] = useState<User>();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -48,6 +54,17 @@ function Body() {
         }
     };
 
+    interface JwtPayloadWithUserId extends JwtPayload {
+        userId: string;
+    }
+
+    let userId = 'string';
+    const token = localStorage.getItem('token');
+    if (token) {
+        const decoded: JwtPayloadWithUserId = jwtDecode(token) as JwtPayloadWithUserId;
+        userId = decoded.userId;
+    }
+
     const handleEdit = async (blogId: string) => {
         navigate(`/edit/${blogId}`);
     };
@@ -66,19 +83,24 @@ function Body() {
                     <h2 onClick={toggleExpand}>{blog.title}</h2>
                     <div>
                         {blog.description}
-                        <p>Author: {blog.author}</p>
+                        <p>Author: {blog.userId.firstName}</p>
+                        {console.log(blog)}
                         <p>Created At: {currentDate}</p>
                     </div>
-                    <div className="buttons">
-                        {/* <button className="edit" onClick={() => handleEdit(blog._id)}>
-                            <FaEdit /> Edit
-                        </button> */}
-                        <FaEdit className="edit" onClick={() => handleEdit(blog._id)} />
-                        {/* <button className="delete" onClick={() => handleDelete(blog._id)}>
-                            <FaTrash /> Delete
-                        </button> */}
-                        <FaTrash className="delete" onClick={() => handleDelete(blog._id)} />
-                    </div>
+                    
+                    {userId && blog.userId._id === userId ? (
+                        <>
+                        {console.log(userId)}
+                        {console.log(blog.userId._id)}
+                            <FaEdit className="edit" onClick={() => handleEdit(blog._id)} />
+                            <FaTrash className="delete" onClick={() => handleDelete(blog._id)} />
+                        </>
+                    ) : (
+                        <>
+                            <span className="disabled-button">Edit</span>
+                            <span className="disabled-button">Delete</span>
+                        </>
+                    )}
                 </div>
             ))}
         </div>
