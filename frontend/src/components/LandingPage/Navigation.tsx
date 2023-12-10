@@ -1,5 +1,6 @@
 import React from 'react';
 import './Landing.css';
+import { Link } from 'react-router-dom';
 
 const Header: React.FC = () => {
 
@@ -23,6 +24,9 @@ const Header: React.FC = () => {
         <div>
             <a href ="/workoutPlan">WORKOUT PLAN</a>
         </div>
+        <div>
+        <Link to="/update-profile">UPDATE PROFILE</Link>
+      </div>
     </div>
   );
 };
