@@ -4,6 +4,7 @@
     min-height: 100vh;
 } */
 
+
 .vl {
     border-left: 3px solid #acacac;
     height: 80%;
@@ -32,4 +33,5 @@
   border: 2px;
   background-color: #191919; /* Background color for the submit button */
   color: white; /* Text color for the submit button */
+  border: 2px solid #acacac;
 }
