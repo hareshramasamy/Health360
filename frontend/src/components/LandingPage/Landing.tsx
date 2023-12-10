@@ -4,7 +4,6 @@ import Header from "./Header"
 import Main from "./Main"
 import Review from "./Reviews"
 import Footer from "./Footer"
-import Chat from "./Chat"
 
 const Landing = () => {
     return (
@@ -13,7 +12,6 @@ const Landing = () => {
             <Main />
             <Review />
             <Footer />
-            <Chat />
         </div>
     )
 }

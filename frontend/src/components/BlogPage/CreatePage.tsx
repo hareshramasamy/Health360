@@ -1,15 +1,14 @@
 import "../LandingPage/Landing.css"
 import "./BlogPage.css"
-import Header from "../LandingPage/Header"
+import Header from "./Header"
 import BlogFooter from "./BlogFooter"
-import Main from "./Main"
-
+import MainCreate from "./MainCreate"
 
 const Blog = () => {
     return (
         <div className="blogPage">
             <Header />
-            <Main />
+            <MainCreate />
             <BlogFooter />
         </div>
     )

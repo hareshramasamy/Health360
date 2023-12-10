@@ -30,6 +30,7 @@ router.route('/blogs')
     .post(BlogController.post);
 // Routes to update and delete a blog by ID
 router.route('/blogs/:id')
+    .get(BlogController.getById)
     .put(BlogController.put)
     .delete(BlogController.remove);
 // Routes to get the workout plans
