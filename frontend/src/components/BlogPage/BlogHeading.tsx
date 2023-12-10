@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <div className="blogTitle">
       <div>
-        <h1 className="typing-animation">Blog Your Ideas!</h1>
+        <h1 className="typing-animation">Blog Your Journey!</h1>
       </div>
       <div>
         <button className="create" onClick={handleCreateBlog}>
