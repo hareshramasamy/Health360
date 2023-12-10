@@ -69,7 +69,7 @@ function Basics() {
     if (validateForm()) {
       try {
         const res = await axios.post(
-          "http://localhost:3000/user-profile",
+          "http://localhost:3000/user-profile/",
           formData
         );
         if (res.status === 200) {
@@ -88,7 +88,7 @@ function Basics() {
   return (
     <div className="basics-container">
       <Header></Header>
-      <h1 className="basics-heading">User Profile</h1>
+      <h1 className="basics-heading">Dive Into Your Healthy Life Now!</h1>
       <form className="basics-form" onSubmit={submit}>
         <input
           className={formErrors.ageError ? "error" : ""}
@@ -113,7 +113,7 @@ function Basics() {
           onChange={(e) =>
             setFormData({ ...formData, weight: +e.target.value })
           }
-          placeholder="Weight (in kg)"
+          placeholder="Weight (in Pounds)"
         />
         <select
           className={formErrors.sexAtBirthError ? "error" : ""}

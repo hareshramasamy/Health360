@@ -8,7 +8,8 @@ import Dashboard from './components/Dashboard/Dashboard';
 import AddFood from './components/DailyFoodLog/addfood';
 import SearchFood from './components/DailyFoodLog/searchFood';
 import BlogPage from "./components/BlogPage/BlogPage"
-import CreateBlogPage from "./components/BlogPage/CreatePost"
+import CreateBlogPage from "./components/BlogPage/CreatePage"
+import EditBlogPage from './components/BlogPage/EditBlogPage';
 import DietPlanDashboard from './components/DietPlan/DietPlanDashboard';
 import WorkoutPlanDashboard from './components/WorkoutPlan/WorkoutPlanDashboard';
 import Questionnaire from './components/Questionnaire/Basics';
@@ -22,7 +23,7 @@ import WeightgainApp from './components/WorkoutPlan/WeightGain';
 import MaintainWeightApp from './components/WorkoutPlan/MaintainWeight';
 import AddExercise from './components/DailyExerciseLog/addExercise';
 import SearchExercise from './components/DailyExerciseLog/searchExercise';
-
+import ProfileUpdateForm from './components/Questionnaire/user-profile-update';
 
 type PrivateRouteProps = {
   element: ReactNode;
@@ -39,6 +40,7 @@ function App() {
         <Route path="/dietplan" element={<PrivateRoute element = {<DietPlanDashboard />} />} />
         <Route path="/blogs" element={<PrivateRoute element = {<BlogPage />} />} />
         <Route path="/blogs/create" element={<PrivateRoute element = {<CreateBlogPage />} />} />
+        <Route path="/edit/:id" element={<PrivateRoute element = {<EditBlogPage />} />} />
         <Route path="/workoutplan" element={<PrivateRoute element = {<WorkoutPlanDashboard />} />} />
         <Route path="/dietplan/vegetarian" element={<PrivateRoute element = {<VegetarianDietApp />} />} />
         <Route path="/dietplan/nonvegetarian" element={<PrivateRoute element = {<NonVegDietApp />} />} />
@@ -48,9 +50,10 @@ function App() {
         <Route path="/workoutplan/maintainweight" element={<PrivateRoute element = {<MaintainWeightApp />} />} />
         <Route path="/addfood" element={<PrivateRoute element = {<AddFood />} />} />
         <Route path="/searchfood/:mealType/:formattedDate" element={<PrivateRoute element = {<SearchFood />} />} />
-        <Route path="/questionnaire" element={<Questionnaire />} />
+        <Route path="/questionnaire" element={<PrivateRoute element ={<Questionnaire />} />} />
         <Route path="/addExercise" element={<PrivateRoute element = {<AddExercise />} />} />
         <Route path="/searchExercise/:formattedDate" element={<PrivateRoute element = {<SearchExercise />} />} />
+        <Route path="/update-profile" Component={ProfileUpdateForm} />
       </Routes>
     </BrowserRouter>
   );

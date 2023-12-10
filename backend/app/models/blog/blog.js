@@ -8,21 +8,20 @@ const blogSchema = new Schema({
     title: {
         type: String,
         required: true,
-        maxlength: 50,
+        maxlength: 200,
     },
     // description to store the description of the blog.
     description: {
         type: String,
         required: true,
-        maxlength: 500,
+        maxlength: 5000,
     },
-    // author to store the name of the author who created the blog.
-    author: {
-        type: String,
-        required: true,
-        maxlength: 50,
+
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: 'user',
     },
-    // createDate to store the date and time when the blog is created.
+    
     createDate: {
         type: Date,
         default: Date.now,

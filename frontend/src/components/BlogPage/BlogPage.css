@@ -6,14 +6,6 @@
 }
 
 
-div.post img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    margin-right: 10px;
-    margin-left: 20px;
-}
-
 .content {
     display: flex;
     flex-direction: column;
@@ -21,27 +13,16 @@ div.post img {
 }
 .Main {
     background-color: rgb(97, 95, 95);
-}
-
-.post {
-    display: flex;
-    align-items: center; /* Align items vertically in the center */
-    margin-bottom: 20px; /* Adjust the gap as needed */
-    margin-left: 20px;
-    margin-right: 40px;
-    border-radius: 10px;
-    border: 1px solid #ccc; /* Add border to each post */
-    padding: 10px; /* Add padding for spacing */
-    background-color: rgba(0, 0, 0);
+    background-image: url(bgimg.jpg);
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    background-size: cover; /* Cover the entire background */
+    background-position: center; /* Center the background */
+    min-height: 100vh; /* Full height */
 }
 
 .image {
     margin-right: 10px; /* Adjust the margin as needed */
-}
-
-.texts {
-    display: flex;
-    flex-direction: column;
 }
 
 h2, p, h4, span {
@@ -57,8 +38,8 @@ h2, p, h4, span {
 
 }
 
-.edit {
-    background-color: #4CAF50; /* Green */
+.edit, .delete, .disabled-delete, .disabled-edit {
+    background-color: #4f4c4c;
     border: none;
     color: white;
     padding: 10px 20px;
@@ -71,27 +52,19 @@ h2, p, h4, span {
     border-radius: 5px;
     gap: 10px;
   }
-  
-  .delete {
-    background-color: #f44336; /* Red */
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    gap: 10px;
-  }
 
   .edit:hover {
-    background-color: #45a049; /* Darker shade for Edit button on hover */
+    background-color: #ffffff; /* Darker shade for Edit button on hover */
+    color: #000000;
 }
 
 .delete:hover {
-    background-color: #f21808; /* Darker shade for Delete button on hover */
+    background-color: #ffffff; /* Darker shade for Delete button on hover */
+    color: #000000;
+}
+
+.disabled-delete, .disabled-edit {
+    cursor: not-allowed;
 }
 
   .blogTitle {
@@ -105,7 +78,7 @@ h2, p, h4, span {
         padding: 10px;
         font-size: 50px;
         font-weight: 700;
-        color: #ffffff;
+        color: #000000;
     }
 
     .create {
@@ -115,8 +88,8 @@ h2, p, h4, span {
         padding: 15px 30px;
         font-size: 18px;
         font-weight: bold;
-        color: #ffffff;
-        background-color: #007bff; /* Blue color, you can change it to your preferred color */
+        color: aliceblue;
+        background-color: #191919; 
         border: none;
         border-radius: 5px;
         cursor: pointer;
@@ -124,7 +97,8 @@ h2, p, h4, span {
 
         /* Add hover effect */
         &:hover {
-            background-color: #0056b3; /* Darker shade on hover */
+            background-color: aliceblue; /* Darker shade on hover */
+            color: #191919;
         }
     }
 
@@ -145,22 +119,6 @@ h2, p, h4, span {
 
 
       /* Add this style to set the text color to white inside each post */
-.post h2,
-.post p,
-.post h4,
-.post span {
-    color: white;
-}
-
-.post h2 {
-    margin-bottom: 0px; /* Adjust the margin as needed for spacing */
-}
-
-.post h4 {
-    margin-top: 10px; /* Adjust the margin as needed for spacing */
-    margin-bottom: -5px;
-}
-
 
 @media only screen and (max-width: 768px) {
     .footer-logo {
@@ -203,28 +161,8 @@ h2, p, h4, span {
     }
 
     .create {
-        margin-top: 20px;
+        margin-top: 80px;
     }
-
-    .post {
-        flex-direction: column;
-        align-items: center;
-        margin-left: 0;
-        margin-right: 0;
-    }
-
-    .post h2,
-    .post p,
-    .post h4,
-    .post span {
-        padding: 10px;
-    }
-
-    .post img {
-        margin-left: 0;
-        margin-right: 0;
-    }
-
     .button {
         justify-content: center;
         margin-right: 0;
@@ -232,11 +170,158 @@ h2, p, h4, span {
     }
 }
 
-form.createpost {
+.createpost {
     max-width: 700px;
     margin: 0 auto;
     padding: 20px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    /* box-shadow: #cdd5dd 0px 0px 10px; */
+    background-color: #000000;
+    opacity: 0.8;
+  }
+
+  .createpost input {
+    width: 95%;
+    padding: 15px;
+    margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    align-content: center;
+    background-color: #ffffff;
+    color: #000000;
+    font-size:larger
+}
+
+.createpost textarea {
+    width: 95%;
+    height: 200px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    align-content: center;
+    font-size: large;
+}   
+
+
+.createpost button {
+    text-align: center;
+    margin-top: 30px;
+    margin-left: 40px;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: aliceblue;
+    /* background-color: #191919;  */
+    background-color:  #4f4c4c;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+    margin-left: 250px;
+
+    /* Add hover effect */
+    &:hover {
+        background-color: aliceblue; 
+        color: #191919;
+    }
+}
+
+
+.editpost-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #070707;
+    border-radius: 5px;
+    /* box-shadow: #cdd5dd 0px 0px 10px; */
+    background-color: #000000;
+    opacity: 0.8;
   }
+  
+  .editpost-form input {
+    width: 95%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    align-content: center;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: larger;
+  }
+  
+  .editpost-form textarea {
+    width: 95%;
+    height: 200px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    align-content: center;
+    font-size: large;
+  }
+  
+  .editpost-form button {
+    text-align: center;
+    margin-top: 30px;
+    margin-left: 40px;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: aliceblue;
+    /* background-color: #191919;  */
+    background-color:  #4f4c4c;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+    margin-left: 250px;
+
+    /* Add hover effect */
+    &:hover {
+        background-color: aliceblue; 
+        color: #191919;
+    }
+  }
+  
+
+@keyframes Leftin {
+    0% {
+        opacity: 0;
+        /* transform: translate3d(200px, 100px, 0); */
+    }
+    100% {
+        opacity: 1;
+        /* transform: translate3d(0, 0, 0); */
+    }
+}
+
+
+/* Update the post-container styles */
+.post-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap; /* Allow posts to wrap to the next line */
+    justify-content: space-between; /* Adjust the space between the cards */
+    max-width: 1000px; /* Set the maximum width of the container */
+    margin: 0 auto;
+    padding: 20px;
+    opacity: 0.8;
+}
+
+/* Update the post styles to handle the spacing */
+/*  */
+
+
+.post {
+    flex: 0 0 calc(30% - 20px);
+    margin: 10px;
+    padding: 10px;
+    overflow: hidden;
+    transition: transform 0.3s, background-color 0.3s, max-height 0.3s;
+    animation: Leftin 2s;
+    background-color: #000000;
+    border-radius: 10px;
+}
