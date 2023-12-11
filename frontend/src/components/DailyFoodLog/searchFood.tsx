@@ -11,6 +11,7 @@ type FoodItem = {
   mealType: string;
   date: string;
   foodName: string;
+  servingSize: number;
   calories: number;
   carbs: number;
   fat: number;
@@ -44,6 +45,7 @@ const SearchFood: React.FC = () => {
   const [initialProtein, setInitialProtein] = useState<number>(0);
   const [initialSodium, setInitialSodium] = useState<number>(0);
   const [initialSugar, setInitialSugar] = useState<number>(0);
+  const [initialServingSize, setInitialServingSize] = useState<number>(0);
   const meal = mealType!;
   const date = formattedDate!;
 
@@ -59,16 +61,17 @@ const SearchFood: React.FC = () => {
 
     if (selectedFood) {
       if(quantity === 0 || Number.isNaN(quantity)) {
-        setSelectedFood({ ...selectedFood, calories: initialCalories, carbs: initialCarbs, 
+        setSelectedFood({ ...selectedFood, servingSize: initialServingSize, calories: initialCalories, carbs: initialCarbs, 
         fat: initialFat, protein: initialProtein, sodium: initialSodium, sugar: initialSugar });
       } else {
+        const updatedServingSize = Math.round(initialServingSize * quantity * 100) / 100;
         const updatedCalories = Math.round(initialCalories * quantity * 100) / 100;
         const updatedCarbs = Math.round(initialCarbs * quantity* 100) / 100;
         const updatedFat = Math.round(initialFat * quantity * 100) / 100;
         const updatedProtein = Math.round(initialProtein * quantity * 100) / 100;
         const updatedSodium = Math.round(initialSodium * quantity * 100) / 100;
         const updatedSugar = Math.round(initialSugar * quantity * 100) / 100;
-        setSelectedFood({ ...selectedFood, calories: updatedCalories, carbs: updatedCarbs, 
+        setSelectedFood({ ...selectedFood, servingSize: updatedServingSize, calories: updatedCalories, carbs: updatedCarbs, 
           fat: updatedFat, protein: updatedProtein, sodium: updatedSodium, sugar: updatedSugar });
       }
     }
@@ -124,6 +127,7 @@ const SearchFood: React.FC = () => {
         foodName: food.food_name,
         date: date,
         mealType: meal,
+        servingSize: response.data.foods[0].serving_weight_grams * response.data.foods[0].serving_qty,
         calories: response.data.foods[0].nf_calories,
         carbs: response.data.foods[0].nf_total_carbohydrate,
         fat: response.data.foods[0].nf_total_fat,
@@ -134,6 +138,7 @@ const SearchFood: React.FC = () => {
 
     setSelectedFood(selectedFoodObj);
     setInitialCalories(response.data.foods[0].nf_calories);
+    setInitialServingSize(response.data.foods[0].serving_weight_grams * response.data.foods[0].serving_qty);
     setInitialCarbs(response.data.foods[0].nf_total_carbohydrate);
     setInitialFat(response.data.foods[0].nf_total_fat);
     setInitialProtein(response.data.foods[0].nf_protein);
@@ -199,19 +204,20 @@ const SearchFood: React.FC = () => {
                   <div className='select-and-save'>
                     <h3 className='selected-food'>Selected Food: {selectedFood.foodName.charAt(0).toUpperCase() + selectedFood.foodName.slice(1)}</h3>
                     <div className='select-qty-container'>
-                      <h3>Select Quantity:</h3>
+                      <h3>Select Serving size:</h3>
                       <input className='add-qty-input' name = "quantity" value = {selectedQuantity} type="number" placeholder='Add Quantity' onChange={handleQuantityChange}/>
                     </div>
                     <button className='save-btn' onClick={handleSave}>Save</button>
                   </div>
                   <div className='nutrition-facts'>
                     <h3>Nutrition facts:</h3>
-                    <p>Calories: {selectedFood.calories}</p>
-                    <p>Carbs: {selectedFood.carbs}</p>
-                    <p>Fat: {selectedFood.fat}</p>
-                    <p>Protein: {selectedFood.protein}</p>
-                    <p>Sodium: {selectedFood.sodium}</p>
-                    <p>Sugar: {selectedFood.sodium}</p>
+                    <p>Serving size: {selectedFood.servingSize}gm</p>
+                    <p>Calories: {selectedFood.calories}kcal</p>
+                    <p>Carbs: {selectedFood.carbs}gm</p>
+                    <p>Fat: {selectedFood.fat}gm</p>
+                    <p>Protein: {selectedFood.protein}gm</p>
+                    <p>Sodium: {selectedFood.sodium}gm</p>
+                    <p>Sugar: {selectedFood.sodium}gm</p>
                   </div>
                 </div>
               )}
