@@ -74,6 +74,7 @@ function Signup() {
           const res = await axios.post("http://localhost:3000/user/sign-up", formData);
           if (res.status === 200) {
             localStorage.setItem("token", res.data.token);
+            localStorage.setItem("id", formData.email);
             dispatch(loginSuccess());
             navigate("/questionnaire");
           }

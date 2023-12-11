@@ -66,18 +66,33 @@ function UserProfileUpdate() {
       }
     }
 
+    console.error('Form Error:', newErrors);
+
     setFormErrors(newErrors);
     return valid;
   };
 
+
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    setErrorMessage("");
+    setFormErrors({ ...formErrors, [`${name}Error`]: false });
+};
+
   const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    console.log(e);
 
     const token = localStorage.getItem('token');
     if (token) {
       const decoded: JwtPayloadWithUserId = jwtDecode(token) as JwtPayloadWithUserId;
       userIdVal = decoded.userId;
     }
+
+    console.log('User ID:', userIdVal);
+    console.log('Form Data:', formData);
     
     if (validateForm()) {
       try {
@@ -114,34 +129,27 @@ function UserProfileUpdate() {
           className={formErrors.ageError ? "error" : ""}
           name="age"
           type="number"
-          onChange={(e) => setFormData({ ...formData, age: +e.target.value })}
+          onChange={(handleChange)}
           placeholder="Age"
         />
         <input
           className={formErrors.heightError ? "error" : ""}
           name="height"
           type="number"
-          onChange={(e) =>
-            setFormData({ ...formData, height: +e.target.value })
-          }
+          onChange={(handleChange)}
           placeholder="Height (in cm)"
         />
         <input
           className={formErrors.weightError ? "error" : ""}
           name="weight"
           type="number"
-          onChange={(e) =>
-            setFormData({ ...formData, weight: +e.target.value })
-          }
+          onChange={(handleChange)}
           placeholder="Weight (in Pounds)"
         />
         <select
           className={formErrors.sexAtBirthError ? "error" : ""}
           name="sexAtBirth"
-          onChange={(e) =>
-            setFormData({ ...formData, sexAtBirth: e.target.value })
-          }
-        >
+          onChange={(handleChange)}>
           <option value="" disabled selected>
             Select Sex at Birth
           </option>
@@ -151,10 +159,7 @@ function UserProfileUpdate() {
         <select
           className={formErrors.foodPreferenceError ? "error" : ""}
           name="foodPreference"
-          onChange={(e) =>
-            setFormData({ ...formData, foodPreference: e.target.value })
-          }
-        >
+          onChange={(handleChange)}>
           <option value="" disabled selected>
             Select Food Preference
           </option>
@@ -165,10 +170,7 @@ function UserProfileUpdate() {
         <select
           className={formErrors.fitnessGoalError ? "error" : ""}
           name="fitnessGoal"
-          onChange={(e) =>
-            setFormData({ ...formData, fitnessGoal: e.target.value })
-          }
-        >
+          onChange={(handleChange)}>
           <option value="" disabled selected>
             Select Fitness Goal
           </option>
