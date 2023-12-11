@@ -8,8 +8,10 @@ import './addExercise.css';
 import { jwtDecode, JwtPayload } from 'jwt-decode';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { FaTrash } from 'react-icons/fa';
 
 interface ExerciseData {
+  _id:string;
   caloriesBurned: number;
   minutes: number;
   exerciseName: string;
@@ -49,12 +51,6 @@ const AddExercise: React.FC = () => {
     navigate(path);
   };
 
-  const handleDateChange = (date: Date | null) => {
-    setSelectedDate(date);
-    setTotalCaloriesBurned(0);
-    setTotalMinutes(0);
-  };
-
   const handlePreviousDay = () => {
     if (selectedDate) {
       const previousDay = new Date(selectedDate);
@@ -78,46 +74,59 @@ const AddExercise: React.FC = () => {
     </div>
   );
 
-  useEffect(() => {
-    const fetchExerciseData = async () => {
-      if (!selectedDate) return;
-
-      try {
-        const timezoneOffset = selectedDate.getTimezoneOffset();
-        const adjustedDate = new Date(selectedDate.getTime() - timezoneOffset * 60000);
-        const formattedDate = adjustedDate.toISOString().split('T')[0];
-
-        let exerciseData: ExerciseData[] = []
-        try {
-            const response = await axios.get<ExerciseData[]>(
-              `http://localhost:3000/exercise/${userId}/${formattedDate}`
-            );
-            exerciseData = response.data.map((exercise) => ({ ...exercise, userId }));
-          } catch (error) {
-            console.error(`Error fetching data:`, error);
-        }
-
-        console.log('Exercise data:', exerciseData);
-
-
-        let totalCaloriesBurned = 0;
-        let totalMinutes = 0;
-        if(exerciseData.length > 0) {
-          for(let i = 0; i < exerciseData.length; i++) {
-            totalCaloriesBurned +=exerciseData[i].caloriesBurned;
-            totalMinutes += exerciseData[i].minutes;
-          }
-        }
-
-        setTotalCaloriesBurned(Math.round(totalCaloriesBurned * 100) / 100);
-        setTotalMinutes(totalMinutes);
-        setExerciseData(exerciseData);
-      } catch (error) {
-        console.error('Error fetching exercise data:', error);
-        setExerciseData([]);
+  const handleDeleteExercise = async (exerciseId: string) => {
+    try {
+      const response = await axios.delete(`http://localhost:3000/exercise/${exerciseId}`);
+      if (response.status === 200) {
+        fetchExerciseData();
+      } else {
+        console.error('Failed to delete meal');
       }
-    };
+    } catch (error) {
+      console.error('Error deleting meal:', error);
+    }
+  };
 
+  const fetchExerciseData = async () => {
+    if (!selectedDate) return;
+
+    try {
+      const timezoneOffset = selectedDate.getTimezoneOffset();
+      const adjustedDate = new Date(selectedDate.getTime() - timezoneOffset * 60000);
+      const formattedDate = adjustedDate.toISOString().split('T')[0];
+
+      let exerciseData: ExerciseData[] = []
+      try {
+          const response = await axios.get<ExerciseData[]>(
+            `http://localhost:3000/exercise/${userId}/${formattedDate}`
+          );
+          exerciseData = response.data.map((exercise) => ({ ...exercise, userId }));
+        } catch (error) {
+          console.error(`Error fetching data:`, error);
+      }
+
+      console.log('Exercise data:', exerciseData);
+
+
+      let totalCaloriesBurned = 0;
+      let totalMinutes = 0;
+      if(exerciseData.length > 0) {
+        for(let i = 0; i < exerciseData.length; i++) {
+          totalCaloriesBurned +=exerciseData[i].caloriesBurned;
+          totalMinutes += exerciseData[i].minutes;
+        }
+      }
+
+      setTotalCaloriesBurned(Math.round(totalCaloriesBurned * 100) / 100);
+      setTotalMinutes(totalMinutes);
+      setExerciseData(exerciseData);
+    } catch (error) {
+      console.error('Error fetching exercise data:', error);
+      setExerciseData([]);
+    }
+  };
+
+  useEffect(() => {
     fetchExerciseData();
   }, [selectedDate]);
 
@@ -183,6 +192,19 @@ const AddExercise: React.FC = () => {
               <div className="item-minutes">-</div>
             )}
           </div>
+
+          <div className={`exercise-delete`}>
+                  {exerciseData.length>0 ? (
+                    exerciseData.map((exercise, exerciseIndex) => (
+                      <div key={exerciseIndex}>{exercise ? 
+                      <FaTrash className="item-delete" onClick={() => handleDeleteExercise(exercise._id)} />
+                       : 
+                       <div className="item-delete">-</div>}</div>
+                    ))
+                  ) : (
+                    <div className="item-delete">-</div>
+                  )}
+                </div>
 
           <div className = "total-heading">
             <h3>Total</h3>
