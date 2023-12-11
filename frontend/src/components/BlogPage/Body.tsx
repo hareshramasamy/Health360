@@ -1,21 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./BlogPage.css";
+import "./BlogPage.scss";
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { jwtDecode, JwtPayload } from 'jwt-decode';
-
-interface User {
-    name: string;
-    email: string;
-    password: string;
-    _id: string;
-}
 
 function Body() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
-    const [user, setUser] = useState<User>();
 
     useEffect(() => {
         const fetchData = async () => {

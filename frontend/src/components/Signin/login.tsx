@@ -2,7 +2,7 @@ import { FormEvent, useState } from "react"
 import axios from "axios"
 import { useNavigate, Link } from "react-router-dom"
 import { useDispatch } from 'react-redux';
-import "./login.css"
+import "./login.scss"
 import { loginSuccess } from "../../store/slices/authSlice";
 
 

@@ -1,11 +1,14 @@
 import React, { FormEvent, useState } from "react"
 import axios from "axios"
-import './signup.css'
+import './signup.scss'
 import { useNavigate, Link } from "react-router-dom"
+import { loginSuccess } from "../../store/slices/authSlice";
+import { useDispatch } from "react-redux";
 
 
 function Signup() {
     const navigate=useNavigate();
+    const dispatch=useDispatch();
 
     interface FormData {
       firstName: string;
@@ -70,6 +73,9 @@ function Signup() {
         try {
           const res = await axios.post("http://localhost:3000/user/sign-up", formData);
           if (res.status === 200) {
+            localStorage.setItem("token", res.data.token);
+            localStorage.setItem("id", formData.email);
+            dispatch(loginSuccess());
             navigate("/questionnaire");
           }
         } catch (error: any) {
