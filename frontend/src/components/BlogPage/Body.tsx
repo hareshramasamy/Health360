@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./BlogPage.css";
+import "./BlogPage.scss";
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { jwtDecode, JwtPayload } from 'jwt-decode';
 

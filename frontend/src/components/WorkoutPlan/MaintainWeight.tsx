@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import "./Weight.css";
+import "./Weight.scss";
 import Header from '../LandingPage/Header';
 import axios from 'axios';
 

@@ -1,4 +1,4 @@
-import "./BlogPage.css";
+import "./BlogPage.scss";
 import CreatePost from './CreatePost';
 import CreateBlogHeading from './CreateBlogHeading';
 

@@ -4,7 +4,7 @@ import axios from 'axios';
 import Header from '../LandingPage/Header';
 import {jwtDecode, JwtPayload} from 'jwt-decode'
 import { useNavigate} from "react-router-dom"
-import "./searchFood.css"
+import "./searchFood.scss"
 
 type FoodItem = {
   userId: string;
