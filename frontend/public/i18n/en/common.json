@@ -1,5 +1,6 @@
 {
     "title": "Health360",
+    "greeting.label": "Hi",
     "logout.button.label": "Logout",
     "navbar.myhome": "MY HOME",
     "navbar.food": "FOOD",
@@ -8,6 +9,7 @@
     "navbar.workoutplan": "WORKOUT PLAN",
     "navbar.dietplan": "DIET PLAN",
     "navbar.updateprofile": "UPDATE PROFILE",
+    "summary": "Your summary for",
     "summary.food": "Your daily food summary",
     "summary.workout": "Your daily workout summary",
     "calorie.goal": "Calorie Goal:",

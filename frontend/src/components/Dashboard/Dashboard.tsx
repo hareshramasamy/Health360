@@ -1,7 +1,7 @@
 import Header from '../LandingPage/Header';
 import Footer from '../LandingPage/Footer';
 import { useTranslation } from 'react-i18next';
-import './Dashboard.css'
+import './Dashboard.scss'
 import {
     Chart as ChartJS,
     ArcElement,
@@ -154,7 +154,7 @@ function Dashboard() {
             <Header />
             <div className='dashboardpic'>
                 <div className="date-bar">
-                    <h3 className="select-date">Your summary for:</h3>
+                    <h3 className="select-date">{t('summary')}:</h3>
                     <div className="arrow-icon" onClick={handlePreviousDay}>
                         <FontAwesomeIcon icon={faChevronLeft} />
                     </div>
@@ -176,37 +176,34 @@ function Dashboard() {
                         <h1>{t('summary.food')}</h1>
                         <div className='summarydata'>
                             <div id='doughnut-canvas'/>
-                            {/* <img src={process.env.PUBLIC_URL + "/piechart.png"} height='200px' width='200px'></img> */}
                             <div className='chart'><Doughnut data = {foodData} options = {options}/></div>
-                            
                             <div className='summary-details'>
                                 <p>{t('calorie.goal')} {goalCalories} </p>
                                 <p>{t('calorie.consumed')} {totalCalories}</p>
                                 <p>{t('calorie.remaining')} {Math.round((goalCalories - totalCalories) * 100) / 100}</p>
                             </div>
                         </div>
-                        <a href='/addFood'><button className='trackbutton'>Track your food</button></a>
+                        <a href='/addFood'><button className='trackbutton'>{t('track.food')}</button></a>
                     </div>
                     <div className='summary-header'>
                         <h1>{t('summary.workout')}</h1>
-                        <h1>Your workout summary</h1>
                         <div className='summarydata'>
                             <div className='chart'><Doughnut data = {exerciseData} options = {options}/></div>
                             <div className='summary-details'>
-                                <p>Target Calories to be burned: 300</p>
-                                <p>Calories burned: {totalCaloriesBurned}</p>
-                                <p>Calories to be burned: {Math.round((300 - totalCaloriesBurned) * 100) / 100}</p>
+                                <p>{t('calorie.target')} 300</p>
+                                <p>{t('calorie.burned')} {totalCaloriesBurned}</p>
+                                <p>{t('calorie.tobe.burned')} {Math.round((300 - totalCaloriesBurned) * 100) / 100}</p>
                             </div>
                         </div>
-                        <a href='/addExercise'><button className='trackbutton'>Track your workout</button></a>
+                        <a href='/addExercise'><button className='trackbutton'>{t('track.workout')}</button></a>
                     </div>
                 </div>
                 <div className='discover'>
-                    <p className='discover-header'>Discover</p>
+                    <p className='discover-header'>{t('discover.label')}</p>
                     <ul className='discover-container'>
-                        <a href='/dietPlan'><li className='discover-items items'>Diet plans</li></a>
-                        <a href='/workoutPlan'><li className='discover-items items'>Workout plans</li></a>
-                        <a href='/blogPage'><li className='discover-items items'>Blog your journey</li></a>
+                        <a href='/dietPlan'><li className='discover-items items'>{t('discover.diet')}</li></a>
+                        <a href='/workoutPlan'><li className='discover-items items'>{t('discover.workout')}</li></a>
+                        <a href='/blogs'><li className='discover-items items'>{t('discover.blog')}</li></a>
                     </ul>
                 </div>
             </div>

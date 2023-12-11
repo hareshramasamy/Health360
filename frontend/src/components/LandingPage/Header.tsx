@@ -57,7 +57,7 @@ const Header: React.FC = () => {
         <nav>
           {isLoggedIn ? (
             <div className="nav-items">
-              <p>Hi, {firstName}</p>
+              <p>{t('greeting.label')}, {firstName}</p>
               <a href="/" onClick={handleLogout}>
                 {t('logout.button.label')}
               </a>
