@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Header from "../LandingPage/Header";
 import "./basics.css";
+import { JwtPayload, jwtDecode } from "jwt-decode";
 
 interface FormData {
   age: number;
@@ -20,6 +21,12 @@ interface FormErrors {
   sexAtBirthError: boolean;
   foodPreferenceError: boolean;
   fitnessGoalError: boolean;
+}
+
+let userIdVal: string;
+
+interface JwtPayloadWithUserId extends JwtPayload {
+  userId: string;
 }
 
 function UserProfileUpdate() {
@@ -66,6 +73,12 @@ function UserProfileUpdate() {
   const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decoded: JwtPayloadWithUserId = jwtDecode(token) as JwtPayloadWithUserId;
+      userIdVal = decoded.userId;
+    }
+    
     if (validateForm()) {
       try {
         const userId = localStorage.getItem("id");
@@ -76,7 +89,7 @@ function UserProfileUpdate() {
 
         const res = await axios.put(
           `http://localhost:3000/user-profile/${userId}`,
-          formData
+          {...formData, userId: userIdVal}
         );
 
         if (res.status === 200) {
@@ -161,6 +174,7 @@ function UserProfileUpdate() {
           </option>
           <option value="Weight-Gain">Weight Gain</option>
           <option value="Weight-Loss">Weight Loss</option>
+          <option value="Maintain-Weight">Maintain Weight</option>
         </select>
         {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
         <input type="submit" value="Submit" />
