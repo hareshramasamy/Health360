@@ -1,7 +1,7 @@
 import "../LandingPage/Landing.css"
 import "./BlogPage.css"
-import Header from "./Header"
 import BlogFooter from "./BlogFooter"
+import Header from "../LandingPage/Header"
 import MainCreate from "./MainCreate"
 
 const Blog = () => {
