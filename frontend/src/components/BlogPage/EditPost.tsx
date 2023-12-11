@@ -1,4 +1,3 @@
-// EditPost.js
 import React, { useState, useEffect } from "react";
 import "react-quill/dist/quill.snow.css";
 import { useParams,useNavigate } from "react-router-dom";

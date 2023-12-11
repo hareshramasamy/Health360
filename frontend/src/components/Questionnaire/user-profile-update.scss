@@ -1,3 +1,11 @@
+.update-user-profile-container {
+    background-image: url("running.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    align-content: center;
+    text-align: center;
+}
+
 #root > div {
     color: #fff;
     align-content: center;
@@ -43,7 +51,7 @@
 } */
 
 #root > div > form > input[type=submit]:nth-child(7){
-    width: 30vh;
+    width: 33vh;
     padding: 10px;
     border: 2px solid #acacac;
     border-radius: 5px;

@@ -52,12 +52,13 @@ const userProfileSchema = new Schema({
     created_at: {
         type: Date,
         default: Date.now
+    },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
     }
-},
-// {
-//     versionKey: false
-// }
-);
+});
 
 // Mongoose Model for UserProfile
 const UserProfileModel = mongoose.model('userProfile', userProfileSchema);

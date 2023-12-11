@@ -1,4 +1,4 @@
-import "./Landing.css"
+import "./Landing.scss"
 
 const Review = () => {
     return ( 

@@ -23,7 +23,15 @@ export const createUser = async (newUser) => {
         password: passwordHash,
         created_at
       });
-      return await user.save();
+
+      const createdUser = await user.save();
+      
+
+      const token = jwt.sign({ userId: createdUser._id }, 'your-secret-key', {
+        expiresIn: '1h',
+      });
+
+      return token;
 }
 
 export const loginUser = async (email, password) => {

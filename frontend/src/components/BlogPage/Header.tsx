@@ -1,5 +1,4 @@
-import "./BlogPage.css";
-// import "..LandingPage/Landing.css";
+import "./BlogPage.scss";
 
 const Header = () => {
   return (

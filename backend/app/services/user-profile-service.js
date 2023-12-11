@@ -3,7 +3,11 @@ import UserProfile from "../models/user-profile/user-profile-model.js";
 // Save a new user profile to the database.
 export const save = async (newUserProfile) => {
   try {
-    const userProfile = new UserProfile(newUserProfile);
+    // Calculate maintenance calorie based on weight
+    newUserProfile.maintenanceCalorie = newUserProfile.weight * 15;
+    newUserProfile.calorieDeficit = newUserProfile.maintenanceCalorie - 500;
+    newUserProfile.calorieSurplus = newUserProfile.maintenanceCalorie + 300;
+    const userProfile = new UserProfile(newUserProfile)
     const savedUserProfile = await userProfile.save();
     return savedUserProfile;
   } catch (error) {
@@ -26,6 +30,9 @@ try {
 // Update a user profile by ID
 export const update = async (updatedUserProfile, email) => {
     try{
+      updatedUserProfile.maintenanceCalorie = updatedUserProfile.weight * 15;
+      updatedUserProfile.calorieDeficit = updatedUserProfile.maintenanceCalorie - 500;
+      updatedUserProfile.calorieSurplus = updatedUserProfile.maintenanceCalorie + 300;
       const userProfile = await UserProfile.findOneAndUpdate(
         { email },
         updatedUserProfile,
@@ -38,3 +45,8 @@ export const update = async (updatedUserProfile, email) => {
         throw error;
     }
 };
+
+export const getByUserId =  async (userId) => {
+  const userProfile = await UserProfile.find({ userId });
+  return userProfile;
+}

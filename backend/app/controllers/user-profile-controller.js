@@ -6,10 +6,6 @@ import { setResponse, setErrorResponse } from './response-handler.js';
 export const post = async (request, response) => {
     try {
         const newUserProfile = {...request.body};
-        // Calculate maintenance calorie based on weight
-        newUserProfile.maintenanceCalorie = newUserProfile.weight * 15;
-        newUserProfile.calorieDeficit = newUserProfile.maintenanceCalorie - 500;
-        newUserProfile.calorieSurplus = newUserProfile.maintenanceCalorie + 300;
         const userProfile = await userProfileService.save(newUserProfile);
         const userId = request.body.userId; 
         const user = await userService.find(userId);
@@ -45,5 +41,16 @@ export const put = async (request, response) => {
         setResponse(userProfile, response);
     } catch (err) {
         setErrorResponse(err, response);
+    }
+}
+
+export const getByUserId = async (request, response) => {
+    const { userId } = request.params;
+
+    try {
+        const userProfile = await userProfileService.getByUserId(userId);
+        setResponse(userProfile, response);
+    } catch (error) {
+        setErrorResponse(error, response);
     }
 }
