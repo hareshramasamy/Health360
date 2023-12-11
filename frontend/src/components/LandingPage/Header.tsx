@@ -1,15 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../store/slices/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { RootState } from '../../store';
 import Navigation from './Navigation';
+import axios from 'axios';
+import { JwtPayload, jwtDecode } from 'jwt-decode';
+
+interface JwtPayloadWithUserId extends JwtPayload {
+  userId: string;
+}
+
+let userId: string;
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
   const history = useNavigate();
-  let username = "Haresh";
+  const [firstName, setFirstName] = useState<string>("");
+
+  async function fetchUser(userId: string) {
+    try {
+      const userResponse = await axios.get(`http://localhost:3000/user/${userId}`);
+      setFirstName(userResponse.data.firstName);
+      return userResponse.data.firstName;
+    } catch (error) {
+      throw new Error("Failed to fetch user profile");
+    }
+  }
+
+  if(isLoggedIn) {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      const decoded: JwtPayloadWithUserId = jwtDecode(token) as JwtPayloadWithUserId;
+      userId = decoded.userId;
+    }
+    fetchUser(userId);
+  }
 
   const handleLogout = () => {
     dispatch(logout());
@@ -26,7 +54,7 @@ const Header: React.FC = () => {
         <nav>
           {isLoggedIn ? (
             <div className="nav-items">
-              <p>Hi, {username}</p>
+              <p>Hi, {firstName}</p>
               <a href="/" onClick={handleLogout}>
                 Logout
               </a>
