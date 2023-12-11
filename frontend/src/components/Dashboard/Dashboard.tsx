@@ -117,7 +117,7 @@ function Dashboard() {
         labels: ['Calories burned', 'Calories to be burned'],
         datasets: [{
           label: 'Exercise tracker',
-          data: [totalCaloriesBurned, 1000],
+          data: [totalCaloriesBurned, 300],
           backgroundColor: ['grey', 'white'],
           borderColor: ['grey', 'white'],
         }],
@@ -181,7 +181,7 @@ function Dashboard() {
                             <div className='summary-details'>
                                 <p>Calorie goal: {goalCalories} </p>
                                 <p>Calories consumed: {totalCalories}</p>
-                                <p>Calories remaining: {goalCalories - totalCalories}</p>
+                                <p>Calories remaining: {Math.round((goalCalories - totalCalories) * 100) / 100}</p>
                             </div>
                         </div>
                         <a href='/addFood'><button className='trackbutton'>Track your food</button></a>
