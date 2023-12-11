@@ -1,5 +1,5 @@
 import React from "react"
-import "./WorkoutPlanDashboard.css"
+import "./WorkoutPlanDashboard.scss"
 import Header from "../LandingPage/Header"
 import {useNavigate} from 'react-router-dom';
 

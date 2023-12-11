@@ -1,4 +1,4 @@
-import "./Landing.css"
+import "./Landing.scss"
 import {useNavigate} from 'react-router-dom';
 
 const Main = () => {

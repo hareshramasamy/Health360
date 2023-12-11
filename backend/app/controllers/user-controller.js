@@ -5,9 +5,9 @@ import {setResponse, setUserExistsErrorResponse, setInternalServerErrorResponse}
 export const post = async (request, response) => {
     try {
         const newUser = {...request.body};
-        const user = await userService.createUser(newUser);
+        const token = await userService.createUser(newUser);
         //setting response with the created user upon successful creation of user
-        setResponse(user, response);
+        response.status(200).json({ token });
     } catch(err) {
         if(err.message === "User already Exists!") {
             //setting response with Error as user already exists, if a user with same email id exists

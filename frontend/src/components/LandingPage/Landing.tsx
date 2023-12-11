@@ -1,5 +1,5 @@
 import React from "react"
-import "./Landing.css"
+import "./Landing.scss"
 import Header from "./Header"
 import Main from "./Main"
 import Review from "./Reviews"

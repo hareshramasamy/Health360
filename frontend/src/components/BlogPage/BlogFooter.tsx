@@ -1,4 +1,4 @@
-import "../LandingPage/Landing.css"
+import "../LandingPage/Landing.scss"
 
 function BlogFooter() {
     return (
