@@ -7,16 +7,23 @@
     height: 100vh;
     color: #fff;
 }
-
+#root > div > div > header{
+    background-color: #000000;
+}
 html {
     height: 100%;;
 }
+.sign-up-btn {    
+    background-color: #000000;
+}
 
-body {
+/* body {
     background-color: #000000;
     color: aliceblue;
     height: 100%;
-}
+    background-repeat:no-repeat;
+    background-size:cover;
+} */
 
 .sign-up-heading {
     margin-bottom: 20px;
@@ -48,9 +55,9 @@ input[type="password"] {
 }
 
 input[type="submit"] {
-    width: 100%;
+    width: 40vh;
     padding: 10px;
-    border: none;
+    border: 2px solid #acacac;
     border-radius: 5px;
     background-color: #007bff;
     color: #fff;
@@ -60,7 +67,7 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     background-color: aliceblue;
-    color: black;
+    color: black;   
     font-weight: 600;
 }
 

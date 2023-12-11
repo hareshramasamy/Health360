@@ -43,9 +43,9 @@
 } */
 
 #root > div > form > input[type=submit]:nth-child(7){
-    width: 30vh;
+    width: 33vh;
     padding: 10px;
-    border: none;
+    border: 2px solid #acacac;
     border-radius: 5px;
     background-color: #191919;
     color: #fff;

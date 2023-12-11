@@ -8,7 +8,7 @@ const blogSchema = new Schema({
     title: {
         type: String,
         required: true,
-        maxlength: 50,
+        maxlength: 200,
     },
     // description to store the description of the blog.
     description: {

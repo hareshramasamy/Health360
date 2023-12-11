@@ -36,7 +36,17 @@ function Body() {
         return <p style={{ color: 'white' }}>Loading...</p>;
     }
 
-    const currentDate = new Date().toISOString().slice(0, 19).replace("T", " ");
+    const currentDate = new Date();
+
+    const options: Intl.DateTimeFormatOptions = {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    };
+
+    const formattedDate = currentDate.toLocaleDateString('en-US', options);
+    console.log(formattedDate);
+
 
     const handleDelete = async (blogId: string) => {
         try {
@@ -69,25 +79,21 @@ function Body() {
         navigate(`/edit/${blogId}`);
     };
 
-    const toggleExpand = (event: React.MouseEvent<HTMLHeadingElement, MouseEvent>) => {
-        const target = event.currentTarget.closest('.post');
-        if (target) {
-            target.classList.toggle('expanded');
-        }
-    };
-
     return (
         <div className="post-container">
             {data.map((blog: any) => (
                 <div key={blog._id} className="post">
-                    <h2 onClick={toggleExpand}>{blog.title}</h2>
-                    <div>
-                        {blog.description}
-                        <p>Author: {blog.userId.firstName}</p>
-                        {console.log(blog)}
-                        <p>Created At: {currentDate}</p>
+                    <h1>{blog.title}</h1>
+                    <div className="description">
+                        {blog.description} <br /><br />
                     </div>
-                    
+                    <div>
+                        <p>
+                            Author: <b><i>{blog.userId.firstName}</i></b><br />
+                            Created at: <b><i>{formattedDate}</i></b>
+                        </p>
+                    </div>
+                    <div>
                     {userId && blog.userId._id === userId ? (
                         <>
                         {console.log(userId)}
@@ -97,10 +103,11 @@ function Body() {
                         </>
                     ) : (
                         <>
-                            <span className="disabled-button">Edit</span>
-                            <span className="disabled-button">Delete</span>
+                            <FaEdit className="disabled-edit">Edit</FaEdit>
+                            <FaEdit className="disabled-delete">Delete</FaEdit>
                         </>
                     )}
+                    </div>
                 </div>
             ))}
         </div>
