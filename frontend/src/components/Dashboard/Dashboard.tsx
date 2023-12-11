@@ -21,6 +21,7 @@ ChartJS.register(
 function Dashboard() {
     const userName = "Haresh";
 
+
     const foodData = {
         labels: ['Calories consumed', 'Calories remaining'],
         datasets: [{
@@ -40,7 +41,6 @@ function Dashboard() {
           borderColor: ['grey', 'white'],
         }],
       }
-    
  
      const options = {}
     return (
