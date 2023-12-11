@@ -2,11 +2,17 @@ import React, { FormEvent, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Header from "../LandingPage/Header";
-import "./basics.css";
+import "./basics.scss";
+import { JwtPayload, jwtDecode } from "jwt-decode";
+
+let userIdVal: string;
+
+interface JwtPayloadWithUserId extends JwtPayload {
+  userId: string;
+}
 
 function Basics() {
   const navigate = useNavigate();
-
   interface FormData {
     age: number;
     height: number;
@@ -50,10 +56,7 @@ function Basics() {
     const newErrors: FormErrors = { ...formErrors };
 
     for (const key in formData) {
-      if (
-        formData[key as keyof FormData] === 0 ||
-        formData[key as keyof FormData] === ""
-      ) {
+      if (formData[key as keyof FormData] === 0 || formData[key as keyof FormData] === "") {
         newErrors[`${key}Error` as keyof FormErrors] = true;
         valid = false;
       }
@@ -66,11 +69,17 @@ function Basics() {
   const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decoded: JwtPayloadWithUserId = jwtDecode(token) as JwtPayloadWithUserId;
+      userIdVal = decoded.userId;
+    }
+
     if (validateForm()) {
       try {
         const res = await axios.post(
           "http://localhost:3000/user-profile/",
-          formData
+          {...formData, userId: userIdVal}
         );
         if (res.status === 200) {
           navigate("/dashboard", { state: { id: localStorage.getItem("id") } });
@@ -155,6 +164,7 @@ function Basics() {
           </option>
           <option value="Weight-Gain">Weight Gain</option>
           <option value="Weight-Loss">Weight Loss</option>
+          <option value="Maintain-Weight">Maintain Weight</option>
         </select>
         {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
         <input type="submit" value="Submit" />

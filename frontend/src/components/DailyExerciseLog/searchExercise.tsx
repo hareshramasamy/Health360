@@ -4,7 +4,7 @@ import axios from 'axios';
 import Header from '../LandingPage/Header';
 import {jwtDecode, JwtPayload} from 'jwt-decode'
 import { useNavigate} from "react-router-dom"
-import "./searchExercise.css"
+import "./searchExercise.scss"
 
 type ExerciseItem = {
   userId: string;

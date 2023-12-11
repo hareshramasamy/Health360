@@ -1,5 +1,5 @@
 import React from 'react';
-import "./Landing.css"
+import "./Landing.scss"
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { useNavigate } from 'react-router-dom';

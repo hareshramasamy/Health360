@@ -22,4 +22,17 @@ export const save = async (exerciseList) => {
       console.error('Error occurred while saving exercises:', error);
       throw new Error('Failed to save exercises. Please check the server logs for more details.');
     }
-  };
+};
+
+export const getTotalCaloriesByDate =  async (userId, date) => {
+  const exerciseList = await Exercise.find({ userId, date });
+  const totalCalories = exerciseList.reduce((total, exercise) => {
+      return total + exercise.caloriesBurned;
+    }, 0);
+  return totalCalories;
+}
+
+  export const deleteExercise = async (id) => {
+    const exercise = await Exercise.findByIdAndDelete(id).exec();       
+    return exercise;
+}

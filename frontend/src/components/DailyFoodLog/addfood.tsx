@@ -4,12 +4,14 @@ import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Header from '../LandingPage/Header';
-import './addFood.css';
+import './addFood.scss';
 import { jwtDecode, JwtPayload } from 'jwt-decode';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { FaTrash } from 'react-icons/fa';
 
 interface MealData {
+  _id: string;
   mealType: string;
   calories: number;
   foodName: string;
@@ -58,16 +60,6 @@ const AddFood: React.FC = () => {
     navigate(path);
   };
 
-  const handleDateChange = (date: Date | null) => {
-    setSelectedDate(date);
-    setTotalCalories(0);
-    setTotalCarbs(0);
-    setTotalFat(0);
-    setTotalProtein(0);
-    setTotalSodium(0);
-    setTotalSugar(0);
-  };
-
   const handlePreviousDay = () => {
     if (selectedDate) {
       const previousDay = new Date(selectedDate);
@@ -91,63 +83,78 @@ const AddFood: React.FC = () => {
     </div>
   );
 
-  useEffect(() => {
-    const fetchMealData = async () => {
-      if (!selectedDate) return;
+  const fetchMealData = async () => {
+    if (!selectedDate) return;
 
-      try {
-        const timezoneOffset = selectedDate.getTimezoneOffset();
-        const adjustedDate = new Date(selectedDate.getTime() - timezoneOffset * 60000);
-        const formattedDate = adjustedDate.toISOString().split('T')[0];
+    try {
+      const timezoneOffset = selectedDate.getTimezoneOffset();
+      const adjustedDate = new Date(selectedDate.getTime() - timezoneOffset * 60000);
+      const formattedDate = adjustedDate.toISOString().split('T')[0];
 
-        const mealTypes = ['breakfast', 'lunch', 'dinner', 'snack'];
-        const promises = mealTypes.map(async (type) => {
-          try {
-            const response = await axios.get<MealData[]>(
-              `http://localhost:3000/food/${userId}/${type}/${formattedDate}`
-            );
-            const mealDataByType = response.data.map((meal) => ({ ...meal, userId }));
-            return mealDataByType;
-          } catch (error) {
-            console.error(`Error fetching ${type} data:`, error);
-            return [];
-          }
-        });
+      const mealTypes = ['breakfast', 'lunch', 'dinner', 'snack'];
+      const promises = mealTypes.map(async (type) => {
+        try {
+          const response = await axios.get<MealData[]>(
+            `http://localhost:3000/food/${userId}/${type}/${formattedDate}`
+          );
+          const mealDataByType = response.data.map((meal) => ({ ...meal, userId }));
+          return mealDataByType;
+        } catch (error) {
+          console.error(`Error fetching ${type} data:`, error);
+          return [];
+        }
+      });
 
-        const mealData = await Promise.all(promises);
-        let totalCalories = 0;
-        let totalCarbs = 0;
-        let totalFat = 0;
-        let totalProtein = 0;
-        let totalSodium = 0;
-        let totalSugar = 0;
-        for(let i = 0; i < 4; i++) {
-          if(mealData[i].length > 0) {
-            for(let j = 0; j < mealData[i].length; j++) {
-              totalCalories +=mealData[i][j].calories;
-              totalCarbs += mealData[i][j].carbs;
-              totalFat += mealData[i][j].fat;
-              totalProtein += mealData[i][j].protein;
-              totalSodium += mealData[i][j].sodium;
-              totalSugar += mealData[i][j].sugar;
-            }
+      const mealData = await Promise.all(promises);
+      let totalCalories = 0;
+      let totalCarbs = 0;
+      let totalFat = 0;
+      let totalProtein = 0;
+      let totalSodium = 0;
+      let totalSugar = 0;
+      for(let i = 0; i < 4; i++) {
+        if(mealData[i].length > 0) {
+          for(let j = 0; j < mealData[i].length; j++) {
+            totalCalories +=mealData[i][j].calories;
+            totalCarbs += mealData[i][j].carbs;
+            totalFat += mealData[i][j].fat;
+            totalProtein += mealData[i][j].protein;
+            totalSodium += mealData[i][j].sodium;
+            totalSugar += mealData[i][j].sugar;
           }
         }
-        setTotalCalories(Math.round(totalCalories * 100) / 100);
-        setTotalCarbs(Math.round(totalCarbs * 100) / 100);
-        setTotalFat(Math.round(totalFat * 100) / 100);
-        setTotalProtein(Math.round(totalProtein * 100) / 100);
-        setTotalSodium(Math.round(totalSodium * 100) / 100);
-        setTotalSugar(Math.round(totalSugar * 100) / 100);
-        setMealData(mealData);
-      } catch (error) {
-        console.error('Error fetching meal data:', error);
-        setMealData([]);
       }
-    };
+      setTotalCalories(Math.round(totalCalories * 100) / 100);
+      setTotalCarbs(Math.round(totalCarbs * 100) / 100);
+      setTotalFat(Math.round(totalFat * 100) / 100);
+      setTotalProtein(Math.round(totalProtein * 100) / 100);
+      setTotalSodium(Math.round(totalSodium * 100) / 100);
+      setTotalSugar(Math.round(totalSugar * 100) / 100);
+      setMealData(mealData);
+    } catch (error) {
+      console.error('Error fetching meal data:', error);
+      setMealData([]);
+    }
+  };
+
+  useEffect(() => {
 
     fetchMealData();
   }, [selectedDate]);
+
+  const handleDeleteMeal = async (mealId: string) => {
+    try {
+      const response = await axios.delete(`http://localhost:3000/food/${mealId}`);
+      if (response.status === 200) {
+        fetchMealData();
+      } else {
+        console.error('Failed to delete meal');
+      }
+    } catch (error) {
+      console.error('Error deleting meal:', error);
+    }
+  };
+
 
   const mealTypes = ['breakfast', 'lunch', 'dinner', 'snack'];
 
@@ -259,6 +266,24 @@ const AddFood: React.FC = () => {
                     ))
                   ) : (
                     <div className="item-sugar">-</div>
+                  )}
+                </div>
+                <div className={`${type}-delete`}>
+                  {mealTypeArray ? (
+                    mealTypeArray.map((meal, mealIndex) => (
+                      <div key={mealIndex}>{meal ? 
+                      //   <button
+                      //   className="delete-button"
+                      //   onClick={() => handleDeleteMeal(meal._id)} // Pass the meal ID to delete
+                      // >
+                      //   Delete
+                      // </button>
+                      <FaTrash className="item-delete" onClick={() => handleDeleteMeal(meal._id)} />
+                       : 
+                       <div className="item-delete">-</div>}</div>
+                    ))
+                  ) : (
+                    <div className="item-delete">-</div>
                   )}
                 </div>
               </React.Fragment>

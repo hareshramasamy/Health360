@@ -1,6 +1,6 @@
 import BlogHeading from './BlogHeading';
 import Body from './Body';
-import "./BlogPage.css";
+import "./BlogPage.scss";
 
 const Main = () => {
   return (
