@@ -1,6 +1,6 @@
 import Header from '../LandingPage/Header';
 import Footer from '../LandingPage/Footer';
-import './Dashboard.css'
+import './Dashboard.scss'
 import {
     Chart as ChartJS,
     ArcElement,

@@ -1,6 +1,6 @@
 import React, { FormEvent, useState } from "react"
 import axios from "axios"
-import './signup.css'
+import './signup.scss'
 import { useNavigate, Link } from "react-router-dom"
 import { loginSuccess } from "../../store/slices/authSlice";
 import { useDispatch } from "react-redux";

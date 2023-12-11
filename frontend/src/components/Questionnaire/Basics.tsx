@@ -2,7 +2,7 @@ import React, { FormEvent, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Header from "../LandingPage/Header";
-import "./basics.css";
+import "./basics.scss";
 import { JwtPayload, jwtDecode } from "jwt-decode";
 
 let userIdVal: string;
