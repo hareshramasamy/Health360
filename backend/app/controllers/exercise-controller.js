@@ -21,3 +21,24 @@ export const post = async (request, response) => {
         setErrorResponse(err, response);
     }
 }
+
+export const remove = async (request, response) => {
+    try{
+        const id = request.params.id;
+        const exercise = await ExerciseService.deleteExercise(id);
+        setResponse(exercise, response);
+    } catch (err) {
+        setErrorResponse(err, response);
+    }
+}
+
+export const getTotalCaloriesByDate = async (request, response) => {
+    const { userId, date } = request.params;
+
+    try {
+        const exerciseData = await ExerciseService.getTotalCaloriesByDate(userId, date);
+        setResponse(exerciseData, response);
+    } catch (error) {
+        setErrorResponse(error, response);
+    }
+}
