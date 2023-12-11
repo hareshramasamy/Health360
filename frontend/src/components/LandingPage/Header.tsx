@@ -4,6 +4,7 @@ import { logout } from '../../store/slices/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { RootState } from '../../store';
 import Navigation from './Navigation';
+import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { JwtPayload, jwtDecode } from 'jwt-decode';
 
@@ -12,6 +13,7 @@ interface JwtPayloadWithUserId extends JwtPayload {
 }
 
 let userId: string;
+
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
@@ -39,6 +41,7 @@ const Header: React.FC = () => {
     fetchUser(userId);
   }
 
+  const {t} = useTranslation('common');
   const handleLogout = () => {
     dispatch(logout());
     history('/');
@@ -49,14 +52,14 @@ const Header: React.FC = () => {
       <header className="navbar">
           <a href={isLoggedIn ? "/dashboard" : "/"} className="top-logo">
             <img className="logo" src={process.env.PUBLIC_URL + "/Health360LOGO.png"} alt="Logo" />
-            <h2 className="name">Health360</h2>
+            <h2 className="name">{t('title')}</h2>
           </a>
         <nav>
           {isLoggedIn ? (
             <div className="nav-items">
-              <p>Hi, {firstName}</p>
+              <p>{t('greeting.label')}, {firstName}</p>
               <a href="/" onClick={handleLogout}>
-                Logout
+                {t('logout.button.label')}
               </a>
             </div>
           ) : (

@@ -10,7 +10,6 @@ const Blog = () => {
         <div className="blogPage">
             <Header />
             <Main />
-            <BlogFooter />
         </div>
     )
 }
