@@ -1,11 +1,16 @@
-#root > div {
+#root {
+    height: 100%;
     color: #fff;
+    background-image: url("running.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
     align-content: center;
+    text-align: center;
 }
 
-#root > div > h1{
-    padding-left: 5%;
-    text-decoration: underline;
+#root > div > p{
+    font-size: 1.5rem;
+    font-weight: bolder;
 }
 
 #root > div > form{

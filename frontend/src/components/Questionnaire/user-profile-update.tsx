@@ -95,7 +95,7 @@ function UserProfileUpdate() {
   return (
     <div className="update-user-profile-container">
       <Header />
-      <h1 className="update-user-profile-heading">Update Your Progress</h1>
+      <h1 className="update-user-profile-heading">Update Your Profile</h1>
       <form className="update-user-profile-form" onSubmit={submit}>
         <input
           className={formErrors.ageError ? "error" : ""}

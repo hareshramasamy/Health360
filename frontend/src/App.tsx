@@ -50,7 +50,7 @@ function App() {
         <Route path="/workoutplan/maintainweight" element={<PrivateRoute element = {<MaintainWeightApp />} />} />
         <Route path="/addfood" element={<PrivateRoute element = {<AddFood />} />} />
         <Route path="/searchfood/:mealType/:formattedDate" element={<PrivateRoute element = {<SearchFood />} />} />
-        <Route path="/questionnaire" element={<PrivateRoute element ={<Questionnaire />} />} />
+        <Route path="/questionnaire" element={<Questionnaire />} />
         <Route path="/addExercise" element={<PrivateRoute element = {<AddExercise />} />} />
         <Route path="/searchExercise/:formattedDate" element={<PrivateRoute element = {<SearchExercise />} />} />
         <Route path="/update-profile" Component={ProfileUpdateForm} />

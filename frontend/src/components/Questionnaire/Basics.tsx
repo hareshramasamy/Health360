@@ -88,7 +88,8 @@ function Basics() {
   return (
     <div className="basics-container">
       <Header></Header>
-      <h1 className="basics-heading">Dive Into Your Healthy Life Now!</h1>
+      <p className="basics-heading">You have taken your first step towards a healthier lifestyle!<br/>
+                    We would like to know more about you to provide a seamless fitness experience.</p>
       <form className="basics-form" onSubmit={submit}>
         <input
           className={formErrors.ageError ? "error" : ""}
