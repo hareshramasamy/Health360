@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import Header from '../LandingPage/Header';
 import Footer from '../LandingPage/Footer';
+import { useTranslation } from 'react-i18next';
 import './Dashboard.css'
 import {
     Chart as ChartJS,
@@ -20,7 +21,7 @@ ChartJS.register(
 
 function Dashboard() {
     const userName = "Haresh";
-
+    const {t} = useTranslation('common');
     const foodData = {
         labels: ['Calories consumed', 'Calories remaining'],
         datasets: [{
@@ -49,26 +50,26 @@ function Dashboard() {
             <div className='dashboardpic'>
                 <div className='summarycontent'>
                     <div className='summary-header'>
-                        <h1>Your daily food summary</h1>
+                        <h1>{t('summary.food')}</h1>
                         <div className='summarydata'>
                             <div id='doughnut-canvas'/>
                             {/* <img src={process.env.PUBLIC_URL + "/piechart.png"} height='200px' width='200px'></img> */}
                             <div className='chart'><Doughnut data = {foodData} options = {options}/></div>
                             
                             <div className='summary-details'>
-                                <p>Calorie goal: 2000 </p>
-                                <p>Calories consumed: 1560</p>
-                                <p>Calories remaining: 440</p>
+                                <p>{t('calorie.goal')} 2000 </p>
+                                <p>{t('calorie.consumed')} 1560</p>
+                                <p>{t('calorie.remaining')} 440</p>
                             </div>
                         </div>
                         <a href='/addFood'><button className='trackbutton'>Track your food</button></a>
                     </div>
                     <div className='summary-header'>
-                        <h1>Your daily workout summary</h1>
+                        <h1>{t('summary.workout')}</h1>
                         <div className='summarydata'>
                             <div className='chart'><Doughnut data = {exerciseData} options = {options}/></div>
                             <div className='summary-details'>
-                                <p>Target Calories to be burned:  380</p>
+                                <p>"Target Calories to be burned:"  380</p>
                                 <p>Calories burned: 100</p>
                                 <p>Calories to be burned: 280</p>
                             </div>
