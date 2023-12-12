@@ -34,15 +34,16 @@ export const find = async (id) => {
 // Update a user profile by ID
 export const update = async (updatedUserProfile, email) => {
   try {
-    if (newUserProfile.sexAtBirth === "Male") {
+    if (updatedUserProfile.sexAtBirth === "Male") {
       updatedUserProfile.maintenanceCalorie = calculateMCForMen(updatedUserProfile.weight, updatedUserProfile.height, updatedUserProfile.age);
     } else {
       updatedUserProfile.maintenanceCalorie = calculateMCForWomen(updatedUserProfile.weight, updatedUserProfile.height, updatedUserProfile.age);
     }
     updatedUserProfile.calorieDeficit = updatedUserProfile.maintenanceCalorie - 300;
     updatedUserProfile.calorieSurplus = updatedUserProfile.maintenanceCalorie + 300;
+    const userId = updatedUserProfile.userId;
     const userProfile = await UserProfile.findOneAndUpdate(
-      { email },
+      { userId },
       updatedUserProfile,
       { new: true, runValidators: true }
     ).exec();
