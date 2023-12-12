@@ -1,6 +1,9 @@
+// Importing styles for the blog page header
 import "./BlogPage.scss";
 
+// Header component definition
 const Header = () => {
+  // Render the header with the Health360 logo and a login link
   return (
     <div>
       <header className="navbar">
@@ -16,4 +19,5 @@ const Header = () => {
   );
 };
 
+// Export the Header component
 export default Header;

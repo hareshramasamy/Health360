@@ -1,8 +1,10 @@
+// Importing necessary React hooks, components, and styles
 import React, { useState, useEffect } from 'react';
 import "./dietplan.scss"
 import Header from '../LandingPage/Header'
 import axios from 'axios';
 
+// Defining interfaces for Meal and DietPlan
 interface Meal {
   type: string;
   name: string;
@@ -17,15 +19,17 @@ interface DietPlan {
   meals: Meal[];
 }
 
+// Defining interface for DietPlanCardProps
 interface DietPlanCardProps {
   plan: DietPlan;
 }
 
+// DietPlanCard component definition
 const DietPlanCard: React.FC<DietPlanCardProps> = ({ plan }) => {
-
-
+  // Filtering vegetarian meals from the plan
   const vegetarianMeals = plan.meals.filter((meal) => meal.type.toLowerCase().includes('vegetarian'));
 
+  // JSX structure for displaying a diet plan card
   return (
     <div className="card">
       <h3 className='plannum'>{plan.plan_name}</h3>
@@ -53,11 +57,14 @@ const DietPlanCard: React.FC<DietPlanCardProps> = ({ plan }) => {
   );
 };
 
+// Defining interface for VegetarianDietListProps
 interface VegetarianDietListProps {
   dietPlans: DietPlan[];
 }
 
+// VegetarianDietList component definition
 const VegetarianDietList: React.FC<VegetarianDietListProps> = ({ dietPlans }) => {
+  // JSX structure for displaying a list of vegetarian diet plans
   return (
     <div className="diet-plan-list">
       {dietPlans.map((plan, index) => (
@@ -67,11 +74,13 @@ const VegetarianDietList: React.FC<VegetarianDietListProps> = ({ dietPlans }) =>
   );
 };
 
-
+// VegetarianDietApp component definition
 const VegetarianDietApp: React.FC = () => {
+  // State for storing diet plans and loading status
   const [dietPlans, setDietPlans] = useState<DietPlan[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // Fetching diet plans from the server using Axios and updating state
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -88,14 +97,17 @@ const VegetarianDietApp: React.FC = () => {
     fetchData();
   }, []);
 
+  // Displaying a loading message while fetching data
   if (loading) {
     return <p>Loading...</p>;
   }
 
+  // Filtering vegetarian diet plans
   const vegetarianDietPlans = dietPlans.filter((plan) =>
     plan.meals.some((meal) => meal.type.toLowerCase().includes('vegetarian'))
   );
 
+  // JSX structure for displaying the VegetarianDietApp component
   return (
     <div className="App">
       <Header />
@@ -111,6 +123,5 @@ const VegetarianDietApp: React.FC = () => {
   );
 };
 
+// Exporting the VegetarianDietApp component
 export default VegetarianDietApp;
-
-
