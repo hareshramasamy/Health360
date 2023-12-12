@@ -5,21 +5,24 @@ import { useDispatch } from 'react-redux';
 import "./login.scss"
 import { loginSuccess } from "../../store/slices/authSlice";
 
-
+// Component responsible for handling user login
 function Login() {
     const dispatch=useDispatch();
     const history=useNavigate();
 
+    // Interface defining the structure of form data
     interface FormData {
       email: string;
       password: string;
     }
 
+    // Interface defining the structure form errors
     interface FormErrors {
       emailError: boolean;
       passwordError: boolean;
     }
 
+    // State to manage form data and errors
     const [formData, setFormData] = useState<FormData>({
         email: "",
         password: "",
@@ -29,14 +32,16 @@ function Login() {
         emailError: false,
         passwordError: false,
     });
-      
+    
+    // Function to handle input changes in the form fields
     const handleChange = (e: any) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
-        setErrorMessage("");
-        setFormErrors({ ...formErrors, [`${name}Error`]: false });
+        setErrorMessage(""); //setting error message to empty string upon change of the input fields
+        setFormErrors({ ...formErrors, [`${name}Error`]: false }); //setting the specific formError value to false for the field that was changed
     };
 
+    // Function to validate form data
     const validateForm = () => {
       let valid = true;
       const newErrors: FormErrors = { ...formErrors };
@@ -51,9 +56,11 @@ function Login() {
       setFormErrors(newErrors);
       return valid;
     };
-
+    
+    // State to manage error message
     const [errorMessage, setErrorMessage] = useState("");
 
+    // Function to handle login submission
     const handleLogin = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
 
@@ -76,8 +83,8 @@ function Login() {
 
       };
 
+    //HTML structure for the login form
     return (
-
         <div className="login-btn">
           <div className= "logo-div">
             <img className= "logo-login" src={process.env.PUBLIC_URL + "/Health360LOGO.png"} alt="Logo"></img>

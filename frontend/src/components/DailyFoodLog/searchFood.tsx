@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Header from '../LandingPage/Header';
-import {jwtDecode, JwtPayload} from 'jwt-decode'
-import { useNavigate} from "react-router-dom"
-import "./searchFood.scss"
+import { jwtDecode, JwtPayload } from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
+import './searchFood.scss';
 
+// Define the structure of a FoodItem
 type FoodItem = {
   userId: string;
   mealType: string;
@@ -18,22 +19,26 @@ type FoodItem = {
   protein: number;
   sodium: number;
   sugar: number;
-}
+};
 
+// Define the structure of URL parameters
 type Params = {
   mealType: string;
   formattedDate: string;
-}
+};
 
+// Define a custom interface for JwtPayload with userId
 interface JwtPayloadWithUserId extends JwtPayload {
-    userId: string;
+  userId: string;
 }
 
+// Global variable to store userId
 let userId: string;
 
+// Component for searching and adding food items
 const SearchFood: React.FC = () => {
-  const navigate=useNavigate();
-  const {mealType, formattedDate } = useParams<Params>();
+  const navigate = useNavigate();
+  const { mealType, formattedDate } = useParams<Params>();
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [selectedFood, setSelectedFood] = useState<FoodItem | null>(null);
@@ -49,12 +54,14 @@ const SearchFood: React.FC = () => {
   const meal = mealType!;
   const date = formattedDate!;
 
+  // Retrieve and decode user ID from JWT token stored in localStorage
   const token = localStorage.getItem('token');
-  if(token) {
+  if (token) {
     const decoded: JwtPayloadWithUserId = jwtDecode(token) as JwtPayloadWithUserId;
     userId = decoded.userId;
   }
 
+  // Function to handle changes in quantity input
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const quantity = parseInt(e.target.value);
     setSelectedQuantity(quantity);
@@ -77,6 +84,7 @@ const SearchFood: React.FC = () => {
     }
   };
 
+  // Function to search for food items using Nutritionix API
   const searchFood = async () => {
     try {
       setSearchResults([]);
@@ -84,8 +92,8 @@ const SearchFood: React.FC = () => {
       if (searchTerm !== "") {
         const response = await axios.get('https://trackapi.nutritionix.com/v2/search/instant', {
           headers: {
-            'x-app-id': '5694690a',
-            'x-app-key': 'e2cae258b8e23d9a3619ad82895254ff',
+            'x-app-id': `${process.env.REACT_APP_X_APP_ID}`,
+            'x-app-key': `${process.env.REACT_APP_X_APP_KEY}`,
           },
           params: {
             query: searchTerm,
@@ -106,6 +114,7 @@ const SearchFood: React.FC = () => {
     }
   };
 
+  // Function to handle a clicked food item from search results
   const handleClick = async (food: any) => {
     const response = await axios.post(`https://trackapi.nutritionix.com/v2/natural/nutrients/`, 
         {
@@ -114,8 +123,8 @@ const SearchFood: React.FC = () => {
         {
             headers: {
                 'Content-type': 'application/json',
-                'x-app-id': '5694690a',
-                'x-app-key': 'e2cae258b8e23d9a3619ad82895254ff'
+                'x-app-id': `${process.env.REACT_APP_X_APP_ID}`,
+                'x-app-key': `${process.env.REACT_APP_X_APP_KEY}`
             },
     });
 
@@ -146,33 +155,39 @@ const SearchFood: React.FC = () => {
     setInitialSugar(response.data.foods[0].nf_sugars);
   };
 
+  // Function to save selected food to the backend
   const handleSave = async () => {
     if(selectedFood) {
-        try {
-          const res = await axios.post("http://localhost:3000/addfood", selectedFood);
-          console.log(res);
-          if (res.status === 200 ) {
-            navigate("/addfood");
-          }
-        } catch (error: any) {
-          setError("Error saving the values!");
+      try {
+        const res = await axios.post("http://localhost:3000/addfood", selectedFood);
+        console.log(res);
+        if (res.status === 200 ) {
+          navigate("/addfood");
         }
-      } else {
-        setError("Please select a food to save!");
+      } catch (error: any) {
+        setError("Error saving the values!");
       }
-  };
+    } else {
+      setError("Please select a food to save!");
+    }
+};
 
-
+  // TSX returned by the component
   return (
     <div className="search-food-page">
       <Header />
-      <div className = "bg-img-food">
+      {/* Renders the Header component */}
+      {/* The following section is responsible for the search food functionality */}
+      <div className="bg-img-food">
+        {/* Container for the search food functionality */}
         <div className="search-food-container-wrapper">
-          <div className = "search-food-page-container">
+          <div className="search-food-page-container">
+            {/* Input section for searching food */}
             <div className="search-food-input-section">
-              <h2 className = "search-heading">Search {mealType} Food</h2>
+              <h2 className="search-heading">Search {mealType} Food</h2>
               <div>
-                <input 
+                {/* Input field for searching food */}
+                <input
                   className='search-food-input'
                   type="text"
                   value={searchTerm}
@@ -182,33 +197,42 @@ const SearchFood: React.FC = () => {
                   }}
                   placeholder={`Search for ${mealType} food...`}
                 />
+                {/* Button to trigger the food search */}
                 <button className='search-btn' onClick={searchFood}>Search</button>
               </div>
+              {/* Display error messages */}
               {error && <p style={{ color: 'red' }}>{error}</p>}
             </div>
-
+  
+            {/* Display search results */}
             <div className='search-food-result'>
               <h3>Search Results:</h3>
               <ul className='search-list'>
+                {/* List of search results */}
                 {searchResults.map((item, index) => (
-                  <li className = "search-item" key={index} onClick={() => handleClick(item)}>
+                  <li className="search-item" key={index} onClick={() => handleClick(item)}>
                     {item.food_name}
                   </li>
                 ))}
               </ul>
             </div>
-
-            <div className = "search-food-save">
+  
+            {/* Section for displaying selected food details */}
+            <div className="search-food-save">
+              {/* Display selected food details if a food is selected */}
               {selectedFood && (
                 <div className='save-container'>
                   <div className='select-and-save'>
+                    {/* Display selected food name and input for selecting quantity */}
                     <h3 className='selected-food'>Selected Food: {selectedFood.foodName.charAt(0).toUpperCase() + selectedFood.foodName.slice(1)}</h3>
                     <div className='select-qty-container'>
                       <h3>Select Serving size:</h3>
-                      <input className='add-qty-input' name = "quantity" value = {selectedQuantity} type="number" placeholder='Add Quantity' onChange={handleQuantityChange}/>
+                      <input className='add-qty-input' name="quantity" value={selectedQuantity} type="number" placeholder='Add Quantity' onChange={handleQuantityChange} />
                     </div>
+                    {/* Button to save the selected food */}
                     <button className='save-btn' onClick={handleSave}>Save</button>
                   </div>
+                  {/* Display nutrition facts of the selected food */}
                   <div className='nutrition-facts'>
                     <h3>Nutrition facts:</h3>
                     <p>Serving size: {selectedFood.servingSize}gm</p>
@@ -226,7 +250,7 @@ const SearchFood: React.FC = () => {
         </div>
       </div>
     </div>
-  );
+  );  
 };
 
 export default SearchFood;

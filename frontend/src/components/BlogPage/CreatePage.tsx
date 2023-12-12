@@ -1,17 +1,23 @@
-import "../LandingPage/Landing.scss"
-import "./BlogPage.scss"
-import BlogFooter from "./BlogFooter"
-import Header from "../LandingPage/Header"
-import MainCreate from "./MainCreate"
+// Importing styles for the landing and blog pages
+import "../LandingPage/Landing.scss";
+import "./BlogPage.scss";
 
+// Importing BlogFooter, Header, and MainCreate components
+import BlogFooter from "./BlogFooter";
+import Header from "../LandingPage/Header";
+import MainCreate from "./MainCreate";
+
+// Blog component definition
 const Blog = () => {
-    return (
-        <div className="blogPage">
-            <Header />
-            <MainCreate />
-            <BlogFooter />
-        </div>
-    )
+  // Render the blog page with Header, MainCreate, and BlogFooter
+  return (
+    <div className="blogPage">
+      <Header />
+      <MainCreate />
+      <BlogFooter />
+    </div>
+  );
 }
 
-export default Blog
+// Exporting the Blog component
+export default Blog;
