@@ -4,11 +4,16 @@ import "./BlogPage.scss";
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { jwtDecode, JwtPayload } from 'jwt-decode';
 
+// Body component definition
 function Body() {
+    // State for storing blog data and loading status
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
+    
+    // Hook for programmatic navigation
     const navigate = useNavigate();
 
+    // Fetch blog data on component mount
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -24,22 +29,21 @@ function Body() {
         fetchData();
     }, []);
 
+    // Loading state indicator
     if (loading) {
         return <p style={{ color: 'white' }}>Loading...</p>;
     }
 
+    // Get current date and format it
     const currentDate = new Date();
-
     const options: Intl.DateTimeFormatOptions = {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
     };
-
     const formattedDate = currentDate.toLocaleDateString('en-US', options);
-    console.log(formattedDate);
 
-
+    // Function to handle blog deletion
     const handleDelete = async (blogId: string) => {
         try {
             const response = await fetch(`http://localhost:3000/blogs/${blogId}`, {
@@ -56,10 +60,10 @@ function Body() {
         }
     };
 
+    // Decode user token and get user ID
     interface JwtPayloadWithUserId extends JwtPayload {
         userId: string;
     }
-
     let userId = 'string';
     const token = localStorage.getItem('token');
     if (token) {
@@ -67,10 +71,12 @@ function Body() {
         userId = decoded.userId;
     }
 
+    // Function to handle blog editing
     const handleEdit = async (blogId: string) => {
         navigate(`/edit/${blogId}`);
     };
 
+    // Render blog posts
     return (
         <div className="post-container">
             {data.map((blog: any) => (
@@ -86,19 +92,20 @@ function Body() {
                         </p>
                     </div>
                     <div>
-                    {userId && blog.userId._id === userId ? (
-                        <>
-                        {console.log(userId)}
-                        {console.log(blog.userId._id)}
-                            <FaEdit className="edit" onClick={() => handleEdit(blog._id)} />
-                            <FaTrash className="delete" onClick={() => handleDelete(blog._id)} />
-                        </>
-                    ) : (
-                        <>
-                            <FaEdit className="disabled-edit">Edit</FaEdit>
-                            <FaTrash className="disabled-delete">Delete</FaTrash>
-                        </>
-                    )}
+                        {/* Render edit and delete icons based on user ownership */}
+                        {userId && blog.userId._id === userId ? (
+                            <>
+                                {console.log(userId)}
+                                {console.log(blog.userId._id)}
+                                <FaEdit className="edit" onClick={() => handleEdit(blog._id)} />
+                                <FaTrash className="delete" onClick={() => handleDelete(blog._id)} />
+                            </>
+                        ) : (
+                            <>
+                                <FaEdit className="disabled-edit">Edit</FaEdit>
+                                <FaTrash className="disabled-delete">Delete</FaTrash>
+                            </>
+                        )}
                     </div>
                 </div>
             ))}
@@ -106,4 +113,5 @@ function Body() {
     );
 }
 
+// Exporting the Body component
 export default Body;

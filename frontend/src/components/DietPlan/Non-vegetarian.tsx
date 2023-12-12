@@ -3,6 +3,7 @@ import "./dietplan.scss"
 import Header from '../LandingPage/Header'
 import axios from 'axios';
 
+// Interface for representing a Meal
 interface Meal {
   type: string;
   name: string;
@@ -11,19 +12,24 @@ interface Meal {
   calories: number;
 }
 
+// Interface for representing a DietPlan
 interface DietPlan {
   goal: string;
   plan_name: string;
   meals: Meal[];
 }
 
+// Interface for DietPlanCardProps
 interface DietPlanCardProps {
   plan: DietPlan;
 }
 
+// DietPlanCard component definition
 const DietPlanCard: React.FC<DietPlanCardProps> = ({ plan }) => {
+  // Filtering non-vegetarian meals from the plan
   const nonVegMeals = plan.meals.filter((meal) => meal.type.toLowerCase().includes('nv'));
 
+  // JSX structure for displaying a diet plan card with non-vegetarian meals
   return (
     <div className="card">
       <h3>{plan.plan_name}</h3>
@@ -51,11 +57,14 @@ const DietPlanCard: React.FC<DietPlanCardProps> = ({ plan }) => {
   );
 };
 
+// Interface for NonVegDietListProps
 interface NonVegDietListProps {
   dietPlans: DietPlan[];
 }
 
+// NonVegDietList component definition
 const NonVegDietList: React.FC<NonVegDietListProps> = ({ dietPlans }) => {
+  // JSX structure for displaying a list of non-vegetarian diet plans
   return (
     <div className="diet-plan-list">
       {dietPlans.map((plan, index) => (
@@ -65,12 +74,13 @@ const NonVegDietList: React.FC<NonVegDietListProps> = ({ dietPlans }) => {
   );
 };
 
-
+// NonVegDietApp component definition
 const NonVegDietApp: React.FC = () => {
-
+  // State for storing diet plans and loading status
   const [dietPlans, setDietPlans] = useState<DietPlan[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // Fetching diet plans from the server using Axios and updating state
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -87,13 +97,17 @@ const NonVegDietApp: React.FC = () => {
     fetchData();
   }, []);
 
+  // Displaying a loading message while fetching data
   if (loading) {
     return <p>Loading...</p>;
   }
+
+  // Filtering non-vegetarian diet plans
   const nonVegDietPlans = dietPlans.filter((plan) =>
     plan.meals.some((meal) => meal.type.toLowerCase().includes('nv'))
   );
 
+  // JSX structure for displaying the NonVegDietApp component
   return (
     <div className="App">
       <Header />
@@ -105,6 +119,5 @@ const NonVegDietApp: React.FC = () => {
   );
 };
 
+// Exporting the NonVegDietApp component
 export default NonVegDietApp;
-
-
