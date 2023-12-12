@@ -33,7 +33,7 @@ const userProfileSchema = new Schema({
     // Fitness goal (Weight-Loss/Weight-Gain).
     fitnessGoal: {
         type: String,
-        enum: ["Weight-Loss", "Weight-Gain"],
+        enum: ["Weight-Loss", "Weight-Gain", "Maintain-Weight"],
         required: true
     },
     // Maintenance calorie based on weight
