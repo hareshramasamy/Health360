@@ -96,7 +96,7 @@ function Body() {
                     ) : (
                         <>
                             <FaEdit className="disabled-edit">Edit</FaEdit>
-                            <FaEdit className="disabled-delete">Delete</FaEdit>
+                            <FaTrash className="disabled-delete">Delete</FaTrash>
                         </>
                     )}
                     </div>
