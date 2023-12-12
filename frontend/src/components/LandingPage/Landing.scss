@@ -1,31 +1,37 @@
+/* Import Nunito font from Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;500;700&display=swap");
 
+/* Apply Nunito font to all elements */
 * {
     font-family: "Nunito", sans-serif;
-
 }
 
+/* Styling for the landing page */
 .landing {
     position: relative;
 }
 
-header{
+/* Styling for the header section */
+header {
     position: relative;
 }
 
-header > div{
+/* Styling for the div within the header */
+header > div {
     display: flex;
-    justify-content:center;
+    justify-content: center;
     background-color: black;
     color: aliceblue;
     font-family: "Nunito", sans-serif;
     align-items: center;
 }
 
-.logo,.name:hover {
+/* Styling for the logo and name with hover effect */
+.logo, .name:hover {
     cursor: pointer;
 }
 
+/* Styling for the top logo */
 .top-logo {
     display: flex;
     color: aliceblue;
@@ -33,13 +39,15 @@ header > div{
     align-items: center;
     text-wrap: wrap;
 }
- 
-.logo{
+
+/* Styling for the logo */
+.logo {
     display: flex;
     width: 70px;
     height: 70px;
 }
 
+/* Styling for the navigation bar */
 nav {
     position: absolute;
     top: 25px;
@@ -47,11 +55,13 @@ nav {
     color: aliceblue;
     font-size: 20px;
 
+    /* Styling for navigation links */
     a {
         color: aliceblue;
         font-size: 20px;
         text-decoration: none;
 
+        /* Styling for navigation link hover state */
         &:hover {
             cursor: pointer;
             font-weight: 800;
@@ -59,13 +69,14 @@ nav {
     }
 }
 
-
+/* Styling for the navigation items */
 .nav-items {
     display: flex;
     margin-left: auto;
     align-items: center;
     gap: 20px;
 
+    /* Styling for navigation links and paragraphs within navigation */
     a {
         margin: 0 10px;
     }
@@ -77,21 +88,21 @@ nav {
     }
 }
 
-
+/* Styling for the h2 within the header */
 header > h2 {
     font-size: 30px;
     margin: 0;
     padding: 5px;
 } 
 
-
+/* Styling for the health image */
 .healthpic {
     display: block;
     width: 100%;
     height: auto;
-    
 }
 
+/* Styling for the logo inside */
 .logo-inside {
     width: 40%;
     height: auto;
@@ -101,10 +112,12 @@ header > h2 {
     right: 15px;
 }
 
+/* Styling for the main area */
 .main-area {
     position: relative;
 }
 
+/* Styling for the image item */
 .img-item {
     position: absolute;
     top: 25%; 
@@ -117,9 +130,9 @@ header > h2 {
     font-size: 30px;
     text-wrap: wrap;
     z-index: 1;
-    
 }
 
+/* Styling for the navigation bar */
 .navigation-bar {
     display: flex;
     align-items: center;
@@ -127,48 +140,53 @@ header > h2 {
     justify-content: center;
     background-color: #212121;
 
+    /* Styling for the div within the navigation bar */
     div {
         padding: 10px 0;
 
+        /* Styling for navigation bar div hover state */
         &:hover {
             background-color: #2d2c2c;
         }
     }
 
+    /* Styling for navigation links within the navigation bar */
     a {
         color: aliceblue;
         font-size: 20px;
         text-decoration: none;
 
+        /* Styling for navigation link hover state */
         &:hover {
             cursor: pointer;
         }
     }
 }
 
-
-.fav{
+/* Styling for the favorite, about, goal, and goalA classes */
+.fav {
     font-size: 1.5vw;
     margin: 0;
 }
-.about {
 
+.about {
     font-size: 1.2vw;
     margin: 10;
 } 
 
 .goal {
-  
     font-size: 3vw;
     font-weight: 800;
     margin: 0;
 } 
+
 .goalA {
     font-size: 4vw;
     font-weight: 900;
     margin: 10px 0;
 }
 
+/* Styling for the sign-up button */
 .sign-up {
     position: absolute;
     top: 70%; 
@@ -185,6 +203,7 @@ header > h2 {
     z-index: 1;
     transition: background-color 0.3s ease;
 
+    /* Styling for sign-up button hover state */
     &:hover {
         cursor: pointer;
         background-color: rgba(240, 248, 255, 0.533);
@@ -192,17 +211,19 @@ header > h2 {
     }
 }
 
-
+/* Styling for the rating section */
 .rating {
     text-align: center;
     background-color: #000000;
 }
 
+/* Styling for the star rating */
 .starrating {
     width: 350px;
     margin-top: 30px;
 }
 
+/* Styling for the rating statistics */
 .rating-stat {
     color: aliceblue;
     font-size: 30px;
@@ -211,10 +232,12 @@ header > h2 {
     margin: 0;
 }
 
-ul{
+/* Styling for the unordered list */
+ul {
     margin: 0;
 }
 
+/* Styling for the image and user class */
 .image {
     padding-top: 10px;
     display: flex;
@@ -224,10 +247,9 @@ ul{
 
 .user {
     width: 65px;
-    
 }
 
-
+/* Styling for the reviews section */
 .reviews {
     padding: 0;
     background-color: #000000;
@@ -237,6 +259,7 @@ ul{
     flex-wrap: wrap;
     gap: 20px;
 
+    /* Styling for the paragraph within the reviews section */
     p {
         color: aliceblue;
         padding: 5px;
@@ -244,6 +267,7 @@ ul{
         text-align: center;
     }
 
+    /* Styling for the list items within the reviews section */
     li {
         border: 1px solid rgb(110, 110, 110);
         margin: 15px auto;
@@ -254,15 +278,15 @@ ul{
     }
 }
 
-
+/* Styling for the footer section */
 footer {
     background-color: #000000;
     color: aliceblue;
     position: relative;
-    
 }
 
-.footer-logo{
+/* Styling for the footer logo */
+.footer-logo {
     display: flex;
     align-items: center;
     font-size: 30px;
@@ -270,6 +294,7 @@ footer {
     padding: 50px 0 0px 100px;
 }
 
+/* Styling for the slogan */
 .slogan {
     font-size: 20px;
     font-weight: 600;
@@ -277,6 +302,7 @@ footer {
     margin: 0;
 }
 
+/* Styling for the footer start button */
 .footer-start {
     background-color: aliceblue;
     color: black;
@@ -290,6 +316,7 @@ footer {
     right: 150px;
     transition: background-color 0.3s ease;
 
+    /* Styling for the footer start button hover state */
     &:hover {
         cursor: pointer;
         background-color: #191919;
@@ -297,50 +324,51 @@ footer {
     }
 }
 
-
+/* Styling for the certificate class */
 .certificate {
     color: rgba(253, 251, 251, 0.503);
     text-align: center;
     font-size: 15px;
 }
 
+/* Styling for the icon class */
 .icon {
     width: 30px;
     padding: 15px;
     margin: 0 20px;
 
+    /* Styling for the icon hover state */
     &:hover {
         cursor: pointer;
     }
 }
 
+/* Styling for the social section */
 .social {
     display: flex;
     justify-content: center;
 }
 
+/* Media query for screen sizes up to 768px */
 @media only screen and (max-width: 768px) {
+    /* Adjust styling for the footer logo */
     .footer-logo {
         padding: 20px 10px;
     }
 
+    /* Adjust styling for the slogan */
     .slogan {
         padding: 10px;
     }
 
+    /* Adjust styling for the footer start button */
     .footer-start {
         bottom: 150px;
         right: 10px;
     }
 
+    /* Adjust styling for the icon */
     .icon {
         margin: 0 5px;
     }
-
 }
-
-
-
-
-
-
