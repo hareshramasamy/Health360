@@ -50,7 +50,8 @@ function Dashboard() {
                 setGoalCalories(Math.round(userProfileResponse.data[0].calorieSurplus * 100) / 100);
             } else if(userProfileResponse.data[0].fitnessGoal === "Weight-Loss") {
                 setGoalCalories(Math.round(userProfileResponse.data[0].calorieDeficit * 100) / 100);
-            } else {
+            }
+            else if(userProfileResponse.data[0].fitnessGoal === "Maintain-Weight"){
                 setGoalCalories(Math.round(userProfileResponse.data[0].maintenanceCalorie * 100) / 100);
             }
           }
@@ -108,7 +109,7 @@ function Dashboard() {
         labels: ['Calories consumed', 'Calories remaining'],
         datasets: [{
          label: 'Food tracker',
-         data: [totalCalories, goalCalories - totalCalories],
+         data: [totalCalories, (goalCalories - totalCalories)<=0 ? 0: (goalCalories - totalCalories)],
          backgroundColor: ['grey', 'white'],
          borderColor: ['grey', 'white']
         }]
@@ -118,7 +119,7 @@ function Dashboard() {
         labels: ['Calories burned', 'Calories to be burned'],
         datasets: [{
           label: 'Exercise tracker',
-          data: [totalCaloriesBurned, 300],
+          data: [totalCaloriesBurned, (300 - totalCaloriesBurned)<=0 ? 0:(300 - totalCaloriesBurned)],
           backgroundColor: ['grey', 'white'],
           borderColor: ['grey', 'white'],
         }],
@@ -180,7 +181,9 @@ function Dashboard() {
                             <div className='summary-details'>
                                 <p>{t('calorie.goal')} {goalCalories} </p>
                                 <p>{t('calorie.consumed')} {totalCalories}</p>
-                                <p>{t('calorie.remaining')} {Math.round((goalCalories - totalCalories) * 100) / 100}</p>
+                                <p>{t('calorie.remaining')} {(Math.round((goalCalories - totalCalories) * 100) / 100)<= 0 
+                                ? 0 
+                                : (Math.round((goalCalories - totalCalories) * 100) / 100)}</p>
                             </div>
                         </div>
                         <a href='/addFood'><button className='trackbutton'>{t('track.food')}</button></a>
@@ -192,7 +195,9 @@ function Dashboard() {
                             <div className='summary-details'>
                                 <p>{t('calorie.target')} 300</p>
                                 <p>{t('calorie.burned')} {totalCaloriesBurned}</p>
-                                <p>{t('calorie.tobe.burned')} {Math.round((300 - totalCaloriesBurned) * 100) / 100}</p>
+                                <p>{t('calorie.tobe.burned')} {(Math.round((300 - totalCaloriesBurned) * 100) / 100) <= 0 
+                                ? 0 
+                                : (Math.round((300 - totalCaloriesBurned) * 100) / 100)}</p>
                             </div>
                         </div>
                         <a href='/addExercise'><button className='trackbutton'>{t('track.workout')}</button></a>
