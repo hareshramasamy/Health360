@@ -3,6 +3,7 @@ import "./Weight.scss";
 import Header from '../LandingPage/Header';
 import axios from 'axios';
 
+// Define interfaces for workout details and workout plan
 interface StrengthTrainingDetails {
   day: string;
   exercise?: string;
@@ -22,6 +23,7 @@ interface WorkoutPlan {
   workouts: StrengthTrainingDetails[];
 }
 
+// WorkoutCard component to display details for a single workout
 const WorkoutCard: React.FC<{ workout: StrengthTrainingDetails }> = ({ workout }) => {
   const {
     day,
@@ -66,6 +68,7 @@ const WorkoutCard: React.FC<{ workout: StrengthTrainingDetails }> = ({ workout }
   );
 };
 
+// DisplayWorkoutPlan component to render the entire workout plan
 const DisplayWorkoutPlan: React.FC<{ workoutPlan: WorkoutPlan }> = ({ workoutPlan }) => {
   const { workouts } = workoutPlan;
 
@@ -78,16 +81,17 @@ const DisplayWorkoutPlan: React.FC<{ workoutPlan: WorkoutPlan }> = ({ workoutPla
   );
 };
 
+// WeightGainApp component to fetch and display the Weight Gain workout plan
 const WeightGainApp: React.FC = () => {
-  const [weightGainPlan, setWeightgainPlan] = useState<WorkoutPlan | null>(null);
+  const [weightGainPlan, setWeightGainPlan] = useState<WorkoutPlan | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get('http://localhost:3000/workouts');
-        const fetchedWeightgainPlan = response.data[0].workout_plans.find((plan: WorkoutPlan) => plan.plan_name === "Weight Gain Plan");
-        setWeightgainPlan(fetchedWeightgainPlan);
+        const fetchedWeightGainPlan = response.data[0].workout_plans.find((plan: WorkoutPlan) => plan.plan_name === "Weight Gain Plan");
+        setWeightGainPlan(fetchedWeightGainPlan);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -98,19 +102,22 @@ const WeightGainApp: React.FC = () => {
     fetchData();
   }, []);
 
+  // Loading state while fetching data
   if (loading) {
     return <p>Loading...</p>;
   }
 
+  // Render if weight gain plan is not found
   if (!weightGainPlan) {
     return (
       <div>
         <Header />
-        <p>Weight loss plan not found.</p>
+        <p>Weight gain plan not found.</p>
       </div>
     );
   }
 
+  // Render the Weight Gain workout plan
   return (
     <div className="workout-pic-container">
       <Header />

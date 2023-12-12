@@ -3,6 +3,7 @@ import "./Weight.scss";
 import Header from '../LandingPage/Header';
 import axios from 'axios';
 
+// Define interfaces for workout details and workout plan
 interface StrengthTrainingDetails {
   day: string;
   exercise?: string;
@@ -22,6 +23,7 @@ interface WorkoutPlan {
   workouts: StrengthTrainingDetails[];
 }
 
+// WorkoutCard component to display details for a single workout
 const WorkoutCard: React.FC<{ workout: StrengthTrainingDetails }> = ({ workout }) => {
   const {
     day,
@@ -66,6 +68,7 @@ const WorkoutCard: React.FC<{ workout: StrengthTrainingDetails }> = ({ workout }
   );
 };
 
+// DisplayWorkoutPlan component to render the entire workout plan
 const DisplayWorkoutPlan: React.FC<{ workoutPlan: WorkoutPlan }> = ({ workoutPlan }) => {
   const { workouts } = workoutPlan;
 
@@ -78,16 +81,17 @@ const DisplayWorkoutPlan: React.FC<{ workoutPlan: WorkoutPlan }> = ({ workoutPla
   );
 };
 
+// MaintainWeightApp component to fetch and display the Weight Maintenance workout plan
 const MaintainWeightApp: React.FC = () => {
-  const [maintainWeightPlan, setMaintainweightPlan] = useState<WorkoutPlan | null>(null);
+  const [maintainWeightPlan, setMaintainWeightPlan] = useState<WorkoutPlan | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get('http://localhost:3000/workouts');
-        const fetchedMaintainweightPlan = response.data[0].workout_plans.find((plan: WorkoutPlan) => plan.plan_name === "Weight Maintenance Plan");
-        setMaintainweightPlan(fetchedMaintainweightPlan);
+        const fetchedMaintainWeightPlan = response.data[0].workout_plans.find((plan: WorkoutPlan) => plan.plan_name === "Weight Maintenance Plan");
+        setMaintainWeightPlan(fetchedMaintainWeightPlan);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -98,24 +102,27 @@ const MaintainWeightApp: React.FC = () => {
     fetchData();
   }, []);
 
+  // Loading state while fetching data
   if (loading) {
     return <p>Loading...</p>;
   }
 
+  // Render if weight maintenance plan is not found
   if (!maintainWeightPlan) {
     return (
       <div>
         <Header />
-        <p>Weight loss plan not found.</p>
+        <p>Weight maintenance plan not found.</p>
       </div>
     );
   }
 
+  // Render the Weight Maintenance workout plan
   return (
     <div className="workout-pic-container">
       <Header />
       <div className='weightpic'>
-        <p className='planname'>Weight Maintainance Plan</p>
+        <p className='planname'>Weight Maintenance Plan</p>
         <DisplayWorkoutPlan workoutPlan={maintainWeightPlan} />
       </div>
     </div>
