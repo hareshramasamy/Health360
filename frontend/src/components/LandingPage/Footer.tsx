@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../store/slices/authSlice'; 
+import { useTranslation } from 'react-i18next';
 
 
 const Footer = () => {
     const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
+    const {t} = useTranslation('common');
     let navigate = useNavigate();
     const routeChange = () => {
         let path = `signup`;
@@ -18,9 +20,9 @@ const Footer = () => {
             <section>
                 <div className="footer-logo">
                     <img className="logo" src={process.env.PUBLIC_URL + "/Health360LOGO.png"} alt="Logo"></img>
-                    <p>Health360</p>
+                    <p>{t('title')}</p>
                 </div>
-                <p className="slogan">Embrace Your Fitness Journey with Health360</p>
+                <p className="slogan">{t('slogan')}</p>
             </section>
             {!isLoggedIn && (
                 <button className="footer-start" onClick={routeChange}>
