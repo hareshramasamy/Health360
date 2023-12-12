@@ -1,3 +1,4 @@
+/* Styling for the update-user-profile-container */
 .update-user-profile-container {
     background-image: url("running.jpg");
     background-size: 100%;
@@ -6,17 +7,20 @@
     text-align: center;
 }
 
+/* Styling for specific elements within the root div */
 #root > div {
     color: #fff;
     align-content: center;
 }
 
-#root > div > h1{
+/* Styling for h1 element within the root div */
+#root > div > h1 {
     padding-left: 5%;
     text-decoration: underline;
 }
 
-#root > div > form{
+/* Styling for form within the root div */
+#root > div > form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,10 +28,11 @@
     height: max-content;
 }
 
+/* Styling for input and select elements within the form */
 #root > div > form > input,
 #root > div > form > select:nth-child(4),
 #root > div > form > select:nth-child(5),
-#root > div > form > select:nth-child(6){
+#root > div > form > select:nth-child(6) {
     margin: 3vh;
     width: 30vh;
     padding: 10px;
@@ -36,21 +41,17 @@
     border-radius: 5px;
     background-color: #191919; /* Background color for input fields */
     color: rgb(248, 247, 247); /* Text color for input fields */
-    
 }
 
-
+/* Remove default spinner appearance for number input */
 #root > div > form > input::-webkit-outer-spin-button,
 #root > div > form > input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 
-/* #root > div > form > input[type=number]{
-    -moz-appearance: textfield;
-} */
-
-#root > div > form > input[type=submit]:nth-child(7){
+/* Styling for submit button */
+#root > div > form > input[type=submit]:nth-child(7) {
     width: 33vh;
     padding: 10px;
     border: 2px solid #acacac;
@@ -61,7 +62,7 @@
     transition: background-color 0.3s ease;
 }
 
-
+/* Styling for submit button hover state */
 #root > div > form > input[type=submit]:nth-child(7):hover {
     background-color: aliceblue;
     color: black;

@@ -84,8 +84,8 @@ const SearchFood: React.FC = () => {
       if (searchTerm !== "") {
         const response = await axios.get('https://trackapi.nutritionix.com/v2/search/instant', {
           headers: {
-            'x-app-id': '5694690a',
-            'x-app-key': 'e2cae258b8e23d9a3619ad82895254ff',
+            'x-app-id': `${process.env.REACT_APP_X_APP_ID}`,
+            'x-app-key': `${process.env.REACT_APP_X_APP_KEY}`,
           },
           params: {
             query: searchTerm,
@@ -114,8 +114,8 @@ const SearchFood: React.FC = () => {
         {
             headers: {
                 'Content-type': 'application/json',
-                'x-app-id': '5694690a',
-                'x-app-key': 'e2cae258b8e23d9a3619ad82895254ff'
+                'x-app-id': `${process.env.REACT_APP_X_APP_ID}`,
+                'x-app-key': `${process.env.REACT_APP_X_APP_KEY}`
             },
     });
 

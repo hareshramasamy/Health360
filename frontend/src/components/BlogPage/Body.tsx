@@ -81,7 +81,7 @@ function Body() {
                     </div>
                     <div>
                         <p>
-                            Author: <b><i>{blog.userId.firstName}</i></b><br />
+                            Author: <b><i>{blog.userId.firstName} {blog.userId.lastName}</i></b><br />
                             Created at: <b><i>{formattedDate}</i></b>
                         </p>
                     </div>
@@ -96,7 +96,7 @@ function Body() {
                     ) : (
                         <>
                             <FaEdit className="disabled-edit">Edit</FaEdit>
-                            <FaEdit className="disabled-delete">Delete</FaEdit>
+                            <FaTrash className="disabled-delete">Delete</FaTrash>
                         </>
                     )}
                     </div>
