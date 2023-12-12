@@ -5,6 +5,7 @@ import Header from "../LandingPage/Header";
 import "./basics.scss";
 import { JwtPayload, jwtDecode } from "jwt-decode";
 
+// Interface for form data
 interface FormData {
   age: number;
   height: number;
@@ -14,6 +15,7 @@ interface FormData {
   fitnessGoal: string;
 }
 
+// Interface for form errors
 interface FormErrors {
   ageError: boolean;
   heightError: boolean;
@@ -23,15 +25,20 @@ interface FormErrors {
   fitnessGoalError: boolean;
 }
 
-let userIdVal: string;
-
+// Interface for JWT payload with user ID
 interface JwtPayloadWithUserId extends JwtPayload {
   userId: string;
 }
 
+// Global variable to store user ID
+let userIdVal: string;
+
+// UserProfileUpdate component to handle updating user profile
 function UserProfileUpdate() {
+  // React hook for navigation
   const navigate = useNavigate();
 
+  // State to manage form data, form errors, and error message
   const [formData, setFormData] = useState<FormData>({
     age: 0,
     height: 0,
@@ -52,6 +59,7 @@ function UserProfileUpdate() {
 
   const [errorMessage, setErrorMessage] = useState("");
 
+  // Function to validate the form
   const validateForm = () => {
     let valid = true;
     const newErrors: FormErrors = { ...formErrors };
@@ -72,19 +80,21 @@ function UserProfileUpdate() {
     return valid;
   };
 
-
+  // Function to handle input changes and clear error messages
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     setErrorMessage("");
     setFormErrors({ ...formErrors, [`${name}Error`]: false });
-};
+  };
 
+  // Function to submit the form
   const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     console.log(e);
 
+    // Decode JWT token to get user ID
     const token = localStorage.getItem('token');
     if (token) {
       const decoded: JwtPayloadWithUserId = jwtDecode(token) as JwtPayloadWithUserId;
@@ -102,54 +112,61 @@ function UserProfileUpdate() {
           return;
         }
 
+        // Make a PUT request to update user profile
         const res = await axios.put(
           `http://localhost:3000/user-profile/${userId}`,
           {...formData, userId: userIdVal}
         );
 
+        // If update is successful, navigate to the dashboard
         if (res.status === 200) {
           navigate("/dashboard", { state: { id: userId } });
         }
       } catch (error: any) {
+        // Handle update errors
         setErrorMessage(
           "An error occurred. Please check your details and try again."
         );
       }
     } else {
+      // Display an error message if form validation fails
       setErrorMessage("Please fill in all required fields.");
     }
   };
 
+  // JSX structure for the user profile update form
   return (
     <div className="update-user-profile-container">
       <Header />
       <h1 className="update-user-profile-heading">Update Your Profile</h1>
       <form className="update-user-profile-form" onSubmit={submit}>
+        {/* Input fields for updating user profile */}
         <input
           className={formErrors.ageError ? "error" : ""}
           name="age"
           type="number"
-          onChange={(handleChange)}
+          onChange={handleChange}
           placeholder="Age"
         />
         <input
           className={formErrors.heightError ? "error" : ""}
           name="height"
           type="number"
-          onChange={(handleChange)}
+          onChange={handleChange}
           placeholder="Height (in cm)"
         />
         <input
           className={formErrors.weightError ? "error" : ""}
           name="weight"
           type="number"
-          onChange={(handleChange)}
+          onChange={handleChange}
           placeholder="Weight (in Pounds)"
         />
+        {/* Dropdowns for selecting sex at birth, food preference, and fitness goal */}
         <select
           className={formErrors.sexAtBirthError ? "error" : ""}
           name="sexAtBirth"
-          onChange={(handleChange)}>
+          onChange={handleChange}>
           <option value="" disabled selected>
             Select Sex at Birth
           </option>
@@ -159,7 +176,7 @@ function UserProfileUpdate() {
         <select
           className={formErrors.foodPreferenceError ? "error" : ""}
           name="foodPreference"
-          onChange={(handleChange)}>
+          onChange={handleChange}>
           <option value="" disabled selected>
             Select Food Preference
           </option>
@@ -170,7 +187,7 @@ function UserProfileUpdate() {
         <select
           className={formErrors.fitnessGoalError ? "error" : ""}
           name="fitnessGoal"
-          onChange={(handleChange)}>
+          onChange={handleChange}>
           <option value="" disabled selected>
             Select Fitness Goal
           </option>
@@ -178,7 +195,9 @@ function UserProfileUpdate() {
           <option value="Weight-Loss">Weight Loss</option>
           <option value="Maintain-Weight">Maintain Weight</option>
         </select>
+        {/* Display error message, if any */}
         {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+        {/* Submit button */}
         <input type="submit" value="Submit" />
       </form>
     </div>
