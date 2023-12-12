@@ -58,14 +58,11 @@ html,body,#root {
     color: #191919;
     border: none;
     transition: background-color 0.3s ease;
-    
 
-
-}
-
-.options:hover {
-    cursor: pointer;
-    background-color: #191919;
-    border: none;
-    color: aliceblue;
+    &:hover {
+        cursor: pointer;
+        background-color: #191919;
+        border: none;
+        color: aliceblue;
+    }
 }

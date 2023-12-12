@@ -19,12 +19,12 @@
 
 .sign-up-form {
   color: aliceblue;
-}
 
-.sign-up-form input[type="submit"] {
-  border: 2px;
-  background-color: #191919; /* Background color for the submit button */
-  color: white; /* Text color for the submit button */
-  border: 2px solid #acacac;
-  width: 100%;
+  input[type="submit"] {
+    border: 2px;
+    background-color: #191919; /* Background color for the submit button */
+    color: white; /* Text color for the submit button */
+    border: 2px solid #acacac;
+    width: 100%;
+  }
 }

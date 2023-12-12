@@ -15,25 +15,25 @@
     gap: 20px;
     grid-template-columns: 100px 4fr 4fr 4fr 4fr;
     grid-template-rows: auto;
-}
 
-.exercise-container button {
-    border-radius: 100%;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border: 2px;
-    background-color: aliceblue;
-    color: black; 
-}
+    button {
+        border-radius: 100%;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        border: 2px;
+        background-color: aliceblue;
+        color: black;
 
-.exercise-container h3 {
-    margin: 0;
-}
-  
-.exercise-container button:hover {
-    background-color: #191919;
-    color: aliceblue; 
-    font-weight: 600;
+        &:hover {
+            background-color: #191919;
+            color: aliceblue;
+            font-weight: 600;
+        }
+    }
+
+    h3 {
+        margin: 0;
+    }
 }
 
 .bg-img-exercise {

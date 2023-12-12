@@ -15,26 +15,27 @@
     gap: 20px;
     grid-template-columns: 100px 4fr 4fr 4fr 4fr 4fr 4fr 4fr 4fr;
     grid-template-rows: auto;
+
+    button {
+        border-radius: 100%;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        border: 2px;
+        background-color: aliceblue;
+        color: black; 
+
+        &:hover {
+            background-color: #191919;
+            color: aliceblue; 
+            font-weight: 600;
+        }
+    }
+
+    h3 {
+        margin: 0;
+    }
 }
 
-.meal-container button {
-    border-radius: 100%;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border: 2px;
-    background-color: aliceblue;
-    color: black; 
-}
-
-.meal-container h3 {
-    margin: 0;
-}
-  
-.meal-container button:hover {
-    background-color: #191919;
-    color: aliceblue; 
-    font-weight: 600;
-}
 
 .date-bar {
     display: flex;
@@ -68,19 +69,20 @@
 .custom-datepicker-input {
     position: relative;
     display: inline-block;
+
+    input[type='text'] {
+        padding-right: 30px;
+    }
+
+    .calendar-icon {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        color: black;
+    }
 }
-  
-.custom-datepicker-input input[type='text'] {
-    padding-right: 30px;
-}
-  
-.custom-datepicker-input .calendar-icon {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    color: black;
-}
+
 
 .bg-img-food {
     background-image: url("dietplanImage.jpg");

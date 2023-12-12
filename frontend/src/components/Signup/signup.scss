@@ -78,25 +78,27 @@ input.error {
 .sign-up-para {
     margin-top: 20px;
     color: white;
+
+    a {
+        color: #007bff;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }
 
-.sign-up-para a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-.sign-up-para a:hover {
-    text-decoration: underline;
-}
 
 .signup-link {
     color: white;
     text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
 }
-  
-.signup-link:hover {
-    text-decoration: underline;
-}
+
 
 .sign-up-para-link {
     text-align: center;

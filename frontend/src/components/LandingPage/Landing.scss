@@ -40,40 +40,43 @@ header > div{
     height: 70px;
 }
 
-nav{
+nav {
     position: absolute;
     top: 25px;
     right: 50px;
     color: aliceblue;
     font-size: 20px;
+
+    a {
+        color: aliceblue;
+        font-size: 20px;
+        text-decoration: none;
+
+        &:hover {
+            cursor: pointer;
+            font-weight: 800;
+        }
+    }
 }
 
-nav a {
-    color: aliceblue;
-    font-size: 20px;
-    text-decoration: none;
-} 
-nav a:hover {
-    cursor: pointer;
-    font-weight: 800;
-}
 
 .nav-items {
     display: flex;
     margin-left: auto;
     align-items: center;
     gap: 20px;
+
+    a {
+        margin: 0 10px;
+    }
+
+    p {
+        margin: 0 10px;
+        font-size: 1vw;
+        white-space: wrap;
+    }
 }
 
-.nav-items a {
-    margin: 0 10px;
-}
-
-.nav-items p {
-    margin: 0 10px;
-    font-size: 1vw;
-    text-wrap: wrap;
-}
 
 header > h2 {
     font-size: 30px;
@@ -123,24 +126,26 @@ header > h2 {
     gap: 30px;
     justify-content: center;
     background-color: #212121;
+
+    div {
+        padding: 10px 0;
+
+        &:hover {
+            background-color: #2d2c2c;
+        }
+    }
+
+    a {
+        color: aliceblue;
+        font-size: 20px;
+        text-decoration: none;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
 }
 
-.navigation-bar div {
-    padding: 10px 0;
-}
-
-.navigation-bar div:hover {
-    background-color: #2d2c2c;
-}
-
-.navigation-bar a {
-    color: aliceblue;
-    font-size: 20px;
-    text-decoration: none;
-} 
-.navigation-bar a:hover {
-    cursor: pointer;
-}
 
 .fav{
     font-size: 1.5vw;
@@ -164,7 +169,7 @@ header > h2 {
     margin: 10px 0;
 }
 
-.sign-up{
+.sign-up {
     position: absolute;
     top: 70%; 
     left: 5%;
@@ -176,16 +181,17 @@ header > h2 {
     border: none;
     padding: 10px;
     font-weight: 700;
-    text-wrap: wrap;
+    white-space: wrap;
     z-index: 1;
     transition: background-color 0.3s ease;
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(240, 248, 255, 0.533);
+        color: #000000;
+    }
 }
 
-.sign-up:hover {
-    cursor: pointer;
-    background-color: rgba(240, 248, 255, 0.533);
-    color: #000000;
-}
 
 .rating {
     text-align: center;
@@ -208,15 +214,6 @@ header > h2 {
 ul{
     margin: 0;
 }
-.reviews {
-    padding: 0;
-    background-color: #000000;
-    list-style-type: none;
-    display: flex;
-    position: relative;
-    flex-wrap: wrap;
-    gap: 20px;
-}
 
 .image {
     padding-top: 10px;
@@ -230,21 +227,33 @@ ul{
     
 }
 
-.reviews  p {
-    color: aliceblue;
-    padding: 5px;
-    font-size: 20px;
-    text-align: center;
+
+.reviews {
+    padding: 0;
+    background-color: #000000;
+    list-style-type: none;
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    p {
+        color: aliceblue;
+        padding: 5px;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    li {
+        border: 1px solid rgb(110, 110, 110);
+        margin: 15px auto;
+        padding: 10px;
+        width: 300px;
+        border-radius: 15px;
+        text-align: center;
+    }
 }
 
-.reviews li {
-    border: 1px solid rgb(110, 110, 110);
-    margin: 15px auto;
-    padding: 10px;
-    width: 300px;
-    border-radius: 15px;
-    text-align: center;
-}
 
 footer {
     background-color: #000000;
@@ -280,14 +289,14 @@ footer {
     bottom: 200px;
     right: 150px;
     transition: background-color 0.3s ease;
+
+    &:hover {
+        cursor: pointer;
+        background-color: #191919;
+        color: aliceblue;
+    }
 }
 
-.footer-start:hover {
-    cursor: pointer;
-    background-color: #191919;
-    color: aliceblue;
-
-}
 
 .certificate {
     color: rgba(253, 251, 251, 0.503);
@@ -297,12 +306,12 @@ footer {
 
 .icon {
     width: 30px;
-    padding: 15px ;
+    padding: 15px;
     margin: 0 20px;
-}
 
-.icon:hover {
-    cursor: pointer;
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .social {

@@ -15,76 +15,76 @@
     min-width: 400px;
 }
 
-.search-food-container-wrapper {
-    padding-top: 20px;
-}
-
-.search-food-input-section div {
-    display: flex;
-    gap: 10px;
-}
-
-.search-food-input-section {
-    margin: auto;
-}
-
 .search-heading {
     padding: 5px 0;
 }
 
-.search-food-input-section p{
-    padding: 5px 0;
+.search-food-container-wrapper {
+    padding-top: 20px;
 }
 
-.search-food-input-section input {
-    margin-bottom: 0;
-}
+.search-food-input-section {
+    margin: auto;
 
-.search-food-input-section button {
-    width: 100px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border: 2px;
-    border-radius: 5px;
-    background-color: aliceblue;
-    color: black; 
-}
+    div {
+        display: flex;
+        gap: 10px;
+    }
 
-.search-food-input-section button:hover {
-    background-color: #191919;
-    color: aliceblue; 
-    font-weight: 600;
+    p {
+        padding: 5px 0;
+    }
+
+    input {
+        margin-bottom: 0;
+    }
+
+    button {
+        width: 100px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        border: 2px;
+        border-radius: 5px;
+        background-color: aliceblue;
+        color: black; 
+
+        &:hover {
+            background-color: #191919;
+            color: aliceblue; 
+            font-weight: 600;
+        }
+    }
 }
 
 .search-food-result {
     width: 39%;
     margin: auto;
-}
 
-.search-food-result h3 {
-    text-align: left;   
-}
+    h3 {
+        text-align: left;   
+    }
 
-.search-food-result ul {
-    list-style-type: none;
-    padding: 5px 0;
-}
+    ul {
+        list-style-type: none;
+        padding: 5px 0;
 
-.search-food-result ul li {
-    padding: 5px 0;
-    margin: 5px auto;
-    width: 50%;
-    background-color: aliceblue;
-    transition: background-color 0.3s ease;
-    cursor: pointer;
-    text-align: center;
-    opacity: 0.9;
-    color: black;
-}
+        li {
+            padding: 5px 0;
+            margin: 5px auto;
+            width: 50%;
+            background-color: aliceblue;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+            opacity: 0.9;
+            color: black;
 
-.search-food-result ul li:hover {
-    background-color: black;
-    color: aliceblue;
+            &:hover {
+                background-color: black;
+                color: aliceblue;
+            }
+        }
+    }
 }
 
 .search-food-save {
@@ -94,25 +94,25 @@
 .select-qty-container {
     display: flex;
     align-items: center;
-}
 
-.select-qty-container h3 {
-    width: 50%;
-}
+    h3 {
+        width: 50%;
+    }
 
-.select-qty-container input {
-    width: 40%;
-    margin: auto;
+    input {
+        width: 40%;
+        margin: auto;
+    }
 }
 
 .nutrition-facts {
     display: flex;
     flex-direction: column;
     margin: auto;
-}
 
-.nutrition-facts p {
-    text-align: left;
+    p {
+        text-align: left;
+    }
 }
 
 .save-container {
@@ -125,10 +125,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-}
 
-.select-and-save button {
-    width: 25%;
+    button {
+        width: 25%;
+    }
 }
 
 .save-btn {
@@ -140,10 +140,11 @@
     border-radius: 5px;
     background-color: aliceblue;
     color: black; 
+
+    &:hover {
+        background-color: #191919;
+        color: aliceblue; 
+        font-weight: 600;
+    }
 }
 
-.save-btn:hover {
-    background-color: #191919;
-    color: aliceblue; 
-    font-weight: 600;
-}

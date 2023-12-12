@@ -59,18 +59,18 @@
     background-color: aliceblue;
     border-radius: 8px;
     border: none;
-    
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgb(0, 0, 0);
+        color: aliceblue;
+    }
 }
+
 
 a{
     text-decoration: none;
     color: black;
-}
-
-.trackbutton:hover {
-    cursor: pointer;
-    background-color: rgb(0, 0, 0);
-    color: aliceblue;
 }
 
 
@@ -112,10 +112,10 @@ a{
     border-radius: 10px;
     font-weight: 700;
     height: 6vh;
-}
 
-.discover-items:hover {
-    cursor: pointer;
-    background-color: rgb(0, 0, 0);
-    color: aliceblue;
+    &:hover {
+        cursor: pointer;
+        background-color: rgb(0, 0, 0);
+        color: aliceblue;
+    }
 }
