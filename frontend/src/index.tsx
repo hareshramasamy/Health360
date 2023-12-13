@@ -7,6 +7,7 @@ import store from './store';
 import i18n from './i18n';
 import { I18nextProvider } from 'react-i18next';
 import { Provider } from 'react-redux';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -20,6 +21,8 @@ root.render(
     </React.StrictMode>
   </Provider>
 );
+
+serviceWorkerRegistration.register();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -33,6 +33,13 @@ type PrivateRouteProps = {
 
 // Main App component
 function App() {
+
+  React.useEffect(() => {
+    if (window.location.pathname === '/service-worker.js') {
+      window.location.href = '/service-worker.js';
+    }
+  }, []);
+  
   return (
     <BrowserRouter>
       <Routes>
