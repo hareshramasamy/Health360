@@ -38,9 +38,7 @@ const Footer = () => {
             </section>
             {/* Displaying the "Start Now" button only if the user is not logged in */}
             {!isLoggedIn && (
-                <button className="footer-start" onClick={routeChange}>
-                    {t('start.button.label')}
-                </button>
+                <button className="footer-start" onClick={routeChange}>Start Now</button>
             )}
             {/* Copyright, social icons, and company information section */}
             <div>
