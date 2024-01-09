@@ -54,7 +54,7 @@ const EditPost = () => {
       };
 
       try {
-          const response = await axios.put(`http://localhost:3000/blogs/${id}`, data, {
+          const response = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/blogs/${id}`, data, {
             headers: {
                 'Content-Type': 'application/json',
             },

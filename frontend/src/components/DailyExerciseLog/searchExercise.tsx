@@ -134,7 +134,7 @@ const SearchExercise: React.FC = () => {
         }));
 
         if (exercisesToSave.length > 0) {
-          const res = await axios.post('http://localhost:3000/addExercises', exercisesToSave);
+          const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/addExercises`, exercisesToSave);
           if (res.status === 200) {
             navigate('/addExercise');
           }

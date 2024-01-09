@@ -89,7 +89,7 @@ const MaintainWeightApp: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/workouts');
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/workouts`);
         const fetchedMaintainWeightPlan = response.data[0].workout_plans.find((plan: WorkoutPlan) => plan.plan_name === "Weight Maintenance Plan");
         setMaintainWeightPlan(fetchedMaintainWeightPlan);
         setLoading(false);

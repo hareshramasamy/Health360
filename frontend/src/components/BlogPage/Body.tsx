@@ -17,7 +17,7 @@ function Body() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const result = await fetch('http://localhost:3000/blogs');
+                const result = await fetch(`${process.env.REACT_APP_BACKEND_URL}/blogs`);
                 const res = await result.json();
                 setData(res);
             } catch (error) {
@@ -46,7 +46,7 @@ function Body() {
     // Function to handle blog deletion
     const handleDelete = async (blogId: string) => {
         try {
-            const response = await fetch(`http://localhost:3000/blogs/${blogId}`, {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/blogs/${blogId}`, {
                 method: "DELETE",
                 headers: {
                     'Content-Type': 'application/json'

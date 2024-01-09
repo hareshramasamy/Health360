@@ -54,7 +54,7 @@ const CreatePost: React.FC<CreatePostProps> = () => {
 
     try {
       // Make a POST request to create a new blog post
-      const response = await fetch("http://localhost:3000/blogs", {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/blogs`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'

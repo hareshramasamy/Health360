@@ -48,7 +48,7 @@ function Dashboard() {
   async function fetchUserProfile(userId: string) {
     try {
       // Fetch user profile data from the backend
-      const userProfileResponse = await axios.get(`http://localhost:3000/user-profile-by-id/${userId}`);
+      const userProfileResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user-profile-by-id/${userId}`);
       // Process and set goal calories based on fitness goal
       if(userProfileResponse) {
         if(userProfileResponse.data[0].fitnessGoal === "Weight-Gain") {
@@ -75,7 +75,7 @@ function Dashboard() {
             const adjustedDate = new Date(selectedDate.getTime() - timezoneOffset * 60000);
             formattedDate = adjustedDate.toISOString().split('T')[0];
         }
-        const caloriesConsumedResponse = await axios.get(`http://localhost:3000/food/${userId}/${formattedDate}`);
+        const caloriesConsumedResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/food/${userId}/${formattedDate}`);
         console.log(caloriesConsumedResponse);
         setTotalCalories(caloriesConsumedResponse ? Math.round(caloriesConsumedResponse.data * 100) / 100 : 0);
         return caloriesConsumedResponse.data;
@@ -93,7 +93,7 @@ function Dashboard() {
             const adjustedDate = new Date(selectedDate.getTime() - timezoneOffset * 60000);
             formattedDate = adjustedDate.toISOString().split('T')[0];
         }
-        const caloriesBurnedResponse = await axios.get(`http://localhost:3000/totalExerciseCalories/${userId}/${formattedDate}`);
+        const caloriesBurnedResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/totalExerciseCalories/${userId}/${formattedDate}`);
         console.log(caloriesBurnedResponse);
         setTotalCaloriesBurned(caloriesBurnedResponse ? Math.round(caloriesBurnedResponse.data * 100) /100 : 0);
         return caloriesBurnedResponse.data;

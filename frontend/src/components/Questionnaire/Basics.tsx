@@ -90,7 +90,7 @@ function Basics() {
       try {
         // Make a POST request to create user profile
         const res = await axios.post(
-          "http://localhost:3000/user-profile/",
+          `${process.env.REACT_APP_BACKEND_URL}/user-profile/`,
           {...formData, userId: userIdVal}
         );
         

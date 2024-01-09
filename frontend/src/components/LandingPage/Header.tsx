@@ -28,7 +28,7 @@ const Header: React.FC = () => {
   // Async function to fetch user data based on userId
   async function fetchUser(userId: string) {
     try {
-      const userResponse = await axios.get(`http://localhost:3000/user/${userId}`);
+      const userResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user/${userId}`);
       setFirstName(userResponse.data.firstName);
       return userResponse.data.firstName;
     } catch (error) {

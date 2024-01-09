@@ -104,7 +104,7 @@ const AddFood: React.FC = () => {
       const promises = mealTypes.map(async (type) => {
         try {
           const response = await axios.get<MealData[]>(
-            `http://localhost:3000/food/${userId}/${type}/${formattedDate}`
+            `${process.env.REACT_APP_BACKEND_URL}/food/${userId}/${type}/${formattedDate}`
           );
           const mealDataByType = response.data.map((meal) => ({ ...meal, userId }));
           return mealDataByType;
@@ -156,7 +156,7 @@ const AddFood: React.FC = () => {
   // Function to delete a meal
   const handleDeleteMeal = async (mealId: string) => {
     try {
-      const response = await axios.delete(`http://localhost:3000/food/${mealId}`);
+      const response = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/food/${mealId}`);
       if (response.status === 200) {
         fetchMealData(); // Refresh meal data after deletion
       } else {

@@ -66,7 +66,7 @@ function Login() {
 
         if(validateForm()) {
           try {
-            const res = await axios.post("http://localhost:3000/user/sign-in", formData);
+            const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/sign-in`, formData);
             if (res.status === 200 && res.data.token) {
               localStorage.setItem("token", res.data.token);
               localStorage.setItem("id", formData.email);

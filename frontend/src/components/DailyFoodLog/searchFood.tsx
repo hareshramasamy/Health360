@@ -159,7 +159,7 @@ const SearchFood: React.FC = () => {
   const handleSave = async () => {
     if(selectedFood) {
       try {
-        const res = await axios.post("http://localhost:3000/addfood", selectedFood);
+        const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/addfood`, selectedFood);
         console.log(res);
         if (res.status === 200 ) {
           navigate("/addfood");

@@ -89,7 +89,7 @@ const WeightGainApp: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/workouts');
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/workouts`);
         const fetchedWeightGainPlan = response.data[0].workout_plans.find((plan: WorkoutPlan) => plan.plan_name === "Weight Gain Plan");
         setWeightGainPlan(fetchedWeightGainPlan);
         setLoading(false);

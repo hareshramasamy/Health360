@@ -114,7 +114,7 @@ function UserProfileUpdate() {
 
         // Make a PUT request to update user profile
         const res = await axios.put(
-          `http://localhost:3000/user-profile/${userId}`,
+          `${process.env.REACT_APP_BACKEND_URL}/user-profile/${userId}`,
           {...formData, userId: userIdVal}
         );
 

@@ -78,7 +78,7 @@ function Signup() {
         if (validateForm()) {
             try {
                 // Make a POST request to the server for user registration
-                const res = await axios.post("http://localhost:3000/user/sign-up", formData);
+                const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/sign-up`, formData);
                 
                 // If registration is successful, store token, dispatch login success, and navigate to questionnaire
                 if (res.status === 200) {

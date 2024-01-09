@@ -84,7 +84,7 @@ const NonVegDietApp: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/diets');
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/diets`);
         setDietPlans(response.data[0].diet_plans);
         setLoading(false);
         console.log(response.data[0].diet_plans);

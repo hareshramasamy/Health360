@@ -86,7 +86,7 @@ const AddExercise: React.FC = () => {
   const handleDeleteExercise = async (exerciseId: string) => {
     // Delete exercise by ID using Axios
     try {
-      const response = await axios.delete(`http://localhost:3000/exercise/${exerciseId}`);
+      const response = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/exercise/${exerciseId}`);
       if (response.status === 200) {
         fetchExerciseData(); // Fetch updated exercise data after deletion
       } else {
@@ -109,7 +109,7 @@ const AddExercise: React.FC = () => {
       let exerciseData: ExerciseData[] = [];
       try {
         // Fetch exercise data using Axios GET request
-        const response = await axios.get<ExerciseData[]>(`http://localhost:3000/exercise/${userId}/${formattedDate}`);
+        const response = await axios.get<ExerciseData[]>(`${process.env.REACT_APP_BACKEND_URL}/exercise/${userId}/${formattedDate}`);
         exerciseData = response.data.map((exercise) => ({ ...exercise, userId }));
       } catch (error) {
         console.error(`Error fetching data:`, error);
