@@ -20,6 +20,9 @@ Health360 is a user-friendly fitness web application designed to guide one's jou
 
 ...
 
+## Demo
+Click [here](https://main.d2h92gmwzyfhhc.amplifyapp.com/) to view the demo of the project.
+
 
 ## Technologies Used
 
